@@ -1,0 +1,45 @@
+<div class="wrapper">
+  <div class="contain">
+    <% @posts.each do |post| %>
+      
+        <% detail = PostDetail.find_by(post_id: post.id) %>
+        <div class="index">
+        <div class="post-image">
+          <% if detail.image == "kids.jpg" %>
+            <img src="<%= "/post_images/#{detail.image}" %>">
+          <% else %>
+            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+        <% end %>
+        </div> 
+        <div class="post-main">
+          <div class="post-content">
+            <h3><%= link_to(post.title, "/posts/#{post.id}") %> </h3>
+            <p><%= post.main_content %></p>
+          </div>
+          <% user = User.find_by(id: post.user_id) %>
+          <div class="user">
+            <img src="<%= "/user_images/#{user.image}" %>">
+            <span><%= user.user_name %></span>
+          </div>
+          <div class="smile">
+            <% if Like.find_by(post_id: post.id,user_id: @current_user.id) %>
+              <%= link_to("/likes/#{post.id}/destroy", {method: "post"}) do %>
+                <span class="fab fa-mailchimp like-btn"></span>
+                <!--<span class="fas fa-minus-square like-btn"></span>-->
+              <% end %>
+            <% else %>
+              <%= link_to("/likes/#{post.id}/create", {method: "post"}) do %>
+                <span class="fab fa-mailchimp like-btn-unlike"></span>
+              <% end %>
+            <% end %>
+            <% @likes_count = Like.where(post_id: post.id).count %>
+            <%= @likes_count %>
+          </div>
+  
+        </div>
+      </div>
+      <div class="clear"></div>
+    <% end %>
+  　　
+  </div>
+</div>

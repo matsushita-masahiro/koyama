@@ -1,0 +1,251 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.contain {
+    width: 100%x;
+    margin: 10px auto;
+    border-top: dashed 2px #bcbace;
+}
+
+.like-btn {
+    color: #800000;
+}
+
+.like-btn-unlike {
+    color: #6495ed;
+}
+
+.contain p {
+    margin-right: 20px;
+}
+.title {
+    margin: 0 20px;
+}
+
+.title-1{
+    width: 610px;
+    height: 30px;
+     box-sizing: border-box; 
+     border: none;
+}
+
+.main {
+    width: 610px;
+    height: 60px;
+    box-sizing: border-box; 
+    border: none;
+}
+
+
+.post {
+    width: 610px;
+    margin: 10px 20px;
+}
+
+.picture {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    background: #f5f5f5;
+    float: left;
+}
+
+.picture span {
+    font-size: 40px;
+    color: #dcdcdc;
+    position: absolute;
+    top: 55px;
+    left: 55px;
+}
+
+.comment {
+    width: 450px;
+    height: 105px;
+    border: none;
+    box-sizing: border-box; 
+    float:right;
+    background: #fff;
+}
+.clear {
+    clear:both;
+}
+
+.btn span{
+    font-size: 20px;
+    float: right;
+    color: #db7093;
+    margin: 10px 20px 0 0;
+    
+}
+
+.btn .add {
+    margin: 0;
+}
+
+.btn {
+    float: right;
+}
+
+button {
+    margin: 0;
+    border: none;
+    padding: 0;
+}
+.submit {
+    text-align: center;
+    margin: 30px 20px 0 0;
+}
+
+// post-index
+
+.index {
+    overflow: hidden;
+}
+
+.post-image img {
+    background: #f5f5f5;
+    margin-top: 10px;
+    background-size: contain;
+    height: 175px;
+    float: left;
+    width: 250px;
+}
+
+.post-main {
+    width : -webkit-calc(100% - 260px) ;
+    width : calc(100% - 260px);
+    float: right;
+    margin-top: 10px;
+    height: 175px;
+    background: #ffe4e1;
+    position: relative;
+}
+
+.post-content {
+    margin: 5px;    
+}
+
+.post-content h3,p {
+    margin: 2px;
+}
+
+
+
+.user {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+}
+
+.user img{
+    width: 20px;
+    height: 20px;
+}
+
+.smile {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 20px;
+    color: #a9a9a9;
+}
+
+
+// show
+.show-contain {
+    width: 80%;
+    margin: 10px auto;
+    background: #dbedff;
+    padding: 10px;
+}
+.show-top {
+    margin: 10px
+}
+
+.show-date {
+    float: right;
+}
+
+.show-user {
+    float: left;
+    margin-top: 10px;
+}
+
+.show-user img {
+    width: 20px;
+    height: 20px;
+}
+
+.show-edit {
+    float:right;
+    margin-top: 10px;
+}
+.show-edit .fas {
+    font-size: 20px;
+    color: #c0c0c0;
+}
+
+.show-post {
+    margin: 30px 10px 10px;
+}
+
+.show-detail {
+    width: 100%;
+    margin-top: 30px;
+    background: #ffe4e1;
+}
+
+.show-picture img {
+    width: 358px;
+    height: 250px;
+    background: #f5f5f5;
+}
+
+.show-comment {
+    border-top: 2px solid #dcdcdc;
+    padding: 10px;
+}
+
+.show-comment img {
+    width: 20px;
+    height: 20px;
+    
+}
+
+.show-text {
+    width: 100%;
+    
+}
+
+.edit-content {
+    display: none;
+}
+
+.edit-active {
+    display: block;    
+}
+
+// post-new
+
+.post_left {
+    width: 150px;
+    height: 105px;
+    background: #fff;
+    box-sizing: border-box; 
+    border: 1px solid #d3d3d3;
+    position: relative;
+    float: left;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 27.5px;
+    left: 50px;
+}
+
+.notDisp{
+    display: none;
+}

@@ -1,0 +1,88 @@
+<div class="wrapper">
+    <div class="show-content">
+        <div class="show-user-left">
+            <img src="<%= "/user_images/#{@user.image}" %>">
+            <p><%= @user.user_name %></p>
+            <%= link_to("編集", "/users/#{@user.id}/edit") %>
+        </div>
+        
+        <div class="show-user-right">
+            <%= link_to("member list", "/users/index") %>
+            <%= link_to("友達を招待する", "/users/#{@user.id}/invite") %>
+        </div>
+        <div class="clear"></div>
+        <div class="show-container">
+            <ul class="menu">
+                <li>
+                    <a href="#" data-id="like" class="active menu_item">お気に入り</a>
+                </li>
+                <li>
+                    <a href="#" data-id="post" class="menu_item">投稿</a>
+                </li>
+                <li>
+                    <a href="#" data-id="comment" class="menu_item">コメント</a>
+                </li>
+            </ul>
+            <div class="content active" id="like">
+                <% @likes.each do |like| %>
+                    <% post = Post.find_by(id: like.post_id) %>
+                    <div class="show-like">
+                        <%= link_to("/posts/#{post.id}") do %>
+                            <%= post.title %>
+                            <%= post.main_content %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="content" id="post">
+               <% @posts.each do |post| %>
+                    <div class="show-post">
+                        <%= link_to("/posts/#{post.id}") do %>
+                            <%= post.title %>
+                            <%= post.main_content %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+            <div class="content" id="comment">
+                <% @comments.each do |comment| %>
+                <% post = Post.find_by(id: comment.post_id) %>
+                    <div class="s-comment">
+                        <%= link_to("/posts/#{post.id}") do %>
+                            <%= comment.content %>
+                        <% end %>
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        'use strict';
+        
+        var menuItems = document.getElementsByClassName('menu_item');
+        var contents = document.getElementsByClassName('content');
+        
+        var i;
+        
+        for (i = 0; i < menuItems.length; i++) {
+            menuItems[i].addEventListener('click', function(e) {
+            e.preventDefault();    
+        
+        for (i = 0; i < menuItems.length; i++) {
+            menuItems[i].className = 'menu_item';
+        }
+        
+        this.className = 'menu_item active';
+        
+        for (i = 0; i < contents.length; i++) {
+            contents[i].className = 'content';
+        }
+        
+        document.getElementById(this.dataset.id).className = 'content active';
+    });
+    }
+    })();
+</script>

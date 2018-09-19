@@ -1,0 +1,62 @@
+<div class="contain">
+    <p>投稿作成</p>
+    
+         <%= form_tag("/posts/create", {multipart: true}) do %>
+         <select name="category">
+             <option value="1">学習</option>
+             <option value="2">健康</option>
+             <option value="3">cooking</option>
+             <option value="4">おでかけ</option>
+             <option value="5">暮らし</option>
+             <option value="6">旅行</option>
+             <option value="7">まま.etc</option>
+         </select>
+            <div class="title"> 
+                <textarea class="title-1" name="title">タイトル</textarea>
+                <textarea class="main" name="main">投稿内容</textarea>
+            </div>
+           
+            <div class="parent">
+                <div id="field">
+                <div class="post">
+                    <div class="post_left">
+                        <label for="file_photo">
+                            <%= image_tag 'camera.png', class: 'logo' %>
+                            <input name="image" type="file" id="file_photo" style="display:none;">
+                        </label>
+                    </div>
+                    <textarea class="comment" name="content">コメント</textarea>
+                    <button type="button" id="trash" value="" name="">
+                    <span class="fas fa-minus-square"></span>
+                </button>
+                </div>
+                <div class="clear"></div>
+                </div>
+            </div>
+            
+                <div class="btn">
+                <button type="button" id="add" value="" name="">
+                    <span class="fas fa-plus-square"></span>
+                </button>
+                
+                </div>
+               
+            
+            <div class="submit">
+                <input type="submit" value="投稿">
+            </div>
+        <% end %>   
+</div>
+
+<script>
+   $(function() {
+      
+      $('#add').click(function() {
+          $('#field').clone().appendTo($('.parent'));
+      } );
+      $('.parent').on('click', '#trash', function() {
+          $(this).parents('#field').remove();
+      } );
+   });
+
+</script>

@@ -1,0 +1,313 @@
+
+<!--画像を重ねている    -->
+<!--<div class="bubble">-->
+<!--    <%= image_tag 'bubble.jpeg', class: 'bubble-img' %>-->
+<!--</div>-->
+
+<!--アクセス時にモーダルで表示-->
+  <div class="modal">
+    <input id="modal-trigger" class="checkbox" type="checkbox" checked="checked">
+    <div class="modal-overlay">
+      <label for="modal-trigger" class="o-close"></label>
+      <div class="modal-wrap a-center">
+        <label for="modal-trigger" class="close"><i class="fal fa-window-close" class="close"></i></label>
+        <h3>[このWEBサイトについて]</h3>
+            <p>こそだてに迷ったとき、困ったとき、感動したとき、などなど<br/>
+            いろいろな場面でこのサイトを訪れたとき、癒されたり、共感したり、前向きな気持ちになったりと．．．<br/>
+            みんなで一緒にこそだてを楽しんでいければなーと思って立ち上げあたサイトです♪<br/>
+            <br/>
+            ●新規登録・ログインボタンを持ったくまさんがかくれんぼをして遊んでます。みつけてね●</p>
+            <%= image_tag 'about.png', class: 'about-img' %>
+      </div>
+    </div>
+  </div>
+  
+  <!--新規登録mordal↓-->
+    <div id="sign-modal" class="hidden m-modal">
+        <i class="fal fa-window-close m-close"></i>
+        <div class="sign-up">
+        <p>新規登録</p>
+        <div class="message">
+          <%= image_tag 's-message.png', class: 's-message-img' %><br/>
+          こそだてひろばへようこそ！<br/>
+          少しでもこそだての協力ができるようにたくさんの情報を<br/>のせていきたいと思います
+          色々な投稿もお待ちしております
+        </div>
+        <div class="form">
+          <%= form_tag("/users/create", {multipart: true}) do %>
+            <p>ニックネーム</p>
+            <input name="name">
+            <p>メールアドレス</p>
+            <input name="email">
+            <p>パスワード</p>
+            <input type="password" name="password">
+            <p>画像</p>
+            <input type="file" name="image">
+            <p>コメント</p>
+            <textarea name="comment"></textarea>
+            <div class="submit">
+              <input type="submit" value="新規登録">
+            </div>
+          <% end %>
+        </div>
+        </div>
+    </div>
+    <div class="mask hidden"></div>
+    
+    <!--ログインmordal↓-->
+    <div id="login-modal" class="hidden m-modal">
+        <i class="fal fa-window-close m-close"></i>
+        <% if @error_message %>
+          <div class="form-error">
+              <% @error_message %>
+          </div>
+        <% end %>
+        <div class="login">
+        <p>ログイン</p>
+        <div class="message">
+          <%= image_tag 'l-message.png', class: 's-message-img' %><br/>
+          こそだてひろばへようこそ！<br/>
+          楽しんでいってください！
+          みんながあなたからの投稿を待っています<br/>
+          みんなと共有したい情報があればぜひ投稿してね
+        </div>
+        <div class="form">
+        <%= form_tag("/login") do %>
+          <p>メールアドレス</p>
+          <input name="email">
+          <p>パスワード</p>
+          <input name="password">
+          <div class="submit">
+          <input type="submit" value="ログイン">
+          </div>
+        <% end %>
+        </div>
+    </div>
+    </div>
+    <div class="mask hidden"></div>
+    
+  <div id="fixed">
+          <div id="open1">
+            <%= image_tag 'signUp.png', class: 'signUp-img s-open' %>
+            </div>
+          <div id="open2"><%= image_tag 'login.png', class: 'login-img open' %></div>
+    </div>
+    
+<!--ここからページ開始-->
+<div class="wrapper">
+    <div id="main-box">
+      <%= image_tag 'top.jpg', class: 'top-img' %>
+    </div>
+    
+    <div class="navi">
+        <h4>[今日のこそだて格言]</h4>
+        <p class="sentence"><%= @sentence[0] %></p>
+        <%= image_tag 'navi.png', class: 'navi-img' %>
+    </div>
+   
+    <div class="menu">
+    <p>MENU</p>
+     <ul>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="menu-icon">
+                  <div class="text-contents">
+                  <!--<%= image_tag 'learning.png', class: 'menu-img' %>-->
+                  学習方法
+                </div>
+                    <%= image_tag 'learning.png', class: 'menu-img' %>
+                    <%= link_to("/learning")  do %>
+                      <p>がくしゅう</p>
+                    <% end %>
+                </div>
+                
+              </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="text-contents">
+                  <!--<%= image_tag 'health.png', class: 'menu-img' %>-->
+                  健康情報
+                  </div>
+                <div class="menu-icon">
+                  <%= link_to("/health") do %>
+                    <%= image_tag 'health.png', class: 'menu-img' %>
+                    <p>けんこう</p>
+                  <% end %>
+                </div>
+                
+              </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="text-contents">
+                    <!--<%= image_tag 'cooking.png', class: 'menu-img' %>-->
+                    クッキング
+                  </div>
+                <div class="menu-icon">
+                  <%= link_to("/cooking") do %>
+                    <%= image_tag 'cooking.png', class: 'menu-img' %>
+                    <p>りょうり</p>
+                  <% end %>
+                </div>
+                  
+                </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="text-contents">
+                  <!--<%= image_tag 'out.png', class: 'menu-img' %>-->
+                  お出かけ情報
+                </div>
+                <div class="menu-icon">
+                    <%= link_to("/out") do %>
+                        <%= image_tag 'out.png', class: 'menu-img' %>
+                        <p>おでかけ</p>
+                    <% end %>
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="menu-icon">
+                  <%= link_to("/life") do %>
+                      <%= image_tag 'life.png', class: 'menu-img' %>
+                      <p>くらし</p>
+                  <% end %>
+                </div>
+                <div class="text-contents">
+                  <!--<%= image_tag 'life.png', class: 'menu-img' %>-->
+                  暮らし情報
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="menu-icon">
+                  <%= link_to("/trip") do %>
+                      <%= image_tag 'trip.png', class: 'menu-img' %>
+                      <p>りょこう</p>
+                  <% end %>
+                </div>
+                <div class="text-contents">
+                  <!--<%= image_tag 'trip.png', class: 'menu-img' %>-->
+                  旅行情報
+                </div>
+              </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                <div class="menu-icon">
+                  <%= link_to("/mom") do %>
+                      <%= image_tag 'dad.png', class: 'menu-img' %>
+                      <p>etc.</p>
+                  <% end %>
+                </div>
+                <div class="text-contents">
+                  <!--<%= image_tag 'dad.png', class: 'menu-img' %>-->
+                  なんでもあり
+                </div>
+              </div>
+            </li>
+          </ul>
+    </div>
+    <div class="clear"></div>
+  
+  <div class="links">
+    <p>Pick Up</p>
+    <div class="link">
+    <% @posts.each do |post| %>
+      <div class="pick-up">
+          <% detail = PostDetail.find_by(post_id: post.id) %>
+          <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+          <div class="post-title">
+            <%= link_to("/posts/#{post.id}") do %>
+            <span><%=post.title%></span>
+            <% end %>
+          </div>
+          <div class="post-create">
+            <span><%= post.created_at %></span>
+          </div>
+          <div class="clear"></div>
+          <div class="info">
+            <%= image_tag 'info.png', class: 'info-img' %><span>+ more info</span>
+              <div class="more-info">
+                <%= post.main_content %><br/>
+                続きはログインお願いします
+              </div>
+          </div>
+        </div>  
+      <% end %>
+      <div class="clear"></div>
+      </div>
+    </div>
+</div>
+<div class="top-footer"></div>
+<script>
+  $(function() {
+     
+    $('#open1').click(function() {
+        $('#sign-modal').removeClass('hidden');
+        $('.mask').removeClass('hidden');
+    });
+    
+    $('#open2').click(function() {
+        $('#login-modal').removeClass('hidden');
+        $('.mask').removeClass('hidden');
+    });
+    
+    $('.m-close').click(function() {
+        $('#sign-modal').addClass('hidden');
+        $('#login-modal').addClass('hidden');
+        $('.mask').addClass('hidden');
+    });
+    
+    $('.mask').click(function() {
+        $('#sign-modal').addClass('hidden');
+        $('#login-modal').addClass('hidden');
+        $('.mask').addClass('hidden');
+    });
+    
+    $('.open').hover(
+        function() {
+            $(this).css({'left':'0', 'bottom':'0'});
+        },
+        function() {
+            $(this).css({'left':'-112px', 'bottom':'-100px'});
+        }
+    );
+    
+    $('.s-open').hover(
+        function() {
+            $(this).css({'right':'0', 'bottom':'0'});
+        },
+        function() {
+            $(this).css({'right':'-120px', 'bottom':'-100px'});
+        }
+    );
+    
+    $('.menu-hover').hover(
+        function() {
+            $(this).find('.text-contents').addClass('text-active');
+        },
+        function() {
+            $(this).find('.text-contents').removeClass('text-active');
+        }
+    );
+    
+    $('.info').click(function() {
+      var $more = $(this).find('.more-info');
+      if($more.hasClass('open')) {
+        $more.removeClass('open');
+        $more.slideUp();
+        $(this).find('span').text('+ more info');
+      }else {
+        $more.addClass('open');
+        $more.slideDown();
+        $(this).find('span').text('- close');
+      }
+      });
+      
+ 
+});
+</script>

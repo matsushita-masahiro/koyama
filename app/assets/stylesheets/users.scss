@@ -1,0 +1,73 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+ .show-content {
+   width: 80%;
+   margin: 10px auto;
+ }
+ 
+ .show-user-left {
+   width: 20%;
+   float: left;
+ }
+ 
+ .show-user-left img {
+   width: 80%;
+   height: 80%;
+   border-radius: 40%; 
+ }
+ 
+ .show-user-right {
+   float: right;
+   width: 80%;
+   
+ }
+ 
+  .show-container {
+    padding: 0;
+    margin: 30px auto;
+    width: 100%;
+    background: #d3d3d3;
+  }
+  ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+  }
+  ul.menu li {
+    display: inline-block;
+  }
+  ul.menu li a {
+    display: inline-block;
+    font-size: 14px;
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    text-decoration: none;
+    padding: 7px;
+    color: #333;
+  }
+  ul.menu li a.active {
+    background: #ffb6c1;
+    color: #fff;
+  }
+  ul.menu li a:not(.active):hover {
+    opacity: 0.5;
+    transition: .8s;
+  }
+  .content {
+    font-size: 14px;
+    padding: 7px 10px;
+    line-height: 1.4;
+    background: #ffb6c1;
+    color: #fff;
+    min-height: 150px;
+    display: none;
+  }
+  .content.active {
+    display: block;
+  }
+
+

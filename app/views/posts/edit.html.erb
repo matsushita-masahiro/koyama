@@ -1,0 +1,29 @@
+<div class="contain">
+    <p>投稿編集</p>
+         <%= form_tag("/posts/#{@post.id}/update", {multipart: true}) do %>
+            <div class="title">
+                <textarea class="title-1" name="title"><%= @post.title %></textarea>
+                <textarea class="main" name="main"><%= @post.main_content %></textarea>
+            </div>
+            <div class="post">
+                      <div class="post_left">
+                        <label for="file_photo">
+                            <%= image_tag 'camera.png', class: 'logo' %>
+                            <input name="image" type="file" id="file_photo" style="display:none;">
+                        </label>
+                </div>
+                
+                <% @details.each do |detail| %>
+                    <textarea  class="comment" name="content"><%= detail.content %></textarea>
+                <% end %>
+                
+            </div>
+            <div class="clear"></div>
+            <div id="add">
+                <span class="fas fa-plus-square"></span>
+            </div>
+            <div class="submit">
+                <input type="submit" value="編集">
+            </div>
+         <% end %>
+</div>

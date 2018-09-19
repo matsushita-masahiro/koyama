@@ -1,0 +1,579 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// header
+a {
+  text-decoration: none;
+}
+header {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.header {
+  font-family: 'Wawati SC', 'Bradly Hand';
+  font-size: 50px;
+}
+
+.sub-header {
+  font-family: 'Wawati SC', 'Bradly Hand';
+  font-size: 30px;
+}
+
+.header-img {
+  width: 50px;
+}
+
+// footer
+.footer-list {
+  margin: 0 auto;
+  padding: 20px;
+  width: 85%;
+  height: 100%;
+  // background-image: url("/footer.png");
+  // background-size: 30%;
+   color: #7d7d7d;
+  padding: 1em;
+  border: 3px solid #ccc;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  position: relative;
+}
+
+.list {
+  margin: 0 auto;
+  background: #fff;
+  width: 85%;
+  height: 85%;
+  color: #ccc;
+ 
+}
+
+.list ul {
+  list-style: none;
+}
+.list li {
+  display: inline-block;
+  width: 33%;
+  text-decoration: none;
+  padding: 10px;
+  color: #ccc;
+  font-size: 15px;
+}
+
+// top
+.wrapper {
+  width: 85%;
+  margin: 0 auto;
+  font-family: 'Hannotate SC', 'Bradly Hand';
+  background: #fff;
+}
+
+#main-box {
+  width: 100%;
+}
+
+
+.topNav {
+  width: 100%;
+  float: left;
+  color: #7d7d7d;
+}
+
+.topNav h3 {
+  margin: 0;
+}
+
+.top-img {
+  width: 100%;
+}
+
+.bubble-img {
+  width: 100%;
+}
+
+.bubble {
+  width: 130%;
+  opacity: 0.25;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.clear {
+    clear:both;
+}
+
+.navi {
+  margin: 30px 0;
+  padding: 5px;
+  font-size: 15px;
+  color: #7d7d7d;
+  padding: 1em;
+  border: 3px solid #ccc;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  position: relative;
+}
+
+.navi-img {
+  width: 80px;
+  height: 80px;
+  float: right;
+  position: absolute;
+  top: 70%;
+  right: 0;
+}
+
+.navi h4,p {
+  margin: 0;
+}
+
+.signUp-img {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  bottom: -100px;
+  right: -120px;
+  margin: 0;
+  z-index: 100;
+}
+
+.login-img {
+  width: 200px;
+  height: 200px;
+  position: fixed;
+  bottom: -100px;
+  left: -112px;
+  margin: 0;
+  z-index: 100;
+}
+
+#open1, #open2 {
+  position: absolute;
+  top: 8px;
+  left: 13px;
+}
+
+// menu
+.menu {
+  margin-top: 80px;
+  width: 100%;
+}
+
+.menu > p {
+  font-size: 30px;
+  font-family: Papyrus;
+  font-weight: bold;
+  padding: .25em 0 .25em .75em;
+  border-left: 10px solid #ccc;
+}
+
+.menu ul {
+  list-style: none;
+  width: 100%;
+  margin: 0;
+}
+
+.menu-detail {
+  width: 33%;
+  float: left;
+  margin: 20px 0;
+}
+
+.menu-img {
+  width: 250px;
+  height: 250px;
+}
+
+.menu-icon p {
+  color: #7d7d7d;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  // margin-left: 30px;
+  // background: #dcdcdc;
+  // 下線消えない
+  text-decoration: none;
+  border-bottom: dashed 2px #bcbace;
+}
+
+.text-contents {
+  // margin: 3% auto;
+  width: 100%;
+  display: none;
+  font-size: 20px;
+  color: #b3aeb5;
+  // background: #ccc;
+}
+
+.text-active {
+  display: block;
+}
+
+// links
+
+.links {
+  margin: 30px auto;
+  // background: #f5f5f5;
+}
+
+
+.links  p {
+  margin: 10px 0;
+  font-family: Papyrus;
+  font-weight: bold;
+  font-size: 30px;
+  padding: .25em 0 .25em .75em;
+  border-left: 10px solid #bcbace;
+}
+
+.link {
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  // できない
+  justify-content: space-between;
+}
+
+.pick-up {
+  width: 33%;
+}
+
+
+.post-title span{
+  font-size: 20px;
+  text-decoration: none;
+  margin: 5px;
+  color: #7d7b83;
+}
+
+.post-create {
+  font-size: 10px;
+  float: right;
+  margin: 5px;
+  color: #7d7b83;
+}
+
+
+.pick-up img {
+  width: 100%;
+  // height: 100%;
+}
+
+.info {
+  margin: 5px;
+  text-align: center;
+  color: #7d7b83;
+  border-bottom: dashed 2px #bcbace;
+}
+
+.info .info-img {
+  width: 50px;
+  height: 50px;
+}
+
+.info span {
+  font-size: 20px;
+  height: 50px;
+  margin-left: 10px;
+}
+
+.more-info {
+  display: none;
+  width: 100%;
+  background: #b3aeb5;
+}
+
+.top-footer {
+  margin-top: 50px;
+  width: 100%;
+  height: 120px;
+  background-image: url("/footer.png");
+  background-size: 30%;
+}
+
+// modal↓
+.mask {
+    background: rgba(0, 0, 0, 0.4);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.m-modal {
+  background: #fff;
+  width: 550px;
+  padding: 20px;
+  border-radius: 4px;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  transition: 1.5s;
+  z-index: 2;
+  // font-size: 13px;
+}
+
+.hidden {
+  transform: translate(0, -1000px);
+}
+
+.mask.hidden {
+  display: none;
+}
+
+.sign-up > p,.login > p {
+  text-align: center; 
+  border-bottom: dashed 2px #ccc;
+  padding-bottom: 2px;
+}
+.m-close {
+  float: right;
+}
+
+.sign-up {
+  margin: 0 auto;
+  font-size: 15px;
+}
+// font-size変更できない
+
+.form input{
+  width: 550px;
+  height: 20px;
+  font-size: 13px;
+}
+
+.form textarea {
+  width: 550px;
+  height: 100px;
+}
+
+.submit > input {
+  height: 30px;
+  background: #ccc;
+  color: #fff;
+  font-size: 15px;
+}
+
+.message {
+  width: 550px;
+  text-align: center;
+  margin: 10px;
+}
+
+.s-message-img {
+  width: 250px;
+}
+// modal↑
+
+
+/*
+Pure CSS modal box
+Author: Jorge Chavez
+Github: http://github.com/jorgechavz
+*/
+
+.modal-wrap h3,p {
+  font-family: 'Lithos Pro';
+  font-size: 20px;
+}
+.about-img {
+  float: right;
+  width: 30%;
+  margin: 0 auto;
+}
+
+.modal .checkbox{
+  display: none;
+}
+
+/* Gray background */
+.modal .modal-overlay{
+  opacity: 0;
+  transition: all 0.3s ease;
+  width: 50%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -100;
+  transform: scale(1);
+  display: none;
+  background-color: rgba(0,0,0,0.2);
+  // background-image: url("/modal.jpg");
+  // background-repeat: no-repeat;
+}
+
+/* Box */
+.modal .modal-wrap{
+  background-color: #fff;
+  // opacity: 0.9;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
+  padding: 40px 50px;
+  width: 100%;
+  margin: 20px auto;
+  align-self: flex-start;
+  border-radius: 2px;
+  transition: all 0.5s ease;
+}
+.modal .modal-wrap.small{
+  width: 30%;
+}
+.modal .modal-wrap.full{
+  width: 100%;
+  height: 100%;
+}
+
+.modal .modal-wrap.a-center {
+  align-self: center;
+}
+.modal .modal-wrap.from-left {
+  transform: translateX(-100%);
+}
+.modal .modal-wrap.from-right {
+  transform: translateX(100%);
+}
+.modal .modal-wrap.from-top {
+  transform: translateY(-100%);
+}
+.modal .modal-wrap.from-bottom {
+  transform: translateY(100%);
+}
+
+
+/* Close button */
+.modal .modal-overlay .close{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 40px;
+  width: 30px;
+  height: 30px;
+  color: #282c34;
+}
+
+.modal .modal-overlay .close:hover{
+  cursor: pointer;
+  color: #4b5361;
+}
+
+
+ .modal .o-close {
+   width: 100%;
+   height: 100%;
+   position: fixed;
+   left: 0;
+   top: 0;
+   z-index: -100;
+ }
+
+.modal input:checked ~ .o-close {
+  z-index: 9998;
+}
+.modal input:checked ~ .modal-overlay{
+  transform: scale(1);
+  opacity:1;
+  z-index: 9997;
+  overflow: auto;
+  display: flex;
+  animation-duration: 0.5s;
+  animation-name: fade-in;
+  -moz-animation-duration: 0.5s;
+  -moz-animation-name: fade-in;
+  -webkit-animation-duration: 0.5s;
+  -webkit-animation-name: fade-in;
+}
+.modal input:checked ~ .modal-overlay .modal-wrap {
+  transform: translateY(0);
+  z-index: 9999;
+}
+
+/* Responsive Design */
+/* Tablet size */
+@media (max-width: 800px){
+  .modal .modal-wrap {
+    width: 80%;
+    padding: 20px;
+  }
+}
+
+/* Phone size */
+@media (max-width: 500px){
+  .modal .modal-wrap {
+    width: 90%;
+  }
+}
+
+/* Fadein from display:none */
+@keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade-in {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    display: flex;
+    opacity: 1;
+  }
+}
+
+// mediam screen
+
+// @media (min-width: 570px) {
+  
+//   .menu-detail {
+//     width: 25%;
+//   }
+  
+//   .menu-img {
+//   width: 250px;
+//   height: 250px;
+// }
+// }
+
+// // large screen
+
+// @media (min-width: 912px) {
+  
+// }

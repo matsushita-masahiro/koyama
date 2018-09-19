@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script  src = " /path/to/jquery.cookie.js " > </script>
+    
+  </head>
+
+  <body>
+    <header>
+      <%= image_tag 'header1.png', class: 'header-img' %>
+      <span class="header"> こそだて</span>
+      <span class="sub-header">ひろば </span>
+      <%= image_tag 'header1.png', class: 'header-img' %>
+      
+    </header>
+    
+    <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+    
+    <%= yield %>
+    <footer>
+        <% if @current_user %>
+            <div class="footer-list">
+                <div class="list">
+                    <ul>
+                        <li>
+                            <%= link_to(@current_user.user_name, "/users/#{@current_user.id}") %>
+                        </li>
+                        <li>
+                            <%= link_to("ログアウト", "/logout", {method: :post}) %>
+                        </li>
+                        <li>
+                            <%= link_to("がくしゅう", "/learning") %>
+                        </li>
+                        <li>
+                            <%= link_to("けんこう", "/health") %>
+                        </li>
+                        <li>
+                            <%= link_to("りょうり", "/cooking") %>
+                        </li>
+                        <li>
+                            <%= link_to("おでかけ", "/out") %>
+                        </li>
+                        <li>
+                            <%= link_to("くらし", "/life") %>
+                        </li>
+                        <li>
+                            <%= link_to("りょこう", "/trip") %>
+                        </li>
+                        <li>
+                            <%= link_to("etc.", "/mom") %>
+                        </li>
+                        <li>
+                            <%= link_to("投稿", "/posts/new") %>
+                        </li>
+                        <li>
+                            <%= link_to("投稿INDEX", "/posts/index") %>
+                        </li>
+                        <li>
+                          <%= link_to("top", "/") %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        <% end %>
+          
+    </footer>
+  </body>
+</html>

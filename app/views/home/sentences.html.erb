@@ -1,0 +1,15 @@
+<p>子育て格言</p>
+
+
+<%= form_tag("/create") do %>
+
+<textarea name="text"></textarea>
+<input type="submit" value="送信">
+
+<% end %>
+
+<% @sentences.each do |sentence| %>
+<div class="sentence">
+    <%= sentence.proverb %>
+</div>
+<% end %>
