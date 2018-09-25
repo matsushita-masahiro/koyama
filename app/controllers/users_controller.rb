@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   
   def index
-      @users =　User.where('user_name = ?', 'cc').id
-    #   @users = User.all
-    #   @user = User.find_by(id: params[:id])
+      @user = User.find_by(id: params[:id])
+      @users = User.all
+       #   @users =　User.where('user_name = ?', 'cc').id
   end
   
   

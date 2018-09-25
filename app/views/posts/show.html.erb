@@ -1,75 +1,109 @@
-<div class="show-contain">
-    <div class="show-top">
-    <h3><%= @post.title %></h3>
-    
-    <p><%= @post.main_content %></p>
-    <div class="show-date">
-        <%= @post.created_at %>
-    </div>
-    <div class="clear"></div>
-    <div class="show-user">
-        <img src="<%= "/user_images/#{@user.image}.jpg" %>">
-        <%= @user.user_name %>
-    </div>
-    <div class="show-edit">
-        <%= link_to("/posts/#{@post.id}/edit") do %>
-            <!--<div class="">-->
-                <span class="fas fa-pen-square edit-hover"></span>
-            <!--    <div class="edit-content">へんしゅうする</div>-->
-            <!--</div>-->
-        <% end %>
-        <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
-            <!--<div class="edit-hover">-->
-                <span class="fas fa-trash-alt edit-hover"></span>
-            <!--    <div class="edit-content">けしちゃう</div>-->
-            <!--</div>-->
-        <% end %>
-          <% if Like.find_by(post_id: @post.id,user_id: @current_user.id) %>
-            <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
-                <!--<div class="edit-hover">-->
-                  <span class="fab fa-mailchimp like-btn edit-hover"></span>
-                  <!--<div class="edit-content">おきにいり</div>-->
-                <!--</div>-->
+<div class="post-wrapper">
+    <div class="contain">
+        <% if @current_user.id == @post.user_id %>
+        <div class="show-edit">
+            <%= link_to("/posts/#{@post.id}/edit") do %>
+                    <!--<div class="">-->
+                    <span class="fas fa-pen-square edit-hover"></span>
+                    <!--    <div class="edit-content">へんしゅうする</div>-->
+                    <!--</div>-->
             <% end %>
-          <% else %>
-            <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
-                  
-                  <span class="fab fa-mailchimp like-btn-unlike edit-hover like-create"></span>
-                  <!--<div class="edit-content">おきにいり</div>-->
-                
+            <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
+                    <!--<div class="edit-hover">-->
+                    <span class="fas fa-trash-alt edit-hover"></span>
+                    <!--    <div class="edit-content">けしちゃう</div>-->
+                    <!--</div>-->
             <% end %>
-          <% end %>
-          <% @likes_count = Like.where(post_id: @post.id).count %>
-          <%= @likes_count %>
-    </div>
-    <div class="clear"></div>
-    </div>
-    
-    <div class="show-post">
-        <% details = PostDetail.where(post_id: @post.id) %>
-        <% details.each do |detail| %>
-            <div class="show-picture">
-                <img src="<%= "/post_images/#{@post.user_id}/#{detail.post_id}/#{detail.image}" %>">
-            </div>
-            <div class="show-detail">
-                <%= detail.content %>
-            </div>
-        <% end %>
-    </div>
-    <% @comments.each do |comment| %>
-        <div class="show-comment">
-            <%= comment.content %>
-            <% user = User.find_by(id: comment.user_id) %>
-            <img src="<%= "/user_images/#{user.image}.jpg" %>">
-            <%= user.user_name %>
         </div>
-    <% end %>
-     <%= form_tag("/comments/#{@post.id}/create", {method: "post"}) do %>
-            <textarea class="show-text" name="content">コメントする</textarea>
-            <input type="submit" value="送信">
+        <div class="clear"></div>
         <% end %>
+        <div class="show-date">
+            <%= @post.created_at %>
+        </div>
+        <div class="show-top">
+            <h3><%= @post.title %></h3>
+            <p><%= @post.main_content %></p>
+            <div class="post-show-user">
+                <img src="<%= "/user_images/#{@user.image}" %>">
+                 <%= link_to(@user.user_name, "/users/#{@user.id}") %>
+                
+            </div>
+          
+            <div class="clear"></div>
+            <div class="category">
+              <% if @post.category == 1 %>
+                  <span>がくしゅう</span>
+              <% elsif @post.category == 2 %>
+                  <span>けんこう</span>
+              <% elsif @post.category == 3 %>
+                  <span>りょうり</span>
+              <% elsif @post.category == 4 %>
+                  <span>おでかけ</span>
+              <% elsif @post.category == 5 %>
+                  <span>くらし</span>
+              <% elsif @post.category == 6 %>
+                  <span>りょこう</span>
+              <% elsif @post.category == 7 %>
+                  <span>etc.</span>
+              <% end %>
+          </div>
+            <div class="smile">
+                <% if Like.find_by(post_id: @post.id,user_id: @current_user.id) %>
+                <% @likes_count = Like.where(post_id: @post.id).count %>
+                  <%= link_to("/likes/#{@post.id}/destroy", {method: "post"}) do %>
+                    <div class="like"><p><%= @likes_count %></p></div>
+                  <% end %>
+                <% else %>
+                <% @likes_count = Like.where(post_id: @post.id).count %>
+                  <%= link_to("/likes/#{@post.id}/create", {method: "post"}) do %>
+                    <div class="unlike"><p><%= @likes_count %></p></div>
+                  <% end %>
+                <% end %>
+            </div>
+        </div>
         
+        <div class="show-post">
+            <% details = PostDetail.where(post_id: @post.id) %>
+            <% details.each do |detail| %>
+                <div class="show-picture">
+                    <% if detail.image == "kids.jpg" %>
+                        <img src="<%= "/post_images/#{detail.image}" %>">
+                    <% else %>
+                        <img src="<%= "/post_images/#{@post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                    <% end %>
+                </div>
+                <div class="show-detail">
+                    <%= detail.content %>
+                </div>
+            <% end %>
+        </div>
+        <div class="clear"></div>
+        <p class="comment-title"><span>comment</span></p>
+        <% @comments.each do |comment| %>
+            <div class="show-comment">
+                <%= comment.content %>
+                <div class="comment-user">
+                <% user = User.find_by(id: comment.user_id) %>
+                <img src="<%= "/user_images/#{@user.image}" %>">
+                <% link_to("/user/#{@user.id}/show") do %>
+                <%= user.user_name %>さん
+                <% end %>
+                </div>
+            </div>
+            
+        <% end %>
+         <%= image_tag 'pencil.png', class: 'pencil-img' %>
+        <span class="s-comment">コメントする</span>
+       
+        <%= form_tag("/comments/#{@post.id}/create", {method: "post"}) do %>
+            <textarea class="show-text" name="content"></textarea>
+            <div class="submit"><input type="submit" value="送信"></div>
+            <div class="clear"></div>
+        <% end %>
+    </div>    
 </div>
+<%= render 'shared/to-post' %>
+<%= render 'shared/footer' %>
 <script>
     $(function() {
         $('.edit-hover')

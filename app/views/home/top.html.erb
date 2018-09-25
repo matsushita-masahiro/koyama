@@ -219,7 +219,11 @@
     <% @posts.each do |post| %>
       <div class="pick-up">
           <% detail = PostDetail.find_by(post_id: post.id) %>
-          <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+          <% if detail.image == "kids.jpg" %>
+            <img src="<%= "/post_images/#{detail.image}" %>">
+          <% else %>
+            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+          <% end %>
           <div class="post-title">
             <%= link_to("/posts/#{post.id}") do %>
             <span><%=post.title%></span>
@@ -279,10 +283,10 @@
     
     $('.s-open').hover(
         function() {
-            $(this).css({'right':'0', 'bottom':'0'});
+            $(this).css({'right':'0', 'top':'0'});
         },
         function() {
-            $(this).css({'right':'-120px', 'bottom':'-100px'});
+            $(this).css({'right':'0', 'top':'-120px'});
         }
     );
     

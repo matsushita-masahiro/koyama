@@ -1,9 +1,18 @@
-<p>招待</p>
+<div class="user-wrapper">
+    <div class="contain">
+        
+            <p class="title">招待</p>
+            <div class="user-invite">
+            <span>○お友達のメールアドレス :</span>
+                <input>
+            <spam>○メッセージ :</span>
+                <textarea>一緒に子育て楽しもう！<%= @user.user_name %>より</textarea>
+            <div class="submit">
+                <input type="submit" value="招待">
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
 
-<p>お友達のメールアドレス</p>
-<input>
-<p>メッセージ</p>
-<textarea>一緒に子育て楽しもう！<%= @user.user_name %></textarea>
-
-<input type="submit" value="招待">
-
+<%= render 'shared/footer' %>

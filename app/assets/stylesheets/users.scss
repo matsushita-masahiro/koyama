@@ -1,73 +1,207 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
- .show-content {
-   width: 80%;
-   margin: 10px auto;
- }
- 
- .show-user-left {
-   width: 20%;
+
+.user-wrapper {
+  width: 100%;
+  border-top: dashed 2px #bcbace;
+}
+
+.show-title {
+    font-family: 'Hannotate SC', 'Bradly Hand';
+    font-size: 15px;
+    padding: .25em 0 .25em .75em;
+    border-left: 6px solid #ccc;
+    margin-bottom: 10px;
+}
+
+
+.user-edit, .user-invite {
+    margin: 10px 0;    
+}
+// index
+
+.j-letter, .e-letter {
+  width: 100%;
+  height: 30px;
+}
+
+.letter-hover {
+  display: inline-block;
+  font-size: 20px;
+  box-sizing: border-box;
+  width: 20px;
+  float: left;
+  color: #808080;
+}
+
+.j-letter p {
+  font-family: 'Wawati SC', 'Bradly Hand';
+}
+
+.line-img {
+  width: 100%;
+  height: 30px;
+}
+.user-list {
+  display: inline-block;
+  width: 30%;
+  float: left;
+  box-sizing: border-box;
+}
+
+.user-profile {
+  width: 70%;
+  height: 300px;
+  float: left;
+  box-sizing: border-box;
+}
+
+.user-list p {
+  font-size: 15px;
+  font-family: 'Hannotate SC', 'Bradly Hand';
+}
+
+.user-list {
+  margin-bottom: 20px;
+}
+
+// show
+
+.show-user-left {
+   width: 25%;
    float: left;
+   text-align: center;
+   box-sizing: border-box;
+}
+ 
+ .show-user-left p {
+   font-size: 17px;
  }
  
  .show-user-left img {
-   width: 80%;
-   height: 80%;
-   border-radius: 40%; 
+   width: 100%;
+   height: 100%;
+  padding: 20px;
+  // border-radius: 40%; 
+   border: 2px solid #ccc;
+  // border-radius: 50%;
+  box-sizing: border-box;
  }
  
  .show-user-right {
    float: right;
-   width: 80%;
-   
+   width: 70%;
+   margin-right: 10px;
+   box-sizing: border-box;
  }
  
   .show-container {
     padding: 0;
     margin: 30px auto;
     width: 100%;
-    background: #d3d3d3;
   }
+
+.show-main {
+  position: relative;
+}
+
+
   ul.menu {
     list-style: none;
     padding: 0;
     margin: 0;
     font-size: 0;
   }
+  
   ul.menu li {
     display: inline-block;
   }
+  
   ul.menu li a {
     display: inline-block;
     font-size: 14px;
-    width: 80px;
+    width: 100px;
     height: 20px;
     line-height: 20px;
     text-align: center;
     text-decoration: none;
     padding: 7px;
-    color: #333;
   }
+  
   ul.menu li a.active {
-    background: #ffb6c1;
-    color: #fff;
+    background-image: url("/index2.png") ;
+    background-size: contain;
+    background-repeat: no-repeat;
+    font-size: 18px;
+    // color: #a688bd;
   }
+  
   ul.menu li a:not(.active):hover {
     opacity: 0.5;
     transition: .8s;
   }
+
   .content {
     font-size: 14px;
     padding: 7px 10px;
     line-height: 1.4;
-    background: #ffb6c1;
     color: #fff;
     min-height: 150px;
     display: none;
   }
+  
+  .content img {
+    width: 125px;
+    height: 87.5px;
+    float: left;
+    margin: 10px;
+  }
+  
+  .show-like, .show-post, .content-comment{
+    float: left;
+    padding: 10px;
+  }
+
+
+  .show-user {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+  }
+  
+  .show-user img {
+    margin: 0;
+    padding-right: 2px;
+    width: 25px;
+    height: 25px;
+    vertical-align: center;
+  }
+  
+  .show-user span {
+    color: #ccc;
+  }
+  
+  .content-comment p {
+    padding: .25em 0 .25em .75em;
+    border-left: 6px solid #f5b2ac;
+    font-size: 15px;
+    margin: 10px;
+  }
+  
   .content.active {
     display: block;
   }
 
+// edit
+.user-edit input:not(:last-child), .user-invite input:not(:last-child) {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 3px;
+  // border-radius: 5px;
+}
 
+.user-edit textarea, .user-invite textarea {
+  width: 100%;
+  height: 60px;
+}

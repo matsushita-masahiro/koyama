@@ -1,53 +1,61 @@
-<div class="contain">
-    <p>投稿作成</p>
-    
-         <%= form_tag("/posts/create", {multipart: true}) do %>
-         <select name="category">
-             <option value="1">学習</option>
-             <option value="2">健康</option>
-             <option value="3">cooking</option>
-             <option value="4">おでかけ</option>
-             <option value="5">暮らし</option>
-             <option value="6">旅行</option>
-             <option value="7">まま.etc</option>
-         </select>
-            <div class="title"> 
-                <textarea class="title-1" name="title">タイトル</textarea>
-                <textarea class="main" name="main">投稿内容</textarea>
-            </div>
-           
-            <div class="parent">
-                <div id="field">
-                <div class="post">
-                    <div class="post_left">
-                        <label for="file_photo">
-                            <%= image_tag 'camera.png', class: 'logo' %>
-                            <input name="image" type="file" id="file_photo" style="display:none;">
-                        </label>
+<div class="post-wrapper">
+    <div class="contain">
+        <p class="title">投稿作成</p>
+        <div class="post-new">
+             <%= form_tag("/posts/create", {multipart: true}) do %>
+             <span>○カテゴリー :</span><br/>
+                <select name="category">
+                    <option value="1">がくしゅう</option>
+                    <option value="2">けんこう</option>
+                    <option value="3">りょうり</option>
+                    <option value="4">おでかけ</option>
+                    <option value="5">くらし</option>
+                    <option value="6">りょこう</option>
+                    <option value="7">etc.</option>
+                </select>
+                <div class="edit-main"> 
+                <span>○タイトル :</span>
+                    <textarea class="edit-title" name="title"></textarea>
+                </br>
+                <span>○投稿内容まとめ :</span>
+                    <textarea class="main" name="main"></textarea>
+                </div>
+                <span>○投稿詳細 :</span>
+                <!--ここからクローン-->
+                <div class="parent">
+                    <div id="field">
+                        <div class="post">
+                            <div class="post_left">
+                                <label for="file_photo">
+                                    <%= image_tag 'camera.png', class: 'logo' %>
+                                    <input name="image" type="file" id="file_photo" style="display:none;">
+                                </label>
+                            </div>
+                            <textarea class="comment" name="content"></textarea>
+                            <div class="clear"></div>
+                            <button type="button" id="trash" value="" name="">
+                                <span class="fas fa-minus-square"></span>
+                            </button>
+                        </div>
+                        <div class="clear"></div>
                     </div>
-                    <textarea class="comment" name="content">コメント</textarea>
-                    <button type="button" id="trash" value="" name="">
-                    <span class="fas fa-minus-square"></span>
-                </button>
+                </div>
+                <!--ここまで-->
+                <div class="btn">
+                    <button type="button" id="add" value="" name="">
+                        <span class="fas fa-plus-square"></span>
+                    </button>
                 </div>
                 <div class="clear"></div>
+                <div class="submit">
+                    <input type="submit" value="投稿">
                 </div>
+                <div class="clear"></div>
+            <% end %>  
             </div>
-            
-                <div class="btn">
-                <button type="button" id="add" value="" name="">
-                    <span class="fas fa-plus-square"></span>
-                </button>
-                
-                </div>
-               
-            
-            <div class="submit">
-                <input type="submit" value="投稿">
-            </div>
-        <% end %>   
+    </div>
 </div>
-
+<%= render 'shared/footer' %>
 <script>
    $(function() {
       

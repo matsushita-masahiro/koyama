@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  get 'users/index' => 'users#index'
+  get 'users/:id/index' => 'users#index'
   get 'users/:id/edit' => 'users#edit'
   get 'users/:id/invite' => 'users#invite'
   get 'users/:id' => 'users#show'

@@ -1,29 +1,76 @@
-<div class="contain">
-    <p>投稿編集</p>
-         <%= form_tag("/posts/#{@post.id}/update", {multipart: true}) do %>
-            <div class="title">
-                <textarea class="title-1" name="title"><%= @post.title %></textarea>
-                <textarea class="main" name="main"><%= @post.main_content %></textarea>
-            </div>
-            <div class="post">
-                      <div class="post_left">
-                        <label for="file_photo">
-                            <%= image_tag 'camera.png', class: 'logo' %>
-                            <input name="image" type="file" id="file_photo" style="display:none;">
-                        </label>
+<div class="post-wrapper">
+    <div class="contain">
+        <p class="title">投稿編集</p>
+        <div class="post-edit">
+             <%= form_tag("/posts/#{@post.id}/update", {multipart: true}) do %>
+             <span>○カテゴリー :</span><br/>
+                <select name="category">
+                    <option value="1">がくしゅう</option>
+                    <option value="2">けんこう</option>
+                    <option value="3">りょうり</option>
+                    <option value="4">おでかけ</option>
+                    <option value="5">くらし</option>
+                    <option value="6">りょこう</option>
+                    <option value="7">etc.</option>
+                </select>
+                <div class="edit-main">
+                    <span>○タイトル :</span>
+                    <textarea class="edit-title" name="title"><%= @post.title %></textarea>
+                    </br>
+                <span>○投稿内容まとめ :</span>
+                    <textarea class="main" name="main"><%= @post.main_content %></textarea>
                 </div>
-                
-                <% @details.each do |detail| %>
-                    <textarea  class="comment" name="content"><%= detail.content %></textarea>
-                <% end %>
-                
-            </div>
-            <div class="clear"></div>
-            <div id="add">
-                <span class="fas fa-plus-square"></span>
-            </div>
-            <div class="submit">
-                <input type="submit" value="編集">
-            </div>
-         <% end %>
+                <span>○投稿詳細 :</span>
+                <div class="parent">
+                    <div id="field">
+                <div class="post">
+                          <div class="post_left">
+                            <label for="file_photo">
+                                <%= image_tag 'camera.png', class: 'logo' %>
+                                <input name="image" type="file" id="file_photo" style="display:none;">
+                            </label>
+                    </div>
+                    
+                    <% @details.each do |detail| %>
+                        <textarea  class="comment" name="content"><%= detail.content %></textarea>
+                    <% end %>
+                    <div class="clear"></div>
+                    <button type="button" id="trash" value="" name="">
+                                <span class="fas fa-minus-square"></span>
+                            </button>
+                </div>
+                <div class="clear"></div>
+                </div>
+                </div>
+                <!--<div id="add">-->
+                <!--    <span class="fas fa-plus-square"></span>-->
+                <!--</div>-->
+                <div class="btn">
+                    <button type="button" id="add" value="" name="">
+                        <span class="fas fa-plus-square"></span>
+                    </button>
+                </div>
+                <div class="clear"></div>
+                <div class="submit">
+                    <input type="submit" value="編集">
+                </div>
+                <div class="clear"></div>
+             <% end %>
+             </div>
+    </div>
 </div>
+
+<%= render 'shared/footer' %>
+
+<script>
+   $(function() {
+      
+      $('#add').click(function() {
+          $('#field').clone().appendTo($('.parent'));
+      } );
+      $('.parent').on('click', '#trash', function() {
+          $(this).parents('#field').remove();
+      } );
+   });
+
+</script>

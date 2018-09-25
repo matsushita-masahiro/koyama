@@ -1,0 +1,50 @@
+<div class="footer-list">
+    <div class="list">
+        <%= image_tag 'footer-logo.png', class: 'f-logo-img' %>
+        <p class="list-p">こそだて<span>ひろば</span></p>
+        <p>menu</p>
+        <% if @current_user %>
+            <ul>
+                <li>
+                    <%= link_to("● がくしゅう", "/learning") %>
+                </li>
+                <li>
+                    <%= link_to("● けんこう", "/health") %>
+                </li>
+                <li>
+                    <%= link_to("● りょうり", "/cooking") %>
+                </li>
+                <li>
+                    <%= link_to("● おでかけ", "/out") %>
+                </li>
+                <li>
+                    <%= link_to("● くらし", "/life") %>
+                </li>
+                <li>
+                    <%= link_to("● りょこう", "/trip") %>
+                </li>
+                <li>
+                    <%= link_to("● etc.", "/mom") %>
+                </li>
+                <li>
+                    <%= link_to(@current_user.user_name, "/users/#{@current_user.id}") %>
+                </li>
+                <li>
+                    <%= link_to("ログアウト", "/logout", {method: :post}) %>
+                </li>
+            </ul>
+                        <!--<div class="post-lnks">-->
+                        
+                        <%= link_to ("/posts/new") do %>
+                        <div class="to-post">投稿</div>
+                        <% end %>
+                        <div class="to-index">
+                        <%= link_to("INDEX", "/posts/index") %>
+                        </div>
+                        <!--</div>-->
+        <% end %>
+        <%= image_tag 'footer-logo2.png', class: 'f-logo2-img' %>
+        <div class="clear"></div>  
+    </div>
+</div>
+

@@ -1,15 +1,24 @@
- <p>アカウント編集</p>
- 
- <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
-    <p>ニックネーム</p>
-        <input name="name" value="<%= @user.user_name %>">
-    <p>メールアドレス</p>
-        <input name="email" value="<%= @user.email %>">
-    <p>パスワード</p>
-        <input type="password" name="password" value="<%= @user.password %>">
-    <p>画像</p>
-        <input type="file" name="image">
-    <p>コメント</p>
-        <textarea name="comment"><%= @user.comment %></textarea>
-    <input type="submit" value="保存">
-<% end %>
+ <div class="user-wrapper">
+    <div class="contain">
+        <p class="title">アカウント編集</p>
+        <div class="user-edit">
+            <%= form_tag("/users/#{@user.id}/update", {multipart: true}) do %>
+                <span>○ニックネーム :</span>
+                    <input name="name" value="<%= @user.user_name %>">
+                <span>○メールアドレス :</span>
+                    <input name="email" value="<%= @user.email %>">
+                <span>○パスワード :</span>
+                    <input type="password" name="password" value="<%= @user.password %>">
+                <span>○画像 :</span>
+                    <input type="file" name="image">
+                <span>○コメント :</span>
+                    <textarea name="comment"><%= @user.comment %></textarea>
+                <div class="submit">
+                    <input type="submit" value="保存">
+                </div>
+            <% end %>
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>    
+<%= render 'shared/footer' %>

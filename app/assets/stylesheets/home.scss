@@ -2,10 +2,17 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body {
+  font-family: 'Hannotate SC', 'Bradly Hand';
+  background: #fff;
+  }
+  
 // header
 a {
   text-decoration: none;
+  color: #696969;
 }
+
 header {
   text-align: center;
   margin-top: 10px;
@@ -25,48 +32,87 @@ header {
   width: 50px;
 }
 
-// footer
+.flash {
+  width: 300px;
+  height: 150px;
+  position: relative;
+  float: right;
+}
+.flash p {
+  float: right;
+  font-size: 20px;
+  position: absolute;
+  top: 70px;
+  right: 100px;
+  
+}
+
+.flash-img {
+  width: 150px;
+  height: 150px;
+  float: right;  
+}
+
+// footer 
+
 .footer-list {
   margin: 0 auto;
-  padding: 20px;
-  width: 85%;
+  padding: 30px 0;
+  width: 100%;
   height: 100%;
-  // background-image: url("/footer.png");
-  // background-size: 30%;
-   color: #7d7d7d;
-  padding: 1em;
-  border: 3px solid #ccc;
-  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
-  position: relative;
+  background-image: url("/footer.png");
+  background-size: 30%;
+  box-sizing: border-box;
 }
 
 .list {
   margin: 0 auto;
   background: #fff;
   width: 85%;
-  height: 85%;
-  color: #ccc;
- 
+  padding: 0.3em;
+  border: 3px solid #808080;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  position: relative;
 }
 
-.list ul {
-  list-style: none;
-}
 .list li {
   display: inline-block;
-  width: 33%;
-  text-decoration: none;
-  padding: 10px;
+  width: 200px;
+  padding: 5px;
   color: #ccc;
   font-size: 15px;
+  float: left;
+}
+
+.f-logo-img {
+  width: 50px;
+  height: 50px;
+  float: left;
+}
+
+.f-logo2-img {
+  width: 110px;
+  height: 100px;
+  float: right;
+  position: absolute;
+  bottom: -20px;
+  right: 0;
+}
+
+.list-p {
+  font-family: 'Wawati SC', 'Bradly Hand';
+  font-size: 30px;
+}
+
+.list span {
+  font-family: 'Wawati SC', 'Bradly Hand';
+  font-size: 18px;
 }
 
 // top
 .wrapper {
   width: 85%;
   margin: 0 auto;
-  font-family: 'Hannotate SC', 'Bradly Hand';
-  background: #fff;
 }
 
 #main-box {
@@ -98,7 +144,6 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 10;
   pointer-events: none;
 }
 
@@ -134,8 +179,8 @@ header {
   width: 200px;
   height: 200px;
   position: fixed;
-  bottom: -100px;
-  right: -120px;
+  top: -120px;
+  right: 0px;
   margin: 0;
   z-index: 100;
 }
@@ -310,14 +355,13 @@ header {
   width: 550px;
   padding: 20px;
   border-radius: 4px;
-  position: fixed;
+  position: absolute;
   top: 10%;
   left: 0;
   right: 0;
   margin: 0 auto;
   transition: 1.5s;
   z-index: 2;
-  // font-size: 13px;
 }
 
 .hidden {
@@ -359,6 +403,9 @@ header {
   background: #ccc;
   color: #fff;
   font-size: 15px;
+  padding: 0 20px;
+  margin: 10px 0;
+  float: right;
 }
 
 .message {
@@ -368,7 +415,7 @@ header {
 }
 
 .s-message-img {
-  width: 250px;
+  width: 200px;
 }
 // modal↑
 
@@ -577,3 +624,38 @@ Github: http://github.com/jorgechavz
 // @media (min-width: 912px) {
   
 // }
+
+// cooking
+
+.cooking-left {
+  float: left;
+  width: 250px;
+}
+
+.cooking-right {
+  float: right;
+  width : -webkit-calc(100% - 260px) ;
+  width : calc(100% - 260px);
+}
+
+.cooking-right li {
+  display: inline-block;
+  margin: 0 10px;
+  background: #ccc;
+}
+
+.cooking-main h3 {
+  padding-bottom: .5em;
+  border-bottom: 1px solid #ccc;
+}
+.cooking-main h3 span {
+  display: block;
+  margin-bottom: .2em;
+  color: #aaa;
+  font-size: .9em;
+}
+
+.cooking-menu {
+  background-image: url(/pan.png);
+  background-size: contain;
+}
