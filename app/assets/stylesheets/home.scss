@@ -32,6 +32,26 @@ header {
   width: 50px;
 }
 
+.header-menu {
+  position: fixed;
+  top: 0;
+  right: 20px;
+  transition: 1.0s;
+}
+
+.header-menu p {
+  background: #ccc;
+  margin: 0 5px;
+  padding: 5px;
+  float: left;
+  font-size: 20px;
+  font-family: 'Wawati SC', 'Bradly Hand';
+}
+
+.header-hidden {
+  transform: translate(0, -100px);
+}
+
 .flash {
   width: 300px;
   height: 150px;
@@ -75,6 +95,11 @@ header {
   position: relative;
 }
 
+.list ul {
+  margin: 0;
+  padding: 0;
+}
+
 .list li {
   display: inline-block;
   width: 200px;
@@ -115,11 +140,17 @@ header {
   margin: 0 auto;
 }
 
-#main-box {
+#mycanvas {
   width: 100%;
+  
 }
 
-
+.top-img {
+  background-image: url("/top.jpg");
+  background-size: contain;
+  width: 100%;
+  z-index: 100;
+}
 .topNav {
   width: 100%;
   float: left;
@@ -130,22 +161,22 @@ header {
   margin: 0;
 }
 
-.top-img {
-  width: 100%;
-}
+// .top-img {
+//   width: 100%;
+// }
 
-.bubble-img {
-  width: 100%;
-}
+// .bubble-img {
+//   width: 100%;
+// }
 
-.bubble {
-  width: 130%;
-  opacity: 0.25;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
+// .bubble {
+//   width: 130%;
+//   opacity: 0.25;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   pointer-events: none;
+// }
 
 .clear {
     clear:both;
@@ -205,6 +236,8 @@ header {
 .menu {
   margin-top: 80px;
   width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .menu > p {
@@ -219,28 +252,65 @@ header {
   list-style: none;
   width: 100%;
   margin: 0;
+  padding: 0;
 }
 
 .menu-detail {
-  width: 33%;
+  width: 32%;
   float: left;
-  margin: 20px 0;
+  // justify-content: space-between;
+  // margin: 20px 0;
 }
 
-.menu-img {
-  width: 250px;
-  height: 250px;
+.menu-icon img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: contain;
 }
 
-.menu-icon p {
+.menu-icon {
+  background: #eae8e1;
+  padding-bottom: 100%;
+  height: 0;
+  position: relative;
+}
+
+.menu-detail {
+  margin-right: 2%;  
+}
+
+// .menu-container .menu-detail:nth-of-type(2) {
+//   margin-right: 0;
+// }
+.menu-container {
+    // list-style: none;
+    // display: flex;
+    // flex-flow: wrap;
+    // width: 600px;
+    // justify-content: space-between;
+  //   display: flex;
+  // justify-content: space-between;
+  
+}
+// .menu_container li {
+//     border: solid;
+//     box-sizing: border-box;
+//     width: 180px;
+// }
+
+// .menu-img {
+//   width: 250px;
+//   height: 250px;
+// }
+
+.menu-detail p {
   color: #7d7d7d;
   font-size: 20px;
-  font-weight: bold;
+  // font-weight: bold;
   text-align: center;
-  // margin-left: 30px;
-  // background: #dcdcdc;
-  // 下線消えない
-  text-decoration: none;
   border-bottom: dashed 2px #bcbace;
 }
 
@@ -260,8 +330,7 @@ header {
 // links
 
 .links {
-  margin: 30px auto;
-  // background: #f5f5f5;
+  margin: 30px 0;
 }
 
 
@@ -270,41 +339,52 @@ header {
   font-family: Papyrus;
   font-weight: bold;
   font-size: 30px;
-  padding: .25em 0 .25em .75em;
+  padding: .20em 0 .25em .75em;
   border-left: 10px solid #bcbace;
 }
 
 .link {
   width: 100%;
-  margin: 0 auto;
-  display: flex;
-  // できない
-  justify-content: space-between;
+  margin: 0;
+  padding: 0;
 }
 
 .pick-up {
-  width: 33%;
+  width: 32%;
+  float: left;
 }
 
+.pick-up:not(:first-child) {
+  margin-left: 2%;
+}
 
 .post-title span{
-  font-size: 20px;
-  text-decoration: none;
-  margin: 5px;
+  font-size: 18px;
+  margin: 5px 0;
   color: #7d7b83;
 }
 
 .post-create {
   font-size: 10px;
   float: right;
-  margin: 5px;
+  padding: 5px;
   color: #7d7b83;
 }
 
-
-.pick-up img {
+.pick-img img{
+  position: absolute;
   width: 100%;
-  // height: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+}
+
+.pick-img {
+  background: #eae8e1;
+  padding-bottom: 75%;
+  height: 0;
+  position: relative;
 }
 
 .info {
@@ -312,6 +392,7 @@ header {
   text-align: center;
   color: #7d7b83;
   border-bottom: dashed 2px #bcbace;
+  box-sizing: border-box;
 }
 
 .info .info-img {
@@ -442,7 +523,6 @@ Github: http://github.com/jorgechavz
 
 /* Gray background */
 .modal .modal-overlay{
-  opacity: 0;
   transition: all 0.3s ease;
   width: 50%;
   position: absolute;
@@ -454,15 +534,19 @@ Github: http://github.com/jorgechavz
   z-index: -100;
   transform: scale(1);
   display: none;
-  background-color: rgba(0,0,0,0.2);
-  // background-image: url("/modal.jpg");
+  // background-color: rgba(0,0,0,0.2);
+  background-image: url("/top-modal4.png");
+  // background-size: cover;
   // background-repeat: no-repeat;
+  opacity: 0.1;
+  
 }
 
 /* Box */
 .modal .modal-wrap{
+  
   background-color: #fff;
-  // opacity: 0.9;
+  opacity: 0.9;
   box-shadow: 3px 3px 3px rgba(0,0,0,0.2);
   padding: 40px 50px;
   width: 100%;
@@ -625,28 +709,234 @@ Github: http://github.com/jorgechavz
   
 // }
 
-// cooking
 
+
+// cooking
+.cooking-top {
+  width: 100%;
+  display: table;
+  margin: 10px 0;
+}
+
+// cookig-left
 .cooking-left {
   float: left;
-  width: 250px;
+  // width: 250px;
+  // height: 350px;
+  margin-top: 20px;
+  position: relative;
+  box-sizing: border-box;
+  width: 30%;
+  display: table-cell;
 }
 
+.cooking-left p {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
+  font-size: 30px;
+  z-index: 10;
+}
+
+// .cooking-menu-img {
+//   width: 250px;
+//   height: 250px;
+//   position: absolute;
+//   top: 70px;
+//   left: 0;
+// }
+
+// .menu-title-img {
+//   width: 240px;
+//   height: 100px;
+// }
+
+
+.cooking-top-image1 img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: contain;
+}
+
+.cooking-top-image1 {
+  // background: #eae8e1;
+  padding-bottom: 50%;
+  height: 0;
+  position: relative;
+}
+
+.cooking-top-image2 img{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -15%;
+  left: 0;
+  object-fit: contain;
+}
+
+.cooking-top-image2 {
+  // background: #eae8e1;
+  padding-bottom: 100%;
+  height: 0;
+  position: relative;
+}
+
+// cooking-right
 .cooking-right {
   float: right;
-  width : -webkit-calc(100% - 260px) ;
-  width : calc(100% - 260px);
+  width: 68%;
+  display: table-cell;
+  margin-top: 50px;
+  box-sizing: border-box;
+  padding: 0.3em;
+  border: 3px solid #9f9f98;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  position: relative;
 }
 
-.cooking-right li {
+.clip-img {
+  width: 50px;
+  height: 80px;
+  position: absolute;
+  top: -40px;
+  right: 30px;
+}
+
+.board-title {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 5px;
+  color: #504946;
+}
+
+.question-board {
+  margin-left: 10px;
+}
+
+.question-board h4{
+  font-size: 18px;
+  margin: 0;
+  color: #504946;
+  margin-top: 15px;
+}
+
+.question-board h4 span {
+  font-size: 25px;
+  font-family: Papyrus;
+  color: #202f55;
+  padding-left: 3px;
+}
+
+.select-answerQ1 input, .select-answerQ2 input {
+  display: none;
+}
+
+.select-answerQ1 input[type="radio"]:checked + label,
+.select-answerQ2 input[type="radio"]:checked + label {
+  color: #942343;
+  font-weight: bold;
+  background: #e6c0c0;
+}
+
+.select-answerQ1 label, .select-answerQ2 label {
   display: inline-block;
-  margin: 0 10px;
-  background: #ccc;
+  margin: 3px;
+}
+
+.select-answerQ1 label:hover, .select-answerQ2 label:hover {
+    color: #aaa;
+    cursor: pointer;
+}
+
+.answer {
+  position: relative;
+  float: left;
+  margin-right: 2px;
+}
+
+.answer p {
+  margin: 0;
+  position: absolute;
+  top: -5px;
+  left: 10px;
+  color: #942343;
+  font-weight: bold;
+  box-sizing: 10;
+}
+
+.mug-img {
+  width: 40px;
+  height: 25px;
+}
+
+.q-img {
+  width: 25px;
+  height: 22px;
+}
+
+// .menu-submit {
+//   position: absolute;
+//   bottom: 5px;
+//   right: 5px;
+// }
+
+.a-img {
+  width: 20px;
+  height: 20px;
+}
+
+.square_btn {
+    width: 100px;
+    // position: relative;
+    display: inline-block;
+    padding: 0.25em 0.5em;
+    text-decoration: none;
+    color: #FFF;
+    background: #e29676;/*背景色*/
+    border-bottom: solid 2px #d27d00;/*少し濃い目の色に*/
+    border-radius: 4px;/*角の丸み*/
+    box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), 0 2px 2px rgba(0, 0, 0, 0.19);
+    font-weight: bold;
+    float: right;
+    margin: 10px 5px 10px 0;
+}
+
+.square_btn:active {
+    border-bottom: solid 2px #fd9535;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+}
+
+
+// cooking-main
+.cooking-line-img {
+  width: 100%;
+  height: 40px;
+  opacity: 0.8;
+}
+
+.cooking-main {
+  width: 100%;
 }
 
 .cooking-main h3 {
+  width: 100%;
   padding-bottom: .5em;
-  border-bottom: 1px solid #ccc;
+  float: left;
+  padding-left: 20px;
+  margin-bottom: 55px;
+  box-sizing: border-box;
+  padding: .25em 0 .25em .75em;
+  border-left: 10px solid #e6bfab;
+}
+
+.menu-submit {
+  margin: 3px 15px 3px 0;
+  text-align: right;
+  font-size: 20px;
 }
 .cooking-main h3 span {
   display: block;
@@ -655,7 +945,287 @@ Github: http://github.com/jorgechavz
   font-size: .9em;
 }
 
+.cooking-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0;
+}
+
+.cooking-menu li {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.cooking-maindish {
+  width: 40%;
+  float: left;
+  padding-left: 30px;
+}
+
+.cooking-maindish p, .cooking-submenu p {
+  margin: 0;
+  font-size: 25px;
+  font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
+}
+
+.cooking-submenu {
+  width: 50%;
+  float: left;
+}
+
 .cooking-menu {
-  background-image: url(/pan.png);
-  background-size: contain;
+  width: 100%;
+  position: relative;
+}
+
+.handle {
+  height: 30px;
+  width: 16%;
+  position: absolute;
+  top: -30px;
+  left: 42%;
+  background-color: rgba(105,105,105,0.9);
+}
+
+.lid {
+  box-sizing: border-box;
+  width: 80%;
+  height: 70px;
+  margin-left: 10%;
+  margin-bottom: 5px;
+  background-color: rgba(169,169,169,0.3);
+  line-height: 70px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.lid > span:first-child {
+  font-size: 30px;
+  font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
+}
+
+.lid-sub {
+  position: absolute;
+  bottom: 3px;
+  right: 0;
+  padding-right: 10px;
+}
+
+.lid-sub p {
+  line-height: 17px;
+  font-size: 13px;
+  font-family: 'Hannotate SC', 'Bradly Hand';
+}
+
+.pot {
+  width: 80%;
+  background-color: rgba(169,169,169,0.5);
+  margin-left: 10%;
+  box-sizing: border-box;
+  padding-bottom: 20px;
+}
+
+.pot-right, .pot-left {
+  width: 10%;
+  height: 35px;
+  background-color: rgba(169,169,169,0.8);
+  position: absolute;
+  top: 100px;
+}
+
+.pot-left {
+  left: 0;
+}
+
+.pot-right {
+  right: 0;
+}
+
+.kitchenware-img {
+  width: 50px;
+  height: 50px;
+  vertical-align: bottom;
+}
+
+.cooking-menu:hover {
+  animation-name: shake;
+  animation-duration: .7s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: rotate(8deg) translate(1px, 0); }
+  50% { transform: rotate(-8deg) translate(-1px, 0); }
+  100% { transform: rotate(8deg) translate(1px, 0); }
+}
+
+
+.recipe-contain {
+  display: none;
+  background: #efefef;
+  padding: 10px 20px;
+}
+
+.cooking-detail-img {
+  width: 60px;
+  height: 40px;
+}
+
+.number-img {
+  width: 30px;
+  height: 30px;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+
+.main-recipes p, span{
+  font-family: 'Hannotate SC', 'Bradly Hand';
+  font-size: 14px;
+}
+
+.recipe-img {
+  width: 100%;
+  // float: left;
+}
+
+.ingredient {
+  // float: left;
+  // margin-left: 20px;
+}
+
+.ingredient ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; 
+}
+
+.cooking-tool-img {
+  width: 50px;
+  height: 30px;
+  object-fit: contain;
+  vertical-align: bottom; 
+}
+
+
+.recipe > p {
+  margin: 15px 0;
+}
+
+.recipe span {
+  // border: solid #ccc 1px;
+  background: #efefef;
+  padding: 3px;
+  margin: 0 5px;
+  font-size: 10px;
+  
+}
+
+.recipe-click {
+  margin-top: 18px;
+  text-align: center;
+  color: #bb5535;
+}
+
+.recipe-how-to-make {
+  margin: 10px 0;
+}
+
+.recipe-how-to-make span {
+  font-family: 'Bradly Hand', 'Wawati SC';
+  color: #bb5535;
+  font-weight: bold;
+  background: #efefef;
+  font-size: 20px;
+}
+
+.recipe-how-to-make p:last-child {
+  text-align: center;
+  margin: 5px 0;
+}
+.recipe-how-to-make a {
+  color: #b0778c;
+}
+
+.recipe-contain > p {
+  margin-bottom: 10px;
+  font-size: 10px;
+}
+
+.face-img {
+  width: 35px;
+  height: 30px;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+
+// .recipe-click {
+//   cursor: url("/images/cooking/cooking-tool7.png") ,auto;
+// }
+// できない
+
+.main-ingredient .ingredient-left {
+  background: #e6c0c0;
+}
+
+.main-ingredient .ingredient-center {
+  // background: #c9caca;
+  color: #7d7b83;
+}
+
+.main-ingredient .ingredient-right {
+  color: #006888;
+  font-weight: bold;
+}
+
+.star-img {
+  height: 20px;
+  width: 20px;
+  vertical-align: bottom;
+}
+
+
+.main-recipes > p, .side-recipes > p  {
+  padding: .25em 0 .25em .75em;
+  border-left: 6px solid #98605e;
+  font-size: 20px;
+  font-family: Papyrus, 'Wawati SC';
+  margin-top: 20px;
+}
+
+.tool5-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  vertical-align: bottom;
+}
+
+// .main-recipes {
+//   margin-bottom: 50px;
+// }
+
+.side-recipes {
+  margin-bottom: 50px;
+}
+// cooking_ingredent
+
+.main-ingredient ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-ingredient li {
+  margin-bottom: 2px;
+  padding: 2px;
+  border-bottom: dashed 1px #ccc;
+}
+
+.main-ingredient > p {
+  font-size: 15px;
+  border: solid 1px #ccc;
+  margin: 10px;
 }

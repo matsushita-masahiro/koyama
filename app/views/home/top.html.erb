@@ -1,9 +1,4 @@
 
-<!--画像を重ねている    -->
-<!--<div class="bubble">-->
-<!--    <%= image_tag 'bubble.jpeg', class: 'bubble-img' %>-->
-<!--</div>-->
-
 <!--アクセス時にモーダルで表示-->
   <div class="modal">
     <input id="modal-trigger" class="checkbox" type="checkbox" checked="checked">
@@ -95,10 +90,11 @@
     
 <!--ここからページ開始-->
 <div class="wrapper">
-    <div id="main-box">
-      <%= image_tag 'top.jpg', class: 'top-img' %>
+  <div class="top-img">
+    <canvas id="mycanvas">
+      <!--<%= image_tag 'top.jpg', class: 'top-img' %>-->
+    </canvas>
     </div>
-    
     <div class="navi">
         <h4>[今日のこそだて格言]</h4>
         <p class="sentence"><%= @sentence[0] %></p>
@@ -107,143 +103,131 @@
    
     <div class="menu">
     <p>MENU</p>
-     <ul>
+     <ul class="menu-container">
             <li>
-              <div class="menu-detail menu-hover">
-                <div class="menu-icon">
-                  <div class="text-contents">
-                  <!--<%= image_tag 'learning.png', class: 'menu-img' %>-->
-                  学習方法
+                <div class="menu-detail menu-hover">
+                    <div class="text-contents">
+                        
+                        学習方法
+                    </div>
+                    <div class="menu-icon">
+                      <%= image_tag 'menu/learning.png', class: 'menu-img' %>
+                    </div>
+                    <p>がくしゅう</p>
                 </div>
-                    <%= image_tag 'learning.png', class: 'menu-img' %>
-                    <%= link_to("/learning")  do %>
-                      <p>がくしゅう</p>
-                    <% end %>
-                </div>
-                
-              </div>
             </li>
             <li>
-              <div class="menu-detail menu-hover">
-                <div class="text-contents">
-                  <!--<%= image_tag 'health.png', class: 'menu-img' %>-->
-                  健康情報
-                  </div>
-                <div class="menu-icon">
-                  <%= link_to("/health") do %>
-                    <%= image_tag 'health.png', class: 'menu-img' %>
+                <div class="menu-detail menu-hover">
+                    <div class="text-contents">
+                        
+                        健康情報
+                    </div>
+                    <div class="menu-icon">
+                        <%= image_tag 'menu/health.png', class: 'menu-img' %>
+                    </div>
                     <p>けんこう</p>
-                  <% end %>
                 </div>
-                
-              </div>
             </li>
             <li>
               <div class="menu-detail menu-hover">
-                <div class="text-contents">
-                    <!--<%= image_tag 'cooking.png', class: 'menu-img' %>-->
-                    クッキング
+                  <div class="text-contents">
+                      
+                      クッキング
                   </div>
-                <div class="menu-icon">
-                  <%= link_to("/cooking") do %>
-                    <%= image_tag 'cooking.png', class: 'menu-img' %>
-                    <p>りょうり</p>
-                  <% end %>
-                </div>
-                  
-                </div>
-            </li>
-            <li>
-              <div class="menu-detail menu-hover">
-                <div class="text-contents">
-                  <!--<%= image_tag 'out.png', class: 'menu-img' %>-->
-                  お出かけ情報
-                </div>
-                <div class="menu-icon">
-                    <%= link_to("/out") do %>
-                        <%= image_tag 'out.png', class: 'menu-img' %>
-                        <p>おでかけ</p>
-                    <% end %>
-                </div>
+                  <div class="menu-icon">
+                      <%= image_tag 'menu/cooking.png', class: 'menu-img' %>
+                  </div>
+                  <p>りょうり</p>
               </div>
             </li>
             <li>
               <div class="menu-detail menu-hover">
-                <div class="menu-icon">
-                  <%= link_to("/life") do %>
-                      <%= image_tag 'life.png', class: 'menu-img' %>
-                      <p>くらし</p>
-                  <% end %>
-                </div>
-                <div class="text-contents">
-                  <!--<%= image_tag 'life.png', class: 'menu-img' %>-->
-                  暮らし情報
-                </div>
+                  <div class="text-contents">
+                      
+                      お出かけ情報
+                  </div>
+                  <div class="menu-icon">
+                        <%= image_tag 'menu/out.png', class: 'menu-img' %>
+                  </div>
+                  <p>おでかけ</p>
               </div>
             </li>
             <li>
               <div class="menu-detail menu-hover">
-                <div class="menu-icon">
-                  <%= link_to("/trip") do %>
-                      <%= image_tag 'trip.png', class: 'menu-img' %>
-                      <p>りょこう</p>
-                  <% end %>
-                </div>
-                <div class="text-contents">
-                  <!--<%= image_tag 'trip.png', class: 'menu-img' %>-->
-                  旅行情報
-                </div>
+                  <div class="text-contents">
+                    
+                      暮らし情報
+                  </div>
+                  <div class="menu-icon">
+                        <%= image_tag 'menu/life.png', class: 'menu-img' %>
+                  </div>
+                  <p>くらし</p>
               </div>
             </li>
             <li>
               <div class="menu-detail menu-hover">
-                <div class="menu-icon">
-                  <%= link_to("/mom") do %>
-                      <%= image_tag 'dad.png', class: 'menu-img' %>
-                      <p>etc.</p>
-                  <% end %>
-                </div>
-                <div class="text-contents">
-                  <!--<%= image_tag 'dad.png', class: 'menu-img' %>-->
-                  なんでもあり
-                </div>
+                  <div class="text-contents">
+                     
+                      旅行情報
+                  </div>
+                  <div class="menu-icon">
+                        <%= image_tag 'menu/trip.png', class: 'menu-img' %>
+                  </div>
+                  <p>りょこう</p>
+              </div>
+            </li>
+            <li>
+              <div class="menu-detail menu-hover">
+                  <div class="text-contents">
+                      
+                      なんでもあり
+                  </div>
+                  <div class="menu-icon">
+                        <%= image_tag 'menu/dad.png', class: 'menu-img' %>
+                  </div>
+                  <p>etc.</p>
               </div>
             </li>
           </ul>
     </div>
     <div class="clear"></div>
-  
-  <div class="links">
-    <p>Pick Up</p>
-    <div class="link">
-    <% @posts.each do |post| %>
-      <div class="pick-up">
-          <% detail = PostDetail.find_by(post_id: post.id) %>
-          <% if detail.image == "kids.jpg" %>
-            <img src="<%= "/post_images/#{detail.image}" %>">
-          <% else %>
-            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+
+   <div class="links">
+      <p>Pick Up</p>
+      <div class="link">
+          <% @posts.each do |post| %>
+            <div class="pick-up">
+                <div class="pick-img">
+                    <% detail = PostDetail.find_by(post_id: post.id) %>
+                    <% if detail.present? %>
+                        <% if detail.image == "kids.jpg" %>
+                          <img src="<%= "/post_images/#{detail.image}" %>">
+                        <% else %>
+                          <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <% end %>
+                    <% end %>
+                </div>
+                <div class="post-title">
+                  <%= link_to("/posts/#{post.id}") do %>
+                    <span><%=post.title%></span>
+                  <% end %>
+                </div>
+                <div class="post-create">
+                  <span><%= post.created_at %></span>
+                </div>
+                <div class="clear"></div>
+                <div class="info">
+                  <%= image_tag 'info.png', class: 'info-img' %><span>+ more info</span>
+                    <div class="more-info">
+                      <%= post.main_content %><br/>
+                      続きはログインお願いします
+                    </div>
+                </div>
+                <!--<div class="clear"></div>-->
+            </div>  
           <% end %>
-          <div class="post-title">
-            <%= link_to("/posts/#{post.id}") do %>
-            <span><%=post.title%></span>
-            <% end %>
-          </div>
-          <div class="post-create">
-            <span><%= post.created_at %></span>
-          </div>
-          <div class="clear"></div>
-          <div class="info">
-            <%= image_tag 'info.png', class: 'info-img' %><span>+ more info</span>
-              <div class="more-info">
-                <%= post.main_content %><br/>
-                続きはログインお願いします
-              </div>
-          </div>
-        </div>  
-      <% end %>
-      <div class="clear"></div>
-      </div>
+        <div class="clear"></div>
+        </div>
     </div>
 </div>
 <div class="top-footer"></div>
@@ -313,5 +297,110 @@
       });
       
  
+ 
+ var canvas;
+    var ctx;
+    var Ball;
+    var balls = [];
+    var Stage;
+    var stage;
+    
+//     canvas.setBackgroundImage("top.jpg", canvas.renderAll.bind(canvas), {
+//     backgroundImageOpacity: 0.5,
+//     backgroundImageStretch: false
+// });
+
+    canvas = document.getElementById('mycanvas');
+    if (!canvas || !canvas.getContext) return false;
+    ctx = canvas.getContext('2d');
+
+    function rand(min, max) {
+      // 0-n
+      // Math.floor(Math.random() * (n + 1))
+      // min-max
+      return min + Math.floor(Math.random() * (max - min + 1));
+    }
+
+    function adjustPosition(pos, r, max) {
+      // if (x - r < 0) x = r;
+      // if (y - r < 0) y = r;
+      // if (x + r > canvas.width) x = canvas.width - r;
+      // if (y + r > canvas.height) y = canvas.height - r;
+      if (pos - r < 0) {
+        return r;
+      } else if (pos + r > max) {
+        return max - r;
+      } else {
+        return pos;
+      }
+    }
+
+    canvas.addEventListener('click', function(e) {
+      var x, y, r;
+      var rect;
+      // x = rand(100, 400);
+      // y = rand(100, 200);
+      rect = e.target.getBoundingClientRect();
+      x = e.clientX - rect.left;
+      y = e.clientY - rect.top;
+      r = rand(0, 100) < 20 ? rand(50, 80) : rand(10, 35);
+
+      x = adjustPosition(x, r, canvas.width);
+      y = adjustPosition(y, r, canvas.height);
+      balls.push(new Ball(x, y, r));
+    });
+
+ 
+ Ball = function(x, y, r) {
+      this.x = x;
+      this.y = y;
+      this.r = r;
+      this.vx = rand(-10, 10);
+      this.vy = rand(-10, 10);
+      this.color = 'hsla(' + rand(50, 100) + ', ' + rand(40, 80) + '%, ' + rand(50, 60) + '%, ' + Math.random() + ')';
+    };
+
+    Ball.prototype.draw = function() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+      ctx.fillStyle = this.color;
+      ctx.closePath();
+      ctx.fill();
+    };
+
+    Ball.prototype.move = function() {
+      if (this.x + this.r > canvas.width || this.x - this.r < 0) {
+        this.vx *= -1;
+      }
+      if (this.y + this.r > canvas.height || this.y - this.r < 0) {
+        this.vy *= -1;
+      }
+      this.x += this.vx;
+      this.y += this.vy;
+    };
+
+    // var ball = new Ball(rand(100, 200), rand(100, 200), rand(10, 50));
+    // ball.draw();
+
+    Stage = function() {
+      this.update = function() {
+        var i;
+        this.clear();
+        for (i = 0; i < balls.length; i++) {
+          balls[i].draw();
+          balls[i].move();
+        }
+        setTimeout(function() {
+          this.update(); // Stage.update()
+        }.bind(this), 30);
+      };
+      this.clear = function() {
+        ctx.fillStyle = '#ecf0f1';
+        // ctx.fillRect(0, 0, canvas.width, canvas.height);
+      }
+    };
+
+    stage = new Stage();
+    stage.update();
 });
 </script>

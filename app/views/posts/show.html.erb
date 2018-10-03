@@ -63,7 +63,9 @@
         </div>
         
         <div class="show-post">
-            <% details = PostDetail.where(post_id: @post.id) %>
+            <!--<% details = PostDetail.where(post_id: @post.id) %>-->
+            <% details = PostDetail.where(post_id: @post.id).order(id: :asc) %>
+            <% if details.present? %>
             <% details.each do |detail| %>
                 <div class="show-picture">
                     <% if detail.image == "kids.jpg" %>
@@ -75,6 +77,7 @@
                 <div class="show-detail">
                     <%= detail.content %>
                 </div>
+            <% end %>
             <% end %>
         </div>
         <div class="clear"></div>

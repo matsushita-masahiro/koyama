@@ -1,1 +1,121 @@
-<p>まま</p>
+<%= image_tag 'cooking-line.png', class: 'cooking-line-img' %>
+<div class="wrapper">
+    
+    <div class="cooking-top">
+        <div class="cooking-left">
+            <p>etc........</p>
+            <div class="cooking-top-image1">
+                <%= image_tag 'menu-title.png', class: 'menu-title-img' %>
+            </div>
+            <div class="cooking-top-image2">
+                <%= image_tag 'menu/dad.png', class: 'cooking-menu-img' %>
+            </div>
+        </div> 
+        <div class="cooking-right">
+              <%= image_tag 'question_board/clip.png', class: 'clip-img' %>  
+            <h5 class="board-title">● みんなの投票掲示板 ●</h5>
+            <div class="question-board">
+                <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>1.</span> 子供と一緒に料理をしますか？</h4>
+                <%= form_tag("/mom_create") do %>
+                    <div class="select-answerQ1">
+                        <input type="radio" id="usually" name="question_1" value="1">
+                        <label for="usually">
+                        <div class="answer">
+                            <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
+                            <% surveys = Survey.where(menu:"etc") %>
+                            <% survey = surveys.where(question_1: 1).count %>
+                            <p><%= survey %></p>
+                        </div>
+                        <span>よくします</span>
+                        </label>
+                        
+                        <input type="radio" id="sometimes" name="question_1" value="2">
+                        <label for="sometimes">
+                            <div class="answer">
+                            <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
+                            <% surveys = Survey.where(menu:"etc") %>
+                            <% survey = surveys.where(question_1: 2).count %>
+                            <p><%= survey %></p>
+                        </div>
+                        <span>たまーに</span>
+                        </label>
+                        <input type="radio" id="seldom" name="question_1" value="3">
+                        <label for="seldom">
+                            <div class="answer">
+                            <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
+                            <% surveys = Survey.where(menu:"etc") %>
+                            <% survey = surveys.where(question_1: 3).count %>
+                            <p><%= survey %></p>
+                        </div>
+                        <span>できてないなぁ...</span>
+                        </label>
+                        <input type="radio" id="etc" name="question_1" value="4">
+                        <label for="etc">
+                            <div class="answer">
+                                <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
+                                <% surveys = Survey.where(menu:"etc") %>
+                                <% survey = surveys.where(question_1: 4).count %>
+                                <p><%= survey %></p>
+                            </div>
+                        <span>etc.</span>
+                        </label>
+                    </div>
+                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span> 子供の喜ぶメニューは？</h4>
+                    <div class="select-answerQ2">
+                        <input type="radio" id="humburg" name="question_2" value="1" >
+                        <label for="humburg">
+                            <div class="answer">
+                                <%= image_tag 'question_board/mug_1.png', class: 'mug-img' %>
+                                <% surveys = Survey.where(menu:"etc") %>
+                                <% survey = surveys.where(question_2: 1).count %>
+                                <p><%= survey %></p>
+                            </div>
+                        <span>ハンバーグ</span>
+                        </label>
+                        <input type="radio" id="curry" name="question_2" value="2">
+                        <label for="curry">
+                            <div class="answer">
+                                <%= image_tag 'question_board/mug_1.png', class: 'mug-img' %>
+                                <% surveys = Survey.where(menu:"etc") %>
+                                <% survey = surveys.where(question_2: 2).count %>
+                                <p><%= survey %></p>
+                            </div>
+                        <span>カレー</span>
+                        </label>
+                        <input type="radio" id="omlet" name="question_2" value="3">
+                        <label for="omlet">
+                            <div class="answer">
+                                <%= image_tag 'question_board/mug_1.png', class: 'mug-img' %>
+                                <% surveys = Survey.where(menu:"etc") %>
+                                <% survey = surveys.where(question_2: 3).count %>
+                                <p><%= survey %></p>
+                            </div>
+                        <span>オムライス</span>
+                        </label>
+                        <input type="radio" id="etc" name="question_2" value="4">
+                        <label for="etc">
+                            <div class="answer">
+                                <%= image_tag 'question_board/mug_1.png', class: 'mug-img' %>
+                                <% surveys = Survey.where(menu:"etc") %>
+                                <% survey = surveys.where(question_2: 4).count %>
+                                <p><%= survey %></p>
+                            </div>
+                        <span>etc.</span>
+                        </label>
+                    </div>
+                    <div class="menu-submit">
+                    <input type="submit" value=" 回答！ " class="square_btn" >
+                    </div>
+                <% end %>
+            </div>
+        </div>
+        <!--<div class="clear"></div>-->
+    </div>
+
+    <div class="cooking-main">
+    </div>
+<%= render 'shared/posts' %>
+    
+</div>
+<%= render 'shared/footer' %>
+　

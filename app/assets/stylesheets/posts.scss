@@ -5,7 +5,7 @@
 // 共通
 .post-wrapper {
   width: 100%;
-  border-top: dashed 2px #bcbace;
+//   border-top: dashed 2px #bcbace;
 }
 
 .contain {
@@ -141,6 +141,7 @@
     background-size: contain;
     height: 140px;
     width: 200px;
+    object-fit: contain;
     float: left;
 }
 
@@ -179,6 +180,7 @@
 .user img {
     width: 25px;
     height: 25px;
+    object-fit: contain;
     vertical-align: bottom;
 }
 
@@ -330,12 +332,14 @@ button {
 .post-show-user img {
     width: 20px;
     height: 20px;
+    object-fit: contain;
     vertical-align: bottom;
 }
 
 .show-picture img {
     width: 358px;
     height: 250px;
+    object-fit: contain;
     background: #f5f5f5;
 }
 
@@ -381,6 +385,7 @@ button {
 .show-comment img {
     width: 20px;
     height: 20px;
+    object-fit: contain;
     vertical-align: bottom;
 }
 

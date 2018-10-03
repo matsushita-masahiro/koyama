@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def index
       @user = User.find_by(id: params[:id])
       @users = User.all
-       #   @users =　User.where('user_name = ?', 'cc').id
+        #   @users =　User.where('user_name = ?', 'cc').id
   end
   
   
@@ -34,6 +34,17 @@ class UsersController < ApplicationController
        comment: params[:comment],
        image:"face.png"
        ) 
+       
+    # respond_to do |format|
+    #   if @user.save
+    #     SampleMailer.send_when_create(@user).deliver
+    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
    
     
     if @user.save
@@ -88,10 +99,25 @@ class UsersController < ApplicationController
       end
     
       if @user.save
+          SampleMailer.send_when_update(@current_user).deliver
          flash[:notice] = "編集しました"
          redirect_to("/users/#{@user.id}")
       else
          render("/users/edit")
       end
+      
+      
+      
   end
+  
+  
+    
+  
+  
+#   def invite_create
+#     SampleMailer.send_when_create.deliver
+#         # format.html { redirect_to @user, notice: 'User was successfully created.' }
+#         # format.json { render :show, status: :created, location: @user }
+#   end
+
 end

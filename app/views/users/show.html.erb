@@ -1,3 +1,4 @@
+<%= image_tag 'line5.png', class: 'cooking-line-img' %>
 <div class="user-wrapper">
     <div class="contain">
             <div class="show-user-left">
@@ -32,10 +33,12 @@
                     <div class="show-main">
                         <% post = Post.find_by(id: like.post_id) %>
                         <% detail = PostDetail.find_by(post_id: post.id) %>
+                        <% if detail.present? %>
                         <% if detail.image == "kids.jpg" %>
                             <img src="<%= "/post_images/#{detail.image}" %>">
                         <% else %>
                             <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <% end %>
                         <% end %>
                         <div class="show-like">
                             <%= link_to("/posts/#{post.id}") do %>
@@ -56,10 +59,12 @@
                 <div class="content" id="post">
                    <% @posts.each do |post| %>
                         <% detail = PostDetail.find_by(post_id: post.id) %>
+                        <% if detail.present? %>
                         <% if detail.image == "kids.jpg" %>
                             <img src="<%= "/post_images/#{detail.image}" %>">
                         <% else %>
                             <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <% end %>
                         <% end %>
                         <div class="show-post">
                             <%= link_to("/posts/#{post.id}") do %>

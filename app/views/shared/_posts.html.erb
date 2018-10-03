@@ -1,0 +1,28 @@
+<div class="links">
+    <p>Recent Posts</p>
+        <div class="link">
+            <% @posts.each do |post| %>
+                <div class="pick-up">
+                    <div class="pick-img">
+                    <% detail = PostDetail.find_by(post_id: post.id) %>
+                    <% if detail.present? %>
+                        <% if detail.image == "kids.jpg" %>
+                            <img src="<%= "/post_images/#{detail.image}" %>">
+                        <% else %>
+                            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <% end %>
+                    <% end %>
+                    </div>
+                <div class="post-title">
+                    <%= link_to("/posts/#{post.id}") do %>
+                        <span><%=post.title%></span>
+                    <% end %>
+                </div>
+                <div class="post-create">
+                    <span><%= post.created_at %></span>
+                </div>
+                </div>  
+            <% end %>
+        </div>
+        <div class="clear"></div>
+    </div>

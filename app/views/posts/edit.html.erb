@@ -2,7 +2,11 @@
     <div class="contain">
         <p class="title">投稿編集</p>
         <div class="post-edit">
+            
              <%= form_tag("/posts/#{@post.id}/update", {multipart: true}) do %>
+             
+            <!--<%= select :category, ["がくしゅう", "けんこう", "りょうり", "おでかけ", "くらし", "りょこう","etc."], :class => 'category', :selected => @post.category %>-->
+            
              <span>○カテゴリー :</span><br/>
                 <select name="category">
                     <option value="1">がくしゅう</option>
