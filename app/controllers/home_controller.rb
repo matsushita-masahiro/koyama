@@ -1,53 +1,39 @@
 class HomeController < ApplicationController
-  
+  before_action :authenticate_user, {only: [:learning, :health, :cooking, :out, :life, :trip, :mom, :cooking_recipe, :cooking_ingredient]}
+  before_action :forbid_login_user, {only: [:sign_up, :login, :top]}
   def top
     @sentence = Sentence.pluck(:proverb).sample(1)
     @posts = Post.all.order(created_at: :desc).first(3)
-    
   end
-  
   def learning
     @posts = Post.where(category: 3)
   end
-  
   def health
     @posts = Post.where(category: 2)
   end
-  
   def cooking
-    @posts = Post.where(category: 3)
+    @posts = Post.where(category: 3).order(created_at: :desc)
   end
-  
   def out
     @posts = Post.where(category: 4)
   end
-  
   def life
     @posts = Post.where(category: 5)
   end
-  
   def trip
     @posts = Post.where(category: 6)
   end
-  
   def mom
     @posts = Post.where(category: 7)
   end
-  
-  
-  
-  
   def sentences
     @sentences = Sentence.all
   end
-  
   def create
     @sentence = Sentence.new(proverb: params[:text])
     @sentence.save
     redirect_to("/sentences")
   end
-  
-  
   def learning_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -58,7 +44,6 @@ class HomeController < ApplicationController
     @survey.save
     redirect_to("/learning")
   end
-  
   def health_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -69,7 +54,6 @@ class HomeController < ApplicationController
     @survey.save
     redirect_to("/health")
   end
-  
   def cooking_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -80,7 +64,6 @@ class HomeController < ApplicationController
     @survey.save
     redirect_to("/cooking")
   end
-  
   def out_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -91,7 +74,6 @@ class HomeController < ApplicationController
     @survey.save
     redirect_to("/out")
   end
-  
   def life_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -102,7 +84,6 @@ class HomeController < ApplicationController
     @survey.save
     redirect_to("/life")
   end
-  
   def trip_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -113,7 +94,6 @@ class HomeController < ApplicationController
     @survey.save
     redirect_to("/trip")
   end
-  
   def mom_create
     @survey = Survey.new(
       user_id: @current_user.id,
@@ -131,4 +111,9 @@ class HomeController < ApplicationController
   def cooking_ingredient
   end
   
+  def login
+  end
+  
+  def sign_up
+  end
 end

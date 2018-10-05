@@ -1,70 +1,27 @@
+<%= image_tag 'user-line.png', class: 'user-line-img' %>
 <div class="user-wrapper">
     <div class="contain">
-        <p class="title">Member</p>
-            <div class="j-letter">
-                <p class="letter-hover">あ</p>
-                <p class="letter-hover">か</p>
-                <p class="letter-hover">さ</p>
-                <p class="letter-hover">た</p>
-                <p class="letter-hover">な</p>
-                <p class="letter-hover">は</p>
-                <p class="letter-hover">ま</p>
-                <p class="letter-hover">や</p>
-                <p class="letter-hover">ら</p>
-                <p class="letter-hover">わ</p>
-            </div>
-            <div class="e-letter">  
-                <p class="letter-hover">a</p>
-                <p class="letter-hover">b</p>
-                <p class="letter-hover">c</p>
-                <p class="letter-hover">d</p>
-                <p class="letter-hover">e</p>
-                <p class="letter-hover">f</p>
-                <p class="letter-hover">g</p>
-                <p class="letter-hover">h</p>
-                <p class="letter-hover">i</p>
-                <p class="letter-hover">j</p>
-                <p class="letter-hover">k</p>
-                <p class="letter-hover">l</p>
-                <p class="letter-hover">m</p>
-                <p class="letter-hover">n</p>
-                <p class="letter-hover">o</p>
-                <p class="letter-hover">p</p>
-                <p class="letter-hover">q</p>
-                <p class="letter-hover">r</p>
-                <p class="letter-hover">s</p>
-                <p class="letter-hover">t</p>
-                <p class="letter-hover">u</p>
-                <p class="letter-hover">v</p>
-                <p class="letter-hover">w</p>
-                <p class="letter-hover">x</p>
-                <p class="letter-hover">y</p>
-                <p class="letter-hover">z</p>
-            </div>
-            <%= image_tag 'line.png', class: 'line-img' %>
-                <div class="user-list">
-                    <% @users.each do |user| %>
-                    <p><%= user.user_name %></p>   
-                    <% end %>
-                </div>
-            
-            <div class="user-profile">
-               <%= link_to("友達リクエスト", "/users/#{@user.id}/friend") %>
-            </div>
-            
+        <p class="title">Member List</p>
+          
+          <div class="surch">
+              <%= form_tag(users_index_path, method: "get") do %>
+              <input type="text" name="name">
+              <input type="submit" value="search">
+              <% end %>
+          </div>
+          <%= image_tag 'user-index_line.png', class: 'line-img' %>
+          <div class="index-user">
+              <% @users.each do |user| %>
+              <div class="each-user">
+                  <div class="index-user-image"><img src="<%= "/user_images/#{user.image}" %>"></div>
+                  <div class="index-user-name"><%= link_to(user.user_name, "/users/#{user.id}") %></div>
+                  <div class="index-user-comment"><%= user.comment %></div>
+                  <div class="clear"></div>
+                  </div>
+              <% end %>
+          </div>
+          <div class="member-list"><%= link_to("Member Listへ", "/users/index") %></div>
     </div>
 </div>
-<div class="clear"></div>
+            
 <%= render 'shared/footer' %>
-
-<script>
-    $(function() {
-        $('.letter-hover')
-            .mouseover(function() {
-                $(this).css({'font-size':'50px', 'color':'#db7093'});
-            })
-            .mouseout(function() {
-                $(this).css({'font-size':'20px', 'color':'#808080'});
-            });
-    })
-</script>

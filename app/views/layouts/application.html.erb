@@ -14,42 +14,47 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="flash">
+        <p><%= flash[:notice] %></p>
+      </div>
+    <% end %>
     <header>
       <%= image_tag 'header1.png', class: 'header-img' %>
       <span class="header"> こそだて</span>
       <span class="sub-header">ひろば </span>
       <%= image_tag 'header1.png', class: 'header-img' %>
       <% if @current_user %>
-          <div id="header" class="header-menu header-hidden">
-              <p><%= link_to("ログアウト", "/logout", {method: :post}) %></p>
-              <p><%= link_to("My Page", "/users/#{@current_user.id}") %></p>
+          <div id="header">
+              <div class="top-post top-open">
+                <p><%= link_to("投稿する", "/posts/new") %></p>
+              </div>
+              <div class="top-logout top-open">
+                 <p><%= link_to("Logout", "/logout", {method: :post}) %></p>
+              </div>
+              <div class="top-mypage top-open">
+                <p><%= link_to("My Page", "/users/#{@current_user.id}") %></p>
+              </div>
           </div>
       <% end %>
     </header>
-    
-    <% if flash[:notice] %>
-      <div class="flash">
-        <p><%= flash[:notice] %></p>
-        <!--<%= image_tag 'flash.png', class: 'flash-img' %>-->
-      </div>
-    <% end %>
-    
     <%= yield %>
     <footer>
     </footer>
     <script>
-        $(function() {
-         $('header').mouseover(function() {
-        $('#header').removeClass('header-hidden');
-            })
-            .mouseout(function() {
-            $('#header').addClass('header-hidden');
-            });
-    
-    
-    
-    
-        })
+      $(function() {
+        'use strict';
+        
+        
+    $('.top-open').hover(
+        function() {
+            $(this).css({'right':'20px'});
+        },
+        function() {
+            $(this).css({'right':'5px'});
+        }
+    );
+      });
     </script>
   </body>
 </html>

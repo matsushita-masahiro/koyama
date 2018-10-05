@@ -1,13 +1,15 @@
-<%= image_tag 'line5.png', class: 'cooking-line-img' %>
+<%= image_tag 'user-line.png', class: 'user-line-img' %>
 <div class="user-wrapper">
     <div class="contain">
         <p class="title">友達リクエスト</p>
         <div class="user-edit">
-            <span>○メッセージ :</span>
-            <textarea name="content"></textarea>
-            <div class="submit">
-                    <input type="submit" value="送信">
+            <%= form_tag("/users/request_create") do %>
+                <span>○メッセージ :</span>
+                <textarea name="content"></textarea>
+                <div class="submit">
+                        <input type="submit" value="送信">
                 </div>
+            <% end %>
         </div>
         <div class="clear"></div>
     </div>

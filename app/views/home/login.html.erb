@@ -1,0 +1,30 @@
+<%= image_tag 'top-line.png', class: 'top-line-img' %>
+<div class="user-wrapper">
+        <div class="login-form">
+            <p>ログイン</p>
+            <div class="message">
+                <%= image_tag 'l-message.png', class: 's-message-img' %><br/>
+                こそだてひろばへようこそ！<br/>
+                楽しんでいってください！
+                みんながあなたからの投稿を待っています<br/>
+                みんなと共有したい情報があればぜひ投稿してね
+            </div>
+            <% if @error_message %>
+                <div class="form-error">
+                    <%= @error_message %>
+                </div>
+            <% end %>
+            <div class="form">
+                <%= form_tag("/login") do %>
+                    <p>メールアドレス</p>
+                    <input name="email" value="<%= params[:email] %>">
+                    <p>パスワード</p>
+                    <input name="password" value="<%= params[:password] %>">
+                    <div class="submit">
+                        <input type="submit" value="ログイン">
+                    </div>
+                <% end %>
+            </div>
+        </div>
+    <!--</div>-->
+</div>

@@ -1,3 +1,4 @@
+<%= image_tag 'posts-line.png', class: 'posts-line-img' %>
 <div class="post-wrapper">
     <div class="contain">
         <% if @current_user.id == @post.user_id %>
@@ -31,19 +32,19 @@
           
             <div class="clear"></div>
             <div class="category">
-              <% if @post.category == 1 %>
+              <% if @post.category == "1" %>
                   <span>がくしゅう</span>
-              <% elsif @post.category == 2 %>
+              <% elsif @post.category == "2" %>
                   <span>けんこう</span>
-              <% elsif @post.category == 3 %>
+              <% elsif @post.category == "3" %>
                   <span>りょうり</span>
-              <% elsif @post.category == 4 %>
+              <% elsif @post.category == "4" %>
                   <span>おでかけ</span>
-              <% elsif @post.category == 5 %>
+              <% elsif @post.category == "5" %>
                   <span>くらし</span>
-              <% elsif @post.category == 6 %>
+              <% elsif @post.category == "6" %>
                   <span>りょこう</span>
-              <% elsif @post.category == 7 %>
+              <% elsif @post.category == "7" %>
                   <span>etc.</span>
               <% end %>
           </div>
@@ -95,7 +96,7 @@
             </div>
             
         <% end %>
-         <%= image_tag 'pencil.png', class: 'pencil-img' %>
+         <!--<%= image_tag 'pencil.png', class: 'pencil-img' %>-->
         <span class="s-comment">コメントする</span>
        
         <%= form_tag("/comments/#{@post.id}/create", {method: "post"}) do %>
@@ -105,7 +106,7 @@
         <% end %>
     </div>    
 </div>
-<%= render 'shared/to-post' %>
+
 <%= render 'shared/footer' %>
 <script>
     $(function() {

@@ -15,7 +15,7 @@
               <%= image_tag 'question_board/clip.png', class: 'clip-img' %>  
             <h5 class="board-title">● みんなの投票掲示板 ●</h5>
             <div class="question-board">
-                <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>1.</span> 子供と一緒に料理をしますか？</h4>
+                <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>1.</span>旅行の計画はいつたてる？</h4>
                 <%= form_tag("/trip_create") do %>
                     <div class="select-answerQ1">
                         <input type="radio" id="usually" name="question_1" value="1">
@@ -26,7 +26,7 @@
                             <% survey = surveys.where(question_1: 1).count %>
                             <p><%= survey %></p>
                         </div>
-                        <span>よくします</span>
+                        <span>1ヶ月以上前</span>
                         </label>
                         
                         <input type="radio" id="sometimes" name="question_1" value="2">
@@ -37,7 +37,7 @@
                             <% survey = surveys.where(question_1: 2).count %>
                             <p><%= survey %></p>
                         </div>
-                        <span>たまーに</span>
+                        <span>思い立ったとき</span>
                         </label>
                         <input type="radio" id="seldom" name="question_1" value="3">
                         <label for="seldom">
@@ -47,7 +47,7 @@
                             <% survey = surveys.where(question_1: 3).count %>
                             <p><%= survey %></p>
                         </div>
-                        <span>できてないなぁ...</span>
+                        <span>前日</span>
                         </label>
                         <input type="radio" id="etc" name="question_1" value="4">
                         <label for="etc">
@@ -60,7 +60,7 @@
                         <span>etc.</span>
                         </label>
                     </div>
-                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span> 子供の喜ぶメニューは？</h4>
+                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span>家族でどこにいきたい？</h4>
                     <div class="select-answerQ2">
                         <input type="radio" id="humburg" name="question_2" value="1" >
                         <label for="humburg">
@@ -70,7 +70,7 @@
                                 <% survey = surveys.where(question_2: 1).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>ハンバーグ</span>
+                        <span>海外</span>
                         </label>
                         <input type="radio" id="curry" name="question_2" value="2">
                         <label for="curry">
@@ -80,7 +80,7 @@
                                 <% survey = surveys.where(question_2: 2).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>カレー</span>
+                        <span>観光地</span>
                         </label>
                         <input type="radio" id="omlet" name="question_2" value="3">
                         <label for="omlet">
@@ -90,10 +90,10 @@
                                 <% survey = surveys.where(question_2: 3).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>オムライス</span>
+                        <span>温泉</span>
                         </label>
-                        <input type="radio" id="etc" name="question_2" value="4">
-                        <label for="etc">
+                        <input type="radio" id="where" name="question_2" value="4">
+                        <label for="where">
                             <div class="answer">
                                 <%= image_tag 'question_board/mug_1.png', class: 'mug-img' %>
                                 <% surveys = Survey.where(menu:"trip") %>

@@ -1,25 +1,30 @@
 Rails.application.routes.draw do
-  resources :posts
-  get 'users/:id/index' => 'users#index'
-  get 'users/:id/edit' => 'users#edit'
-  get 'users/:id/invite' => 'users#invite'
-  get 'users/:id' => 'users#show'
-  get 'users/:id/friend' => 'users#friend'
   
+  post 'users/request_create' => 'users#request_create'
   post 'users/create' => 'users#create'
   post 'login' => 'users#login'
   post 'logout' => 'users#logout'
   post 'users/:id/update' => "users#update"
   post 'users/invite_create' => 'users#invite_create'
+  
+  
+  get 'users/index' => 'users#index'
+  get 'users/:id/edit' => 'users#edit'
+  get 'users/:id/invite' => 'users#invite'
+  get 'users/:id/friend' => 'users#friend'
+  get 'users/:id' => 'users#show'
+  
+  
+  post 'posts/create' => 'posts#create'
+  post 'posts/:id/destroy' => 'posts#destroy'
+  post 'posts/:id/update' => 'posts#update'
         
   get 'posts/index' => 'posts#index'
   get 'posts/new' => 'posts#new'
   get 'posts/:id/edit' => 'posts#edit'
   get 'posts/:id' => 'posts#show'
   
-  post 'posts/create' => 'posts#create'
-  post 'posts/:id/destroy' => 'posts#destroy'
-  post 'posts/:id/update' => 'posts#update'
+ 
   
   get '/' => 'home#top'
   get 'cooking' => 'home#cooking'
@@ -32,6 +37,8 @@ Rails.application.routes.draw do
   get 'mom' => 'home#mom'
   get 'trip' => 'home#trip'
   get 'sentences' => 'home#sentences'
+  get 'login' => 'home#login'
+  get 'sign_up' => 'home#sign_up'
   
   post 'create' => 'home#create'
   post 'learning_create' => 'home#learning_create'

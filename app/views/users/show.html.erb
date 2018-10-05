@@ -1,17 +1,23 @@
-<%= image_tag 'line5.png', class: 'cooking-line-img' %>
+<%= image_tag 'user-line.png', class: 'user-line-img' %>
 <div class="user-wrapper">
     <div class="contain">
             <div class="show-user-left">
                 <img src="<%= "/user_images/#{@user.image}" %>">
                 <p><%= @user.user_name %>さん</p>
-                <%= link_to("/users/#{@user.id}/edit") do %>
-                <span class="fas fa-pen-square edit-hover">編集</span>
+                <% if @current_user.id == @user.id %>
+                    <%= link_to("/users/#{@user.id}/edit") do %>
+                        <span class="fas fa-pen-square edit-hover">編集</span>
+                    <% end %>
+                <% else %>
+                <div class="friend-request"></div>
+                <%= link_to("友達リクエスト", "/users/#{@user.id}/friend") %>
                 <% end %>
             </div>
             
             <div class="show-user-right">
-                <%= link_to("member list", "/users/#{@user.id}/index") %>
-                <%= link_to("友達を招待する", "/users/#{@user.id}/invite") %>
+                <div class="show-user-comment"><%= image_tag 'user-show-image.png', class: 'user-comment-img' %><p><%= @user.comment %></p></div>
+                <span><%= link_to("member list", "/users/index") %></span>
+                <span><%= link_to("友達を招待する", "/users/#{@user.id}/invite") %></span>
             </div>
             <div class="clear"></div>
             
@@ -27,7 +33,7 @@
                         <a href="#" data-id="comment" class="menu_item index3">コメント</a>
                     </li>
                 </ul>
-                <%= image_tag 'show-line.png', class: 'line-img' %>
+                <!--<%= image_tag 'show-line.png', class: 'line-img' %>-->
                 <div class="content active" id="like">
                     <% @likes.each do |like| %>
                     <div class="show-main">
@@ -58,6 +64,7 @@
                 </div>
                 <div class="content" id="post">
                    <% @posts.each do |post| %>
+                   <div class="show-main">
                         <% detail = PostDetail.find_by(post_id: post.id) %>
                         <% if detail.present? %>
                         <% if detail.image == "kids.jpg" %>
@@ -73,6 +80,7 @@
                             <% end %>
                         </div>
                         <div class="clear"></div>
+                        </div>
                     <% end %>
                 </div>
                 <div class="content" id="comment">

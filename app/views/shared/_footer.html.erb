@@ -3,8 +3,10 @@
         <%= image_tag 'footer-logo.png', class: 'f-logo-img' %>
         <p class="list-p">こそだて<span>ひろば</span></p>
         <p>menu</p>
-        <% if @current_user %>
             <ul>
+                <li>
+                    <%= link_to("★投稿一覧", "/posts/index") %>
+                </li>
                 <li>
                     <%= link_to("● がくしゅう", "/learning") %>
                 </li>
@@ -27,16 +29,6 @@
                     <%= link_to("● etc.", "/mom") %>
                 </li>
             </ul>
-                        <!--<div class="post-lnks">-->
-                        
-                        <%= link_to ("/posts/new") do %>
-                        <div class="to-post">投稿</div>
-                        <% end %>
-                        <div class="to-index">
-                        <%= link_to("INDEX", "/posts/index") %>
-                        </div>
-                        <!--</div>-->
-        <% end %>
         <%= image_tag 'footer-logo2.png', class: 'f-logo2-img' %>
         <div class="clear"></div>  
     </div>

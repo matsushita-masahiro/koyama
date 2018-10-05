@@ -15,7 +15,7 @@
               <%= image_tag 'question_board/clip.png', class: 'clip-img' %>  
             <h5 class="board-title">● みんなの投票掲示板 ●</h5>
             <div class="question-board">
-                <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>1.</span> 子供と一緒に料理をしますか？</h4>
+                <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>1.</span>おもちゃを買ってあげるのはどんな時？</h4>
                 <%= form_tag("/life_create") do %>
                     <div class="select-answerQ1">
                         <input type="radio" id="usually" name="question_1" value="1">
@@ -26,7 +26,7 @@
                             <% survey = surveys.where(question_1: 1).count %>
                             <p><%= survey %></p>
                         </div>
-                        <span>よくします</span>
+                        <span>イベントのとき</span>
                         </label>
                         
                         <input type="radio" id="sometimes" name="question_1" value="2">
@@ -37,7 +37,7 @@
                             <% survey = surveys.where(question_1: 2).count %>
                             <p><%= survey %></p>
                         </div>
-                        <span>たまーに</span>
+                        <span>頑張ったとき</span>
                         </label>
                         <input type="radio" id="seldom" name="question_1" value="3">
                         <label for="seldom">
@@ -47,7 +47,7 @@
                             <% survey = surveys.where(question_1: 3).count %>
                             <p><%= survey %></p>
                         </div>
-                        <span>できてないなぁ...</span>
+                        <span>気が向いたら</span>
                         </label>
                         <input type="radio" id="etc" name="question_1" value="4">
                         <label for="etc">
@@ -60,7 +60,7 @@
                         <span>etc.</span>
                         </label>
                     </div>
-                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span> 子供の喜ぶメニューは？</h4>
+                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span>子供の服を買うとき誰が選ぶ？</h4>
                     <div class="select-answerQ2">
                         <input type="radio" id="humburg" name="question_2" value="1" >
                         <label for="humburg">
@@ -70,7 +70,7 @@
                                 <% survey = surveys.where(question_2: 1).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>ハンバーグ</span>
+                        <span>本人</span>
                         </label>
                         <input type="radio" id="curry" name="question_2" value="2">
                         <label for="curry">
@@ -80,7 +80,7 @@
                                 <% survey = surveys.where(question_2: 2).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>カレー</span>
+                        <span>パパ</span>
                         </label>
                         <input type="radio" id="omlet" name="question_2" value="3">
                         <label for="omlet">
@@ -90,10 +90,10 @@
                                 <% survey = surveys.where(question_2: 3).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>オムライス</span>
+                        <span>ママ</span>
                         </label>
-                        <input type="radio" id="etc" name="question_2" value="4">
-                        <label for="etc">
+                        <input type="radio" id="another" name="question_2" value="4">
+                        <label for="another">
                             <div class="answer">
                                 <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
                                 <% surveys = Survey.where(menu:"life") %>

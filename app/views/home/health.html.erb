@@ -57,7 +57,7 @@
                             <% survey = surveys.where(question_1: 4).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>記憶にない</span>
+                        <span>記憶にないほど元気</span>
                         </label>
                     </div>
                     <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span> 子供がした大ケガは？</h4>
@@ -92,19 +92,9 @@
                             </div>
                         <span>etc.</span>
                         </label>
-                        <!--<input type="radio" id="etc" name="question_2" value="4">-->
-                        <!--<label for="etc">-->
-                        <!--    <div class="answer">-->
-                        <!--        <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>-->
-                        <!--        <% surveys = Survey.where(menu:"health") %>
-                                <!--<% survey = surveys.where(question_2: 4).count %>-->
-                        <!--        <p><%= survey %></p>-->
-                        <!--    </div>-->
-                        <!--<span>いつも元気</span>-->
-                        <!--</label>-->
                         
-                        <input type="radio" id="etc" name="question_2" value="4">
-                        <label for="etc">
+                        <input type="radio" id="fine" name="question_2" value="4">
+                        <label for="fine">
                             <div class="answer">
                                 <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
                                 <% surveys = Survey.where(menu:"health") %>

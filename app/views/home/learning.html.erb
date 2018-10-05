@@ -49,8 +49,8 @@
                         </div>
                         <span>みっつ以上</span>
                         </label>
-                        <input type="radio" id="etc" name="question_1" value="4">
-                        <label for="etc">
+                        <input type="radio" id="nothing" name="question_1" value="4">
+                        <label for="nothing">
                             <div class="answer">
                                 <%= image_tag 'question_board/mug_2.png', class: 'mug-img' %>
                                 <% surveys = Survey.where(menu:"learning") %>
@@ -60,7 +60,7 @@
                         <span>していない</span>
                         </label>
                     </div>
-                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span> 。。。。</h4>
+                    <h4><%= image_tag 'question_board/question.png', class: 'q-img' %><span>2.</span>子供の得意なことは？</h4>
                     <div class="select-answerQ2">
                         <input type="radio" id="humburg" name="question_2" value="1" >
                         <label for="humburg">
@@ -70,7 +70,7 @@
                                 <% survey = surveys.where(question_2: 1).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>ハンバーグ</span>
+                        <span>スポーツ</span>
                         </label>
                         <input type="radio" id="curry" name="question_2" value="2">
                         <label for="curry">
@@ -80,7 +80,7 @@
                                 <% survey = surveys.where(question_2: 2).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>カレー</span>
+                        <span>勉強</span>
                         </label>
                         <input type="radio" id="omlet" name="question_2" value="3">
                         <label for="omlet">
@@ -90,7 +90,7 @@
                                 <% survey = surveys.where(question_2: 3).count %>
                                 <p><%= survey %></p>
                             </div>
-                        <span>オムライス</span>
+                        <span>工作</span>
                         </label>
                         <input type="radio" id="etc" name="question_2" value="4">
                         <label for="etc">

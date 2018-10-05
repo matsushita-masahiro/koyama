@@ -7,11 +7,21 @@
   // border-top: dashed 2px #bcbace;
 }
 
+.contain {
+    width: 85%;
+    margin: 10px auto;
+    padding: 10px 0;
+}
+
+.user-line-img {
+  width: 100%;
+  height: 40px;
+}
 .show-title {
     font-family: 'Hannotate SC', 'Bradly Hand';
     font-size: 15px;
     padding: .25em 0 .25em .75em;
-    border-left: 6px solid #ccc;
+    border-left: 6px solid #b4aeb1;
     margin-bottom: 10px;
 }
 
@@ -21,23 +31,66 @@
 }
 // index
 
-.j-letter, .e-letter {
-  width: 100%;
-  height: 30px;
-}
-
-.letter-hover {
-  display: inline-block;
-  font-size: 20px;
-  box-sizing: border-box;
-  width: 20px;
+.index-user-image img{
+  width: 50px;
+  height: 50px;
   float: left;
-  color: #808080;
+  object-fit: contain;
+  margin: 0 10px;
 }
 
-.j-letter p {
-  font-family: 'Wawati SC', 'Bradly Hand';
+.index-user-name {
+  float: left;
+  width: 200px;
+  line-height: 50px;
 }
+
+.index-user-comment {
+  float: left;
+  line-height: 50px;
+}
+
+.each-user {
+  border-bottom: dashed 2px #ccc;
+}
+
+.surch {
+  margin: 15px 0 10px;
+}
+
+.surch input {
+  height: 20px;
+}
+
+.index-user {
+  margin: 10px 0;
+}
+
+.member-list {
+  margin: 30px 0 5px;
+  text-align: center;
+}
+
+.member-list:hover {
+  opacity: 0.8;
+}
+// .j-letter, .e-letter {
+//   width: 100%;
+//   height: 30px;
+// }
+
+// .letter-hover {
+//   display: inline-block;
+//   font-size: 20px;
+//   box-sizing: border-box;
+//   width: 20px;
+//   float: left;
+//   color: #808080;
+// }
+
+// .j-letter p {
+//   font-family: 'Wawati SC', 'Bradly Hand';
+// }
 
 .line-img {
   width: 100%;
@@ -46,13 +99,6 @@
 .user-list {
   display: inline-block;
   width: 30%;
-  float: left;
-  box-sizing: border-box;
-}
-
-.user-profile {
-  width: 70%;
-  height: 300px;
   float: left;
   box-sizing: border-box;
 }
@@ -79,34 +125,72 @@
    font-size: 17px;
  }
  
- .show-user-left img {
-   width: 100%;
-   height: 100%;
-   object-fit: contain;
-  padding: 20px;
-  // border-radius: 40%; 
-   border: 2px solid #ccc;
-  // border-radius: 50%;
-  box-sizing: border-box;
+ .show-user-left > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.8em;
+    border: 3px solid #b4aeb1;
+    border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+    box-sizing: border-box;
+ }
+ 
+ .friend-request {
+   width: 50px;
+   height: 30px;
+   background-image: url("/letter.png");
+   background-size: contain;
+   background-repeat: no-repeat;
+  float: left;
+   margin-left: 10px;
+ }
+ 
+ .friend-request > .letter-img {
+   width: 50px;
+   height: 50px;
  }
  
  .show-user-right {
    float: right;
    width: 70%;
+   height: 250px;
    margin-right: 10px;
    box-sizing: border-box;
+   position: relative;
  }
  
+ .user-comment-img {
+   position: absolute;
+   top: -10px;
+   left: -50px;
+   width: 50%;
+ }
+ 
+ .show-user-right span {
+   display: inline-block;
+   margin: 10px;
+   float: right;
+ }
+ .show-user-comment > p {
+   position: absolute;
+   top: 10%;
+   left: 5%;
+   z-index: 10;
+   font-family: 'Wawati SC', 'Bradly Hand';
+ }
   .show-container {
     padding: 0;
     margin: 30px auto;
     width: 100%;
   }
 
-.show-main {
+.show-main:not(last-child) {
   position: relative;
 }
 
+.show-main:not(:last-child) {
+  border-bottom: dashed 1px #b4aeb1;
+}
 
   ul.menu {
     list-style: none;
@@ -117,11 +201,12 @@
   
   ul.menu li {
     display: inline-block;
+    margin-left: 10px;
   }
   
   ul.menu li a {
     display: inline-block;
-    font-size: 14px;
+    font-size: 18px;
     width: 100px;
     height: 20px;
     line-height: 20px;
@@ -131,11 +216,8 @@
   }
   
   ul.menu li a.active {
-    background-image: url("/index2.png") ;
-    background-size: contain;
-    background-repeat: no-repeat;
-    font-size: 18px;
-    // color: #a688bd;
+    border-bottom: 5px solid #98605e;
+    color: #98605e;
   }
   
   ul.menu li a:not(.active):hover {
@@ -187,7 +269,7 @@
   
   .content-comment p {
     padding: .25em 0 .25em .75em;
-    border-left: 6px solid #f5b2ac;
+    border-left: 6px solid #e6c0c0;
     font-size: 15px;
     margin: 10px;
   }

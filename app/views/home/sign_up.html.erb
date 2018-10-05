@@ -1,0 +1,37 @@
+  <%= image_tag 'top-line.png', class: 'top-line-img' %>
+   <div class="user-wrapper">
+    <!--<div class="contain">-->
+       
+                <div class="sign_up-form">
+        <p>新規登録</p>
+        <div class="message">
+          <%= image_tag 's-message.png', class: 's-message-img' %><br/>
+          こそだてひろばへようこそ！<br/>
+          少しでもこそだての協力ができるようにたくさんの情報を<br/>のせていきたいと思います。
+          投稿やコメントお待ちしております！
+        </div>
+         <% if @error_message %>
+            <div class="form-error">
+            <%= @error_message %>
+            </div>
+        <% end %>
+        <div class="form">
+          <%= form_tag("/users/create", {multipart: true}) do %>
+            <p>ニックネーム</p>
+            <input name="name" value="<%= params[:name] %>">
+            <p>メールアドレス</p>
+            <input name="email" value="<%= params[:email] %>">
+            <p>パスワード</p>
+            <input type="password" name="password" value="<%= params[:password] %>">
+            <p>画像</p>
+            <input type="file" name="image">
+            <p>コメント</p>
+            <textarea name="comment" value="<%= params[:comment] %>"></textarea>
+            <div class="submit">
+              <input type="submit" value="新規登録">
+            </div>
+          <% end %>
+        </div>
+        </div>
+        
+        </div>

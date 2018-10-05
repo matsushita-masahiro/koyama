@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
+    before_action :authenticate_user, {only: [:index, :show, :edit, :update, :invite, :friend]}
+    before_action :forbid_login_user, {only: [:new, :create, :login]}
+    before_action :ensure_correct_user, {only: [:edit, :update]}
   
   def index
-      @user = User.find_by(id: params[:id])
       @users = User.all
-        #   @users =　User.where('user_name = ?', 'cc').id
+      if params[:name].present?
+          @users = @users.get_by_name params[:name]
+      end
   end
-  
-  
+
   def edit
       @user = User.find_by(id: params[:id])
   end
@@ -18,6 +21,23 @@ class UsersController < ApplicationController
   def friend
       @user = User.find_by(id: params[:id])
   end
+  
+  def request_create
+      @user = User.find_by(id: params[:id])
+      logger.debug("xxxxxxxxxxxxxx")
+      @friend = Friend.new(
+            user_id_rq: params[:id],
+            user_id: @current_user.id,
+            status: "waite"
+            )
+      if @friend.save
+          flash[:notice] = "●●● リクエストしました ●●●"
+          redirect_to("/users/#{@current_user.id}")
+         else
+          flash[:notice] = "●●● リクエストできませんでした ●●●"
+          render("/users/#{@user.id}/friend") 
+      end
+  end 
   
   def show
       @user = User.find_by(id: params[:id])
@@ -56,10 +76,11 @@ class UsersController < ApplicationController
               File.binwrite("public/user_images/#{@user.image}", image.read)
         end
         session[:user_id] = @user.id
-        flash[:notice] = "ようこそ！"
+        flash[:notice] = "ようこそ！こそだて広場へ☆"
         redirect_to("/users/#{@user.id}")
     else
-        render("/")
+         @error_message = "画像とコメント以外は、すべて入力してね！"
+         render("home/sign_up")
     end
   end
   
@@ -67,22 +88,20 @@ class UsersController < ApplicationController
       @user = User.find_by(email: params[:email], password: params[:password])
       if @user
           session[:user_id] = @user.id
-          flash[:notice] = "おかえりなさい"
+          flash[:notice] = "●●● おかえりなさい ●●●"
           redirect_to("/users/#{@user.id}")
       else
-          @error_message = "メールアドレスまたはパスワードを再度確認してね"
+          @error_message = "メールアドレスまたはパスワードを再度確認してね!"
           @email = params[:email]
           @password = params[:password]
-          render("/")
-        # redirect_to("/cooking")
+          render("home/login")
       end
   end
   
   def logout
         session[:user_id] = nil
-        flash[:notice] = "また来てね"
+        flash[:notice] = "●●● また来てね ●●●"
         redirect_to("/")
-      
   end 
   
   def update
@@ -96,21 +115,24 @@ class UsersController < ApplicationController
           @user.image = "#{@user.id}.jpg"
           image = params[:image]
           File.binwrite("public/user_images/#{@user.image}", image.read)
+          logger.debug("ssssssssssssssssssssss")
       end
     
       if @user.save
-          SampleMailer.send_when_update(@current_user).deliver
+        #   SampleMailer.send_when_update(@current_user).deliver
          flash[:notice] = "編集しました"
          redirect_to("/users/#{@user.id}")
       else
          render("/users/edit")
       end
-      
-      
-      
   end
   
-  
+  def ensure_correct_user
+      if @current_user.id != params[:id].to_i
+          flash[:notice] = "権限がありません"
+          redirect_to("/posts/index")
+      end
+  end  
     
   
   
@@ -119,5 +141,7 @@ class UsersController < ApplicationController
 #         # format.html { redirect_to @user, notice: 'User was successfully created.' }
 #         # format.json { render :show, status: :created, location: @user }
 #   end
+
+    
 
 end

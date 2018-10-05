@@ -1,11 +1,11 @@
-<%= image_tag 'line5.png', class: 'cooking-line-img' %>
+<%= image_tag 'posts-line.png', class: 'posts-line-img' %>
 <div class="post-wrapper">
     <div class="contain">
         <p class="title">投稿作成</p>
         <div class="post-new">
             
             
-            <%= form_for(@post) do |f| %>
+            <%= form_for(posts_create_path) do |f| %>
             <p>カテゴリー</p>
             <%= f.select :category, ["がくしゅう", "けんこう", "りょうり", "おでかけ", "くらし", "りょこう","etc."], :prompt => "選択してください", :class => 'category' %>
             <div class="edit-main">

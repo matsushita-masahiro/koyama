@@ -5,13 +5,13 @@
     <div class="modal-overlay">
       <label for="modal-trigger" class="o-close"></label>
       <div class="modal-wrap a-center">
-        <label for="modal-trigger" class="close"><i class="fal fa-window-close" class="close"></i></label>
-        <h3>[このWEBサイトについて]</h3>
+        <label for="modal-trigger" class="close"><i class="close"><%= image_tag 'close_btn.png', class: 'close_btn-img' %></i></label>
+        <h3>[ このWEBサイトについて ]</h3>
             <p>こそだてに迷ったとき、困ったとき、感動したとき、などなど<br/>
-            いろいろな場面でこのサイトを訪れたとき、癒されたり、共感したり、前向きな気持ちになったりと．．．<br/>
+            いろいろなこそだての場面でこのサイトに訪れて、癒されたり、共感したり、前向きな気持ちになったり．．．<br/>
             みんなで一緒にこそだてを楽しんでいければなーと思って立ち上げあたサイトです♪<br/>
             <br/>
-            ●新規登録・ログインボタンを持ったくまさんがかくれんぼをして遊んでます。みつけてね●</p>
+            ●新規登録・ログインボタンを持ったくまさんがかくれんぼをして遊んでまーす● みつけてね ●</p>
             <%= image_tag 'about.png', class: 'about-img' %>
       </div>
     </div>
@@ -19,14 +19,14 @@
   
   <!--新規登録mordal↓-->
     <div id="sign-modal" class="hidden m-modal">
-        <i class="fal fa-window-close m-close"></i>
+        <i class="m-close"><%= image_tag 'close_btn.png', class: 'close_btn-img' %></i>
         <div class="sign-up">
         <p>新規登録</p>
         <div class="message">
           <%= image_tag 's-message.png', class: 's-message-img' %><br/>
           こそだてひろばへようこそ！<br/>
-          少しでもこそだての協力ができるようにたくさんの情報を<br/>のせていきたいと思います
-          色々な投稿もお待ちしております
+          少しでもこそだての協力ができるようにたくさんの情報を<br/>のせていきたいと思います。
+          投稿やコメントお待ちしております！
         </div>
         <div class="form">
           <%= form_tag("/users/create", {multipart: true}) do %>
@@ -51,7 +51,7 @@
     
     <!--ログインmordal↓-->
     <div id="login-modal" class="hidden m-modal">
-        <i class="fal fa-window-close m-close"></i>
+        <i class="m-close"><%= image_tag 'close_btn.png', class: 'close_btn-img' %></i>
         <% if @error_message %>
           <div class="form-error">
               <% @error_message %>
