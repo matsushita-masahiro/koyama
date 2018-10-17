@@ -2,11 +2,56 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+// 共通
+@mixin title($weight, $color) {
+  padding: .25em 0 .25em .75em;
+  border-left: $weight solid $color;
+}
+
+@mixin fram($color, $size) {
+  padding: $size;
+  border: 3px solid $color;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  box-sizing: border-box;
+}
+
+@mixin footer($image) {
+  margin: 0 auto;
+  padding: 30px 0;
+  width: 100%;
+  height: 100%;
+  background-image: $image;
+  background-size: 30%;
+  box-sizing: border-box;
+}
+$font-title: 'Wawati SC', 'Bradly Hand';
+
 body {
   font-family: 'Hannotate SC', 'Bradly Hand';
   background: #fff;
   }
   
+.clear {
+  clear:both;
+}
+
+.face-img {
+  width: 35px;
+  height: 30px;
+  vertical-align: bottom;
+  margin-right: 5px;
+}
+
 // header
 a {
   text-decoration: none;
@@ -16,34 +61,30 @@ a {
 header {
   text-align: center;
   margin-top: 10px;
+  .header-img {
+    width: 50px;
+  }
+  .header {
+    font-family: $font-title;
+    font-size: 50px;
+  }
+  .sub-header {
+    font-family: $font-title;
+    font-size: 30px;
+  }
+  p {
+    margin: 0;
+  }
 }
-
-.header {
-  font-family: 'Wawati SC', 'Bradly Hand';
-  font-size: 50px;
-}
-
-.sub-header {
-  font-family: 'Wawati SC', 'Bradly Hand';
-  font-size: 30px;
-}
-
-.header-img {
-  width: 50px;
-}
-
 
 .flash {
   width: 100%;
-  // height: 30px;
-  // background-image:url("/flash1.png");
-}
-
-.flash p {
-  text-align: center;
-  color: #e3acae;
-  background-color: #f6f6f6;
-  font-family: 'Wawati SC', 'Bradly Hand';
+  p {
+    text-align: center;
+    color: #e3acae;
+    background-color: #f6f6f6;
+    font-family: $font-title;
+  }
 }
 
 .form-error {
@@ -56,16 +97,12 @@ header {
   width: 40px;
   height: 120px;
   font-size: 15px;
-  text-align: center;
+  // text-align: center;
   position: fixed;
   // background: #ccc;
   -ms-writing-mode: tb-rl;
   writing-mode: vertical-rl;
-  padding: 0.1em;
-  border: 3px solid #808080;
-  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
-  box-sizing: border-box;
-  // position: relative;
+  @include fram(#808080, 0.1);
 }
 
 .top-post {
@@ -85,66 +122,51 @@ header {
 // footer 
 
 .footer-list {
-  margin: 0 auto;
-  padding: 30px 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("/footer.png");
-  background-size: 30%;
-  box-sizing: border-box;
+  @include footer(url("/footer.png"))
 }
 
 .list {
   margin: 0 auto;
   background: #fff;
   width: 85%;
-  padding: 0.3em;
-  border: 3px solid #808080;
-  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  @include fram(#808080, 0.3em);
   position: relative;
-}
-
-.list ul {
-  margin: 0;
-  padding: 0;
-}
-
-.list li {
-  display: inline-block;
-  width: 200px;
-  padding: 5px;
-  color: #ccc;
-  font-size: 15px;
-  float: left;
-}
-
-.list li:hover {
-  opacity: 0.8;
-}
-
-.f-logo-img {
-  width: 50px;
-  height: 50px;
-  float: left;
-}
-
-.f-logo2-img {
-  width: 110px;
-  height: 100px;
-  float: right;
-  position: absolute;
-  bottom: -20px;
-  right: 0;
-}
-
-.list-p {
-  font-family: 'Wawati SC', 'Bradly Hand';
-  font-size: 30px;
-}
-
-.list span {
-  font-family: 'Wawati SC', 'Bradly Hand';
-  font-size: 18px;
+  .f-logo-img {
+    width: 50px;
+    height: 50px;
+    float: left;
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      width: 200px;
+      padding: 5px;
+      color: #ccc;
+      font-size: 15px;
+      float: left;
+      &:hover {
+        opacity: 0.8;
+      }
+      .list-p {
+        font-family: $font-title;
+        font-size: 30px;
+        span {
+          font-family: $font-title;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+  .f-logo2-img {
+    width: 110px;
+    height: 100px;
+    float: right;
+    position: absolute;
+    bottom: -20px;
+    right: 0;
+  }
 }
 
 // top
@@ -153,46 +175,13 @@ header {
   margin: 0 auto;
 }
 
-#mycanvas {
-  width: 100%;
-  
-}
-
 .top-img {
+  width: 100%;
   background-image: url("/top.jpg");
-  background-size: contain;
-  width: 100%;
-  z-index: 100;
-}
-.topNav {
-  width: 100%;
-  float: left;
-  color: #7d7d7d;
-}
-
-.topNav h3 {
-  margin: 0;
-}
-
-// .top-img {
-//   width: 100%;
-// }
-
-// .bubble-img {
-//   width: 100%;
-// }
-
-// .bubble {
-//   width: 130%;
-//   opacity: 0.25;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   pointer-events: none;
-// }
-
-.clear {
-    clear:both;
+  // background-size: cover;
+  height: auto;
+  // width: 100%;
+  // z-index: 100;
 }
 
 .navi {
@@ -200,49 +189,45 @@ header {
   padding: 5px;
   font-size: 15px;
   color: #7d7d7d;
-  padding: 1em;
-  border: 3px solid #ccc;
-  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  @include fram(#ccc, 1em);
   position: relative;
+  h4,p {
+    margin: 0;
+  }
+  .navi-img {
+    width: 80px;
+    height: 80px;
+    float: right;
+    position: absolute;
+    top: 70%;
+    right: 0;
+  }
 }
 
-.navi-img {
-  width: 80px;
-  height: 80px;
-  float: right;
-  position: absolute;
-  top: 70%;
-  right: 0;
-}
-
-.navi h4,p {
-  margin: 0;
-}
-
-.signUp-img {
-  width: 200px;
-  height: 200px;
-  position: fixed;
-  top: -120px;
-  right: 0px;
-  margin: 0;
-  z-index: 100;
-}
-
-.login-img {
-  width: 200px;
-  height: 200px;
-  position: fixed;
-  bottom: -100px;
-  left: -112px;
-  margin: 0;
-  z-index: 100;
-}
-
-#open1, #open2 {
-  position: absolute;
-  top: 8px;
-  left: 13px;
+#fixed{
+  .signUp-img {
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: -120px;
+    right: 0px;
+    margin: 0;
+    z-index: 100;
+  }
+  .login-img {
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    bottom: -100px;
+    left: -112px;
+    margin: 0;
+    z-index: 100;
+  }
+  #open1, #open2 {
+    position: absolute;
+    top: 8px;
+    left: 13px;
+  }
 }
 
 // menu
@@ -251,154 +236,122 @@ header {
   width: 100%;
   margin: 0;
   padding: 0;
+  p:first-child {
+    font-size: 30px;
+    font-family: Papyrus;
+    font-weight: bold;
+    @include title(10px, #ccc)
+  }
+  ul {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .text-contents {
+      width: 100%;
+      display: none;
+      padding: 5px;
+      font-size: 20px;
+      color: #b3aeb5;
+    }
+  .text-active {
+    display: block;
+  }
+  .menu-detail {
+    width: 32%;
+    float: left;
+    margin-right: 1%;
+    &:hover {
+      opacity: 0.6;
+    }
+    .menu-icon {
+      padding-bottom: 100%;
+      height: 0;
+      position: relative;
+      img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        object-fit: contain;
+      }
+    }
+    p {
+      color: #7d7d7d;
+      font-size: 20px;
+      text-align: center;
+      border-bottom: dashed 2px #bcbace;
+    }
+  }
 }
 
-.menu > p {
-  font-size: 30px;
-  font-family: Papyrus;
-  font-weight: bold;
-  padding: .25em 0 .25em .75em;
-  border-left: 10px solid #ccc;
-}
 
-.menu ul {
-  list-style: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.menu-detail {
-  width: 32%;
-  float: left;
-  // justify-content: space-between;
-  // margin: 20px 0;
-}
-
-.menu-icon img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  object-fit: contain;
-}
-
-.menu-icon {
-  padding-bottom: 100%;
-  height: 0;
-  position: relative;
-}
-
-.menu-detail {
-  margin-right: 1%;  
-}
-
-.menu-detail p {
-  color: #7d7d7d;
-  font-size: 20px;
-  // font-weight: bold;
-  text-align: center;
-  border-bottom: dashed 2px #bcbace;
-}
-
-.text-contents {
-  // margin: 3% auto;
-  width: 100%;
-  display: none;
-  font-size: 20px;
-  color: #b3aeb5;
-  background: #eae8e1;
-  // background: #ccc;
-}
-
-.text-active {
-  display: block;
-}
 
 // links
 
 .links {
   margin: 30px 0;
-}
+  p {
+    margin: 10px 0;
+    font-family: Papyrus;
+    font-weight: bold;
+    font-size: 30px;
+    @include title(10px, #bcbace)
+  }
+  .link {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    .pick-up {
+      width: 32%;
+      float: left;
+      margin: 0 1% 10px 0;
+      .pick-img {
+        background: #eae8e1;
+        padding-bottom: 75%;
+        height: 0;
+        position: relative;
+        img{
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  .post-create {
+    font-size: 10px;
+    float: right;
+    padding: 5px;
+    color: #7d7b83;
+  }
+  .info {
+    margin: 5px;
+    text-align: center;
+    color: #7d7b83;
+    border-bottom: dashed 2px #bcbace;
+    box-sizing: border-box;
+    .info-img {
+      width: 50px;
+      height: 50px;
+    }
+    span {
+      font-size: 20px;
+      height: 50px;
+      margin-left: 10px;
+    }
+    .more-info {
+      display: none;
+      width: 100%;
+      background: #b3aeb5;
+    }
+  }
 
-
-.links  p {
-  margin: 10px 0;
-  font-family: Papyrus;
-  font-weight: bold;
-  font-size: 30px;
-  padding: .20em 0 .25em .75em;
-  border-left: 10px solid #bcbace;
-}
-
-.link {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.pick-up {
-  width: 32%;
-  float: left;
-}
-
-.pick-up {
-  margin: 0 1% 10px 0;
-}
-
-.post-title span{
-  font-size: 18px;
-  margin: 5px 0;
-  color: #7d7b83;
-}
-
-.post-create {
-  font-size: 10px;
-  float: right;
-  padding: 5px;
-  color: #7d7b83;
-}
-
-.pick-img img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  object-fit: contain;
-}
-
-.pick-img {
-  background: #eae8e1;
-  padding-bottom: 75%;
-  height: 0;
-  position: relative;
-}
-
-.info {
-  margin: 5px;
-  text-align: center;
-  color: #7d7b83;
-  border-bottom: dashed 2px #bcbace;
-  box-sizing: border-box;
-}
-
-.info .info-img {
-  width: 50px;
-  height: 50px;
-}
-
-.info span {
-  font-size: 20px;
-  height: 50px;
-  margin-left: 10px;
-}
-
-.more-info {
-  display: none;
-  width: 100%;
-  background: #b3aeb5;
 }
 
 .top-footer {
@@ -435,11 +388,18 @@ header {
 }
 
 .hidden {
-  transform: translate(0, -1000px);
+  transform: translate(0, -1300px);
 }
 
 .mask.hidden {
   display: none;
+}
+
+.form p {
+  margin: 0 ;
+  font-family: 'Hannotate SC', 'Bradly Hand';
+  color: #898989;
+  font-size: 15px;
 }
 
 .sign-up > p,.login > p {
@@ -503,7 +463,6 @@ Github: http://github.com/jorgechavz
 */
 
 .modal-wrap h3,p {
-  font-family: 'Lithos Pro';
   font-size: 20px;
 }
 .about-img {
@@ -591,8 +550,7 @@ Github: http://github.com/jorgechavz
   color: #4b5361;
 }
 
-
- .modal .o-close {
+.modal .o-close {
    width: 100%;
    height: 100%;
    position: fixed;
@@ -707,109 +665,79 @@ Github: http://github.com/jorgechavz
 
 
 // cooking
+.cooking-line-img {
+  width: 100%;
+  height: 60px;
+  opacity: 0.8;
+}
+
 .cooking-top {
   width: 100%;
   display: table;
   margin: 10px 0;
-}
-
-// cookig-left
-.cooking-left {
-  float: left;
-  // width: 250px;
-  // height: 350px;
-  margin-top: 20px;
-  position: relative;
-  box-sizing: border-box;
-  width: 30%;
-  display: table-cell;
-}
-
-.cooking-left p {
-  position: absolute;
-  top: 10%;
-  left: 20%;
-  font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
-  font-size: 30px;
-  z-index: 10;
-}
-
-// .cooking-menu-img {
-//   width: 250px;
-//   height: 250px;
-//   position: absolute;
-//   top: 70px;
-//   left: 0;
-// }
-
-// .menu-title-img {
-//   width: 240px;
-//   height: 100px;
-// }
-
-
-.cooking-top-image1 img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  object-fit: contain;
-}
-
-.cooking-top-image1 {
-  // background: #eae8e1;
-  padding-bottom: 50%;
-  height: 0;
-  position: relative;
-}
-
-.cooking-top-image2 img{
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: -15%;
-  left: 0;
-  object-fit: contain;
-}
-
-.cooking-top-image2 {
-  // background: #eae8e1;
-  padding-bottom: 100%;
-  height: 0;
-  position: relative;
-}
-
-// cooking-right
-.cooking-right {
-  float: right;
-  width: 68%;
-  display: table-cell;
-  margin-top: 50px;
-  box-sizing: border-box;
-  padding: 0.3em;
-  border: 3px solid #9f9f98;
-  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
-  position: relative;
-}
-
-.clip-img {
-  width: 50px;
-  height: 80px;
-  position: absolute;
-  top: -40px;
-  right: 30px;
-}
-
-.board-title {
-  text-align: center;
-  font-size: 20px;
-  margin-top: 5px;
-  color: #504946;
-}
-
-.question-board {
-  margin-left: 10px;
+  .cooking-left {
+    float: left;
+    margin-top: 20px;
+    position: relative;
+    box-sizing: border-box;
+    width: 30%;
+    display: table-cell;
+     p {
+      position: absolute;
+      top: 5%;
+      left: 20%;
+      font-family: $font-title;
+      font-size: 30px;
+      z-index: 10;
+    }
+    .cooking-top-image1 {
+      padding-bottom: 50%;
+      height: 0;
+      position: relative;
+      img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        object-fit: contain;
+      }
+    }
+    .cooking-top-image2 {
+      padding-bottom: 100%;
+      height: 0;
+      position: relative;
+      img{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: -15%;
+        left: 0;
+        object-fit: contain;
+      }
+    }
+  }
+  .cooking-right {
+    float: right;
+    width: 68%;
+    display: table-cell;
+    margin-top: 50px;
+    position: relative;
+    @include fram(#9f9f98, 0.3em);
+    .clip-img {
+      width: 50px;
+      height: 80px;
+      position: absolute;
+      top: -40px;
+      right: 30px;
+    }
+    .board-title {
+      text-align: center;
+      font-size: 20px;
+      margin-top: 5px;
+      color: #504946;
+    }
+  }
 }
 
 .question-board h4{
@@ -847,46 +775,41 @@ Github: http://github.com/jorgechavz
     cursor: pointer;
 }
 
-.answer {
-  position: relative;
-  float: left;
-  margin-right: 2px;
-}
-
-.answer p {
-  margin: 0;
-  position: absolute;
-  top: -5px;
-  left: 10px;
-  color: #942343;
-  font-weight: bold;
-  box-sizing: 10;
-}
-
-.mug-img {
-  width: 40px;
-  height: 25px;
-}
-
 .q-img {
   width: 25px;
   height: 22px;
 }
 
-// .menu-submit {
-//   position: absolute;
-//   bottom: 5px;
-//   right: 5px;
-// }
+.answer {
+  position: relative;
+  float: left;
+  margin-right: 2px;
+  p {
+    margin: 0;
+    position: absolute;
+    top: -5px;
+    left: 10px;
+    color: #942343;
+    font-weight: bold;
+    box-sizing: 10;
+  }
+  .mug-img {
+    width: 40px;
+    height: 25px;
+  }
+}
 
 .a-img {
   width: 20px;
   height: 20px;
 }
 
-.square_btn {
+.menu-submit {
+  margin: 3px 15px 3px 0;
+  text-align: right;
+  font-size: 20px;
+  .square_btn {
     width: 100px;
-    // position: relative;
     display: inline-block;
     padding: 0.25em 0.5em;
     text-decoration: none;
@@ -898,296 +821,143 @@ Github: http://github.com/jorgechavz
     font-weight: bold;
     float: right;
     margin: 10px 5px 10px 0;
+    &:active {
+      border-bottom: solid 2px #fd9535;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
+    }
+  }
 }
-
-.square_btn:active {
-    border-bottom: solid 2px #fd9535;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.30);
-}
-
 
 // cooking-main
-.cooking-line-img {
-  width: 100%;
-  height: 60px;
-  opacity: 0.8;
-}
-
 .cooking-main {
   width: 100%;
-}
-
-.cooking-main h3 {
-  width: 100%;
-  padding-bottom: .5em;
-  float: left;
-  padding-left: 20px;
-  margin-bottom: 55px;
-  box-sizing: border-box;
-  padding: .25em 0 .25em .75em;
-  border-left: 10px solid #e6bfab;
-}
-
-.menu-submit {
-  margin: 3px 15px 3px 0;
-  text-align: right;
-  font-size: 20px;
-}
-.cooking-main h3 span {
-  display: block;
-  margin-bottom: .2em;
-  color: #aaa;
-  font-size: .9em;
-}
-
-.cooking-menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 0;
-}
-
-.cooking-menu li {
-  display: block;
-  margin-bottom: 5px;
-  font-size: 18px;
-  padding-left: 10px;
-}
-
-.cooking-maindish {
-  width: 40%;
-  float: left;
-  padding-left: 30px;
-}
-
-.cooking-maindish p, .cooking-submenu p {
-  margin: 0;
-  font-size: 25px;
-  font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
-}
-
-.cooking-submenu {
-  width: 50%;
-  float: left;
-}
-
-.cooking-menu {
-  width: 100%;
-  position: relative;
-}
-
-.handle {
-  height: 30px;
-  width: 16%;
-  position: absolute;
-  top: -30px;
-  left: 42%;
-  background-color: rgba(105,105,105,0.9);
-}
-
-.lid {
-  box-sizing: border-box;
-  width: 80%;
-  height: 70px;
-  margin-left: 10%;
-  margin-bottom: 5px;
-  background-color: rgba(169,169,169,0.3);
-  line-height: 70px;
-  padding-left: 20px;
-  position: relative;
-}
-
-.lid > span:first-child {
-  font-size: 30px;
-  font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
-}
-
-.lid-sub {
-  position: absolute;
-  bottom: 3px;
-  right: 0;
-  padding-right: 10px;
-}
-
-.lid-sub p {
-  line-height: 17px;
-  font-size: 13px;
-  font-family: 'Hannotate SC', 'Bradly Hand';
-}
-
-.pot {
-  width: 80%;
-  background-color: rgba(169,169,169,0.5);
-  margin-left: 10%;
-  box-sizing: border-box;
-  padding-bottom: 20px;
-}
-
-.pot-right, .pot-left {
-  width: 10%;
-  height: 35px;
-  background-color: rgba(169,169,169,0.8);
-  position: absolute;
-  top: 100px;
-}
-
-.pot-left {
-  left: 0;
-}
-
-.pot-right {
-  right: 0;
-}
-
-.kitchenware-img {
-  width: 50px;
-  height: 50px;
-  vertical-align: bottom;
-}
-
-.cooking-menu:hover {
-  animation-name: shake;
-  animation-duration: .7s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-@keyframes shake {
-  0% { transform: rotate(8deg) translate(1px, 0); }
-  50% { transform: rotate(-8deg) translate(-1px, 0); }
-  100% { transform: rotate(8deg) translate(1px, 0); }
+  h3 {
+    width: 100%;
+    padding-bottom: .5em;
+    float: left;
+    padding-left: 20px;
+    margin-bottom: 55px;
+    box-sizing: border-box;
+    padding: .25em 0 .25em .75em;
+    border-left: 10px solid #e6bfab;
+    span {
+      display: block;
+      margin-bottom: .2em;
+      color: #aaa;
+      font-size: .9em;
+    }
+  }
+  .cooking-menu {
+    width: 100%;
+    position: relative;
+    &:hover {
+      animation-name: shake;
+      animation-duration: .7s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    @keyframes shake {
+      0% { transform: rotate(8deg) translate(1px, 0); }
+      50% { transform: rotate(-8deg) translate(-1px, 0); }
+      100% { transform: rotate(8deg) translate(1px, 0); }
+    }
+    .handle {
+      height: 30px;
+      width: 16%;
+      position: absolute;
+      top: -30px;
+      left: 42%;
+      background-color: rgba(105,105,105,0.9);
+    }
+    .lid {
+      box-sizing: border-box;
+      width: 80%;
+      height: 70px;
+      margin-left: 10%;
+      margin-bottom: 5px;
+      background-color: rgba(169,169,169,0.3);
+      line-height: 70px;
+      padding-left: 20px;
+      position: relative;
+      span:first-child {
+        font-size: 30px;
+        font-family: 'Bradley Hand', 'Wawati SC', 'Bradly Hand';
+      }
+      .lid-sub {
+        position: absolute;
+        bottom: 3px;
+        right: 0;
+        padding-right: 10px;
+        p {
+          line-height: 17px;
+          font-size: 13px;
+          font-family: 'Hannotate SC', 'Bradly Hand';
+        }
+      }
+    }
+    .pot {
+      width: 80%;
+      background-color: rgba(169,169,169,0.5);
+      margin-left: 10%;
+      box-sizing: border-box;
+      padding-bottom: 20px;
+      .kitchenware-img {
+        width: 50px;
+        height: 50px;
+        vertical-align: bottom;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-size: 0;
+        li {
+          display: block;
+          margin-bottom: 5px;
+          font-size: 18px;
+          padding-left: 10px;
+        }
+      }
+      .cooking-maindish {
+        width: 40%;
+        float: left;
+        padding-left: 30px;
+        p {
+          margin: 0;
+          font-size: 25px;
+          font-family: $font-title;
+        }
+      }
+      .cooking-submenu {
+        width: 50%;
+        float: left;
+        p {
+          margin: 0;
+          font-size: 25px;
+          font-family: $font-title;
+        }
+      }
+    }
+    .pot-right, .pot-left {
+      width: 10%;
+      height: 35px;
+      background-color: rgba(169,169,169,0.8);
+      position: absolute;
+      top: 100px;
+    }
+    .pot-left {
+      left: 0;
+    }
+    .pot-right {
+      right: 0;
+    }
+  }
 }
 
 
-.recipe-contain {
-  display: none;
-  background: #efefef;
-  padding: 10px 20px;
-}
-
-.cooking-detail-img {
-  width: 60px;
-  height: 40px;
-}
-
-.number-img {
-  width: 30px;
-  height: 30px;
-  vertical-align: bottom;
-  margin-right: 5px;
-}
-
-.main-recipes p, span{
-  font-family: 'Hannotate SC', 'Bradly Hand';
-  font-size: 14px;
-}
-
-.recipe-img {
-  width: 50%;
-  // float: left;
-}
-
-.ingredient {
-  // float: left;
-  // margin-left: 20px;
-}
-
-.ingredient ul {
-  padding: 0;
-  margin: 0;
-  list-style: none; 
-}
-
-.cooking-tool-img {
-  width: 50px;
-  height: 30px;
-  object-fit: contain;
-  vertical-align: bottom; 
-}
-
-
-.recipe > p {
-  margin: 15px 0;
-}
-
-.recipe span {
-  // border: solid #ccc 1px;
-  background: #efefef;
-  padding: 3px;
-  margin: 0 5px;
-  font-size: 10px;
-  
-}
-
-.recipe-click {
-  margin-top: 18px;
-  text-align: center;
-  color: #bb5535;
-}
-
-.recipe-how-to-make {
-  margin: 10px 0;
-}
-
-.recipe-how-to-make span {
-  font-family: 'Bradly Hand', 'Wawati SC';
-  color: #bb5535;
-  font-weight: bold;
-  background: #efefef;
-  font-size: 20px;
-}
-
-.recipe-how-to-make p:last-child {
-  text-align: center;
-  margin: 5px 0;
-}
-.recipe-how-to-make a {
-  color: #b0778c;
-}
-
-.recipe-contain > p {
-  margin-bottom: 10px;
-  font-size: 10px;
-}
-
-.face-img {
-  width: 35px;
-  height: 30px;
-  vertical-align: bottom;
-  margin-right: 5px;
-}
-
-// .recipe-click {
-//   cursor: url("/images/cooking/cooking-tool7.png") ,auto;
-// }
-// できない
-
-// cooking_ingredent
-.main-ingredient .ingredient-left {
-  background: #e6c0c0;
-  padding: 0 2px;
-}
-
-.main-ingredient .ingredient-center {
-  // background: #c9caca;
-  color: #7d7b83;
-}
-
-.main-ingredient .ingredient-right {
-  color: #006888;
-  font-weight: bold;
-}
-
-.star-img {
-  height: 20px;
-  width: 20px;
-  vertical-align: bottom;
-}
-
-
+// cooking_recipe
 .main-recipes > p, .side-recipes > p  {
-  padding: .25em 0 .25em .75em;
-  border-left: 6px solid #98605e;
+  @include title(6px, #98605e);
   font-size: 20px;
   font-family: Papyrus, 'Wawati SC';
   margin-top: 20px;
@@ -1200,58 +970,139 @@ Github: http://github.com/jorgechavz
   vertical-align: bottom;
 }
 
-// .main-recipes {
-//   margin-bottom: 50px;
-// }
-
 .side-recipes {
   margin-bottom: 50px;
 }
 
+.recipe {
+  p {
+    margin: 15px 0;
+  }
+  span {
+    background: #efefef;
+    padding: 3px;
+    margin: 0 5px;
+    font-size: 10px;
+  }
+  .number-img {
+    width: 30px;
+    height: 30px;
+    vertical-align: bottom;
+    margin-right: 5px;
+  }
+  .recipe-contain {
+    display: none;
+    background: #efefef;
+    padding: 10px 20px;
+    .recipe-img {
+      width: 50%;
+    }
+    .ingredient {
+      p {
+        font-size: 18px;
+      }
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none; 
+      }
+    }
+    p {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    .recipe-how-to-make {
+      margin: 10px 0;
+      span {
+        font-family: 'Bradly Hand', 'Wawati SC';
+        color: #bb5535;
+        font-weight: bold;
+        background: #efefef;
+        font-size: 20px;
+      }
+      p {
+        font-size: 18px;
+      }
+      p:last-child {
+        text-align: center;
+        margin: 5px 0;
+      }
+      a {
+        color: #b0778c;
+      }
+      .cooking-tool-img {
+      width: 50px;
+      height: 30px;
+      object-fit: contain;
+      vertical-align: bottom; 
+    }
+    }
+  }
+}
 
-.main-ingredient{
+// .recipe-click {
+//   cursor: url("/images/cooking/cooking-tool7.png") ,auto;
+// }
+// できない
+
+// cooking_ingredent
+.main-ingredient {
   margin-bottom: 30px;
+  h3 {
+    font-size: 30px;
+    margin: 10px;
+    font-weight: normal;
+  }
+  .ingredient-p {
+    font-family: 'Wawati SC', 'Bradly Hand';
+    font-size: 20px;
+  }
+  p {
+    font-size: 15px;
+    margin: 10px;
+  }
+  .ingredient-check {
+    font-size: 15px;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    li {
+    margin-bottom: 2px;
+    padding: 2px;
+    border-bottom: dashed 1px #ccc;
+    }
+  }
+  label {
+    border-bottom: dashed 1px #ccc;
+    display: inline-block;
+    margin-top: 5px;
+    input {
+      margin-bottom: 7px;
+    }
+  }
+  .ingredient-left {
+    background: #e6c0c0;
+    padding: 0 2px;
+  }
+  .ingredient-right {
+    color: #006888;
+    font-weight: bold;
+  }
+  .star-img {
+    height: 20px;
+    width: 20px;
+    vertical-align: bottom;
+  }
 }
-.main-ingredient ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+ .to-recipe {
+   text-align: center;
+   margin: 15px 0;
+ }
 
-.main-ingredient li {
-  margin-bottom: 2px;
-  padding: 2px;
-  border-bottom: dashed 1px #ccc;
-}
 
-.main-ingredient > h3 {
-  font-size: 30px;
-  margin: 10px;
-  font-weight: normal;
-}
-
-.main-ingredient > p {
-  font-size: 15px;
-  margin: 10px;
- 
-}
-
-.main-ingredient label {
-  border-bottom: dashed 1px #ccc;
-}
-
-.main-ingredient input {
-  margin-bottom: 7px;
-}
-
-.ingredient-p {
-  font-family: 'Wawati SC', 'Bradly Hand';
-  font-size: 20px;
-}
-
-.ingredient-check {
-  font-size: 15px;
-}
+// login sign_up
 
 .login-form, .sign_up-form {
     width: 550px;

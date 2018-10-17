@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.4.1'
+gem 'devise'
+gem 'faker'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

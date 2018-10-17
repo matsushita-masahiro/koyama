@@ -1,0 +1,14 @@
+<% @user ||= current_user %>
+<div class="stats">
+    <% link_to("/users/#{@user.id}/relationship") do %>
+      <!-- <% @relationships = @user.followed_users.paginate(page: params[:page]) %>-->
+      <!-- <% @relationships.each do |user| %>-->
+      <!--    <%= user %>-->
+      <!--<% end %>-->
+       <% @users = @user.followers.paginate(page: params[:page]) %>
+      <% @users.each do |user| %>
+          <%= user %>
+      <% end %>
+      <p>友達リクエスト</p><%= @user.followers.count %>
+    <% end %>
+</div>

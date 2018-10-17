@@ -9,17 +9,25 @@
               <input type="submit" value="search">
               <% end %>
           </div>
+          <%= will_paginate %>
           <%= image_tag 'user-index_line.png', class: 'line-img' %>
-          <div class="index-user">
+          <ul class="index-user">
               <% @users.each do |user| %>
-              <div class="each-user">
+              <li class="each-user">
+                  <% if @current_user.admin? && !(@current_user == user) %>
+                  |<%= link_to("deleate", "/users/#{user.id}/destroy", {method: "post"}) %>
+                  <% end %>
+                  <%= link_to("/users/#{user.id}") do %>
                   <div class="index-user-image"><img src="<%= "/user_images/#{user.image}" %>"></div>
-                  <div class="index-user-name"><%= link_to(user.user_name, "/users/#{user.id}") %></div>
+                  <div class="index-user-name"><%= user.user_name %></div>
+                  
                   <div class="index-user-comment"><%= user.comment %></div>
+                  <% end %>
                   <div class="clear"></div>
-                  </div>
+              </li>
               <% end %>
-          </div>
+          </ul>
+          <%= will_paginate %>
           <div class="member-list"><%= link_to("Member Listへ", "/users/index") %></div>
     </div>
 </div>

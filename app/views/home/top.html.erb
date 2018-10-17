@@ -1,191 +1,135 @@
-
 <!--アクセス時にモーダルで表示-->
-  <div class="modal">
-    <input id="modal-trigger" class="checkbox" type="checkbox" checked="checked">
-    <div class="modal-overlay">
-      <label for="modal-trigger" class="o-close"></label>
-      <div class="modal-wrap a-center">
-        <label for="modal-trigger" class="close"><i class="close"><%= image_tag 'close_btn.png', class: 'close_btn-img' %></i></label>
-        <h3>[ このWEBサイトについて ]</h3>
-            <p>こそだてに迷ったとき、困ったとき、感動したとき、などなど<br/>
-            いろいろなこそだての場面でこのサイトに訪れて、癒されたり、共感したり、前向きな気持ちになったり．．．<br/>
-            みんなで一緒にこそだてを楽しんでいければなーと思って立ち上げあたサイトです♪<br/>
-            <br/>
-            ●新規登録・ログインボタンを持ったくまさんがかくれんぼをして遊んでまーす● みつけてね ●</p>
-            <%= image_tag 'about.png', class: 'about-img' %>
-      </div>
-    </div>
-  </div>
-  
-  <!--新規登録mordal↓-->
-    <div id="sign-modal" class="hidden m-modal">
-        <i class="m-close"><%= image_tag 'close_btn.png', class: 'close_btn-img' %></i>
-        <div class="sign-up">
-        <p>新規登録</p>
-        <div class="message">
-          <%= image_tag 's-message.png', class: 's-message-img' %><br/>
-          こそだてひろばへようこそ！<br/>
-          少しでもこそだての協力ができるようにたくさんの情報を<br/>のせていきたいと思います。
-          投稿やコメントお待ちしております！
-        </div>
-        <div class="form">
-          <%= form_tag("/users/create", {multipart: true}) do %>
-            <p>ニックネーム</p>
-            <input name="name">
-            <p>メールアドレス</p>
-            <input name="email">
-            <p>パスワード</p>
-            <input type="password" name="password">
-            <p>画像</p>
-            <input type="file" name="image">
-            <p>コメント</p>
-            <textarea name="comment"></textarea>
-            <div class="submit">
-              <input type="submit" value="新規登録">
-            </div>
-          <% end %>
-        </div>
-        </div>
-    </div>
-    <div class="mask hidden"></div>
-    
-    <!--ログインmordal↓-->
-    <div id="login-modal" class="hidden m-modal">
-        <i class="m-close"><%= image_tag 'close_btn.png', class: 'close_btn-img' %></i>
-        <% if @error_message %>
-          <div class="form-error">
-              <% @error_message %>
-          </div>
-        <% end %>
-        <div class="login">
-        <p>ログイン</p>
-        <div class="message">
-          <%= image_tag 'l-message.png', class: 's-message-img' %><br/>
-          こそだてひろばへようこそ！<br/>
-          楽しんでいってください！
-          みんながあなたからの投稿を待っています<br/>
-          みんなと共有したい情報があればぜひ投稿してね
-        </div>
-        <div class="form">
-        <%= form_tag("/login") do %>
-          <p>メールアドレス</p>
-          <input name="email">
-          <p>パスワード</p>
-          <input name="password">
-          <div class="submit">
-          <input type="submit" value="ログイン">
-          </div>
-        <% end %>
-        </div>
-    </div>
-    </div>
-    <div class="mask hidden"></div>
-    
-  <div id="fixed">
-          <div id="open1">
-            <%= image_tag 'signUp.png', class: 'signUp-img s-open' %>
-            </div>
-          <div id="open2"><%= image_tag 'login.png', class: 'login-img open' %></div>
-    </div>
-    
-<!--ここからページ開始-->
+<%= render 'home/top-modal' %> 
+<!--新規登録・ログインモーダル-->
+<%= render 'home/modal' %> 
+
 <div class="wrapper">
-  <div class="top-img">
-    <canvas id="mycanvas">
-      <!--<%= image_tag 'top.jpg', class: 'top-img' %>-->
-    </canvas>
+    <div class="top-img">
+      <canvas id="mycanvas">
+        <!--<%= image_tag 'top.jpg', class: 'top-img' %>-->
+      </canvas>
     </div>
     <div class="navi">
         <h4>[今日のこそだて格言]</h4>
         <p class="sentence"><%= @sentence[0] %></p>
         <%= image_tag 'navi.png', class: 'navi-img' %>
     </div>
-   
     <div class="menu">
     <p>MENU</p>
      <ul class="menu-container">
             <li>
-                <div class="menu-detail menu-hover">
-                    <div class="text-contents">
-                        
-                        学習方法
-                    </div>
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>がくしゅう</br>
+                      子供のために習い事はさせたほうがいいかな？英語の勉強は始めてる？
+                      テレビやママ友からたくさんの情報が入りどうしてあげるんのが一番自分の子にとっていいか迷いますよね。
+                      定番の習い事から番外編の習い事まで...「まなぶ」「たいけんする」についてまとめた情報がたくさん！
+                </div>
+                <div class="menu-detail">
                     <div class="menu-icon">
                       <%= image_tag 'menu/learning.png', class: 'menu-img' %>
                     </div>
                     <p>がくしゅう</p>
                 </div>
+              </div>
             </li>
             <li>
-                <div class="menu-detail menu-hover">
-                    <div class="text-contents">
-                        
-                        健康情報
-                    </div>
-                    <div class="menu-icon">
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>けんこう</br>
+                      子供の病気やケガにはいつもハラハラ...心配はつきません
+                      乳幼児になりやすい病気などなどについてまとめた情報がたくさん！
+                </div>
+                <div class="menu-detail">
+                  <div class="menu-icon">
                         <%= image_tag 'menu/health.png', class: 'menu-img' %>
                     </div>
                     <p>けんこう</p>
                 </div>
-            </li>
-            <li>
-              <div class="menu-detail menu-hover">
-                  <div class="text-contents">
-                      
-                      クッキング
-                  </div>
-                  <div class="menu-icon">
-                      <%= image_tag 'menu/cooking.png', class: 'menu-img' %>
-                  </div>
-                  <p>りょうり</p>
               </div>
             </li>
             <li>
-              <div class="menu-detail menu-hover">
-                  <div class="text-contents">
-                      
-                      お出かけ情報
-                  </div>
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>おでかけ</br>
+                      休日は家族みんなで過ごせていますか？
+                      オススメのテーマパークから公園など、子供と一緒に楽しめるところをまとめた情報がたくさん！
+                </div>
+                <div class="menu-detail">
                   <div class="menu-icon">
                         <%= image_tag 'menu/out.png', class: 'menu-img' %>
                   </div>
                   <p>おでかけ</p>
+                </div>
+              </div>
+            </li>
+             <li>
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>りょうり</br>
+                      毎日、家族のために料理を作るのにどれくらいの時間をさいていますか？
+                      とくにお仕事をしていたら、平日はほとんど子供と向き合える時間がないですよね...
+                      そんなママやパパに週末の作り置きで少しでも自由な時間を作ってもらえるお手伝いができるかも
+                      ５日分のレシピを１つのページでみれて、すべての材料がまとめてあるから分かりやすい！
+                      しかも、チェック機能付きだから買い物リストも作れちゃいます！
+                      レシピごとにページを移動したり、材料を調べる手間もはぶけちゃう
+                      子供と一緒に楽しめるレシピも公開中！
+                </div>
+                <div class="menu-detail">
+                  <div class="menu-icon">
+                      <%= image_tag 'menu/cooking.png', class: 'menu-img' %>
+                  </div>
+                   <p>りょうり</p>
+                </div>
               </div>
             </li>
             <li>
-              <div class="menu-detail menu-hover">
-                  <div class="text-contents">
-                    
-                      暮らし情報
-                  </div>
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>くらし</br>
+                      子供が生まれてからたくさん必要なものありますよねー
+                      どれを買うかで迷った時、これって必要？などなど
+                      たくさんある商品の中で少しでもその子に合うものを...と思ってまとめた情報がたくさん！
+                </div>
+                <div class="menu-detail">
                   <div class="menu-icon">
                         <%= image_tag 'menu/life.png', class: 'menu-img' %>
                   </div>
                   <p>くらし</p>
+                </div>
               </div>
             </li>
             <li>
-              <div class="menu-detail menu-hover">
-                  <div class="text-contents">
-                     
-                      旅行情報
-                  </div>
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>りょこう</br>
+                      子供が生まれてから初めての旅行はいつ頃でしたか？
+                      これからデビューしようとしてるご家族も色々ために情報がたくさん！
+                </div>
+                <div class="menu-detail">
                   <div class="menu-icon">
                         <%= image_tag 'menu/trip.png', class: 'menu-img' %>
                   </div>
                   <p>りょこう</p>
+                </div>
               </div>
             </li>
             <li>
-              <div class="menu-detail menu-hover">
-                  <div class="text-contents">
-                      
-                      なんでもあり
-                  </div>
+              <div class="menu-hover">
+                <div class="text-contents">
+                  <%= image_tag 'cooking/face.png', class: 'face-img' %>etc.</br>
+                       初めてのこそだては色々大変...
+                       子供は思い通りにいかないものが当たり前ー
+                       イライラしやすいですよね
+                       少しでもそんなイライラを解消できればということでまとめた情報をのせてます！
+                       お役に立てればー
+                </div>
+                <div class="menu-detail">
                   <div class="menu-icon">
                         <%= image_tag 'menu/dad.png', class: 'menu-img' %>
                   </div>
                   <p>etc.</p>
+              </div>
               </div>
             </li>
           </ul>
@@ -220,7 +164,9 @@
                   <%= image_tag 'info.png', class: 'info-img' %><span>+ more info</span>
                     <div class="more-info">
                       <%= post.main_content %><br/>
-                      続きはログインお願いします
+                      続きはログインお願いします<br/>
+                      <%= link_to("●新規登録●", "/sign_up") %><br/>
+                      <%= link_to("●ログイン●", "/login") %>
                     </div>
                 </div>
                 <!--<div class="clear"></div>-->
@@ -296,111 +242,114 @@
       }
       });
       
- 
- 
- var canvas;
-    var ctx;
-    var Ball;
-    var balls = [];
-    var Stage;
-    var stage;
-    
-//     canvas.setBackgroundImage("top.jpg", canvas.renderAll.bind(canvas), {
-//     backgroundImageOpacity: 0.5,
-//     backgroundImageStretch: false
-// });
+    //     var canvas;
+    // var ctx;
+    // var Ball;
+    // var balls = [];
+    // var Stage;
+    // var stage;
+    // var background = new Image();
+        
+    // var canvas_width = 100%;
+    // var canvas_height = 100%;
 
-    canvas = document.getElementById('mycanvas');
-    if (!canvas || !canvas.getContext) return false;
-    ctx = canvas.getContext('2d');
+    // canvas = document.getElementById('mycanvas');
+    // if (!canvas || !canvas.getContext) return false;
+    // ctx = canvas.getContext('2d');
 
-    function rand(min, max) {
-      // 0-n
-      // Math.floor(Math.random() * (n + 1))
-      // min-max
-      return min + Math.floor(Math.random() * (max - min + 1));
-    }
+    // function rand(min, max) {
+    //   // 0-n
+    //   // Math.floor(Math.random() * (n + 1))
+    //   // min-max
+    //   return min + Math.floor(Math.random() * (max - min + 1));
+    // }
 
-    function adjustPosition(pos, r, max) {
-      // if (x - r < 0) x = r;
-      // if (y - r < 0) y = r;
-      // if (x + r > canvas.width) x = canvas.width - r;
-      // if (y + r > canvas.height) y = canvas.height - r;
-      if (pos - r < 0) {
-        return r;
-      } else if (pos + r > max) {
-        return max - r;
-      } else {
-        return pos;
-      }
-    }
+    // function adjustPosition(pos, r, max) {
+    //   // if (x - r < 0) x = r;
+    //   // if (y - r < 0) y = r;
+    //   // if (x + r > canvas.width) x = canvas.width - r;
+    //   // if (y + r > canvas.height) y = canvas.height - r;
+    //   if (pos - r < 0) {
+    //     return r;
+    //   } else if (pos + r > max) {
+    //     return max - r;
+    //   } else {
+    //     return pos;
+    //   }
+    // }
 
-    canvas.addEventListener('click', function(e) {
-      var x, y, r;
-      var rect;
-      // x = rand(100, 400);
-      // y = rand(100, 200);
-      rect = e.target.getBoundingClientRect();
-      x = e.clientX - rect.left;
-      y = e.clientY - rect.top;
-      r = rand(0, 100) < 20 ? rand(50, 80) : rand(10, 35);
+    // canvas.addEventListener('click', function(e) {
+    //   var x, y, r;
+    //   var rect;
+    //   // x = rand(100, 400);
+    //   // y = rand(100, 200);
+    //   rect = e.target.getBoundingClientRect();
+    //   x = e.clientX - rect.left;
+    //   y = e.clientY - rect.top;
+    //   r = rand(0, 100) < 20 ? rand(50, 80) : rand(10, 35);
 
-      x = adjustPosition(x, r, canvas.width);
-      y = adjustPosition(y, r, canvas.height);
-      balls.push(new Ball(x, y, r));
-    });
+    //   x = adjustPosition(x, r, canvas.width);
+    //   y = adjustPosition(y, r, canvas.height);
+    //   balls.push(new Ball(x, y, r));
+    // });
 
- 
- Ball = function(x, y, r) {
-      this.x = x;
-      this.y = y;
-      this.r = r;
-      this.vx = rand(-10, 10);
-      this.vy = rand(-10, 10);
-      this.color = 'hsla(' + rand(50, 100) + ', ' + rand(40, 80) + '%, ' + rand(50, 60) + '%, ' + Math.random() + ')';
-    };
+    // Ball = function(x, y, r) {
+    //   this.x = x;
+    //   this.y = y;
+    //   this.r = r;
+    //   this.vx = rand(-10, 10);
+    //   this.vy = rand(-10, 10);
+    //   this.color = 'hsla(' + rand(50, 100) + ', ' + rand(40, 80) + '%, ' + rand(50, 60) + '%, ' + Math.random() + ')';
+    // };
 
-    Ball.prototype.draw = function() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
-      ctx.fillStyle = this.color;
-      ctx.closePath();
-      ctx.fill();
-    };
+    // Ball.prototype.draw = function() {
+    //   ctx.beginPath();
+    //   ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+    //   ctx.fillStyle = this.color;
+    //   ctx.closePath();
+    //   ctx.fill();
+    // };
 
-    Ball.prototype.move = function() {
-      if (this.x + this.r > canvas.width || this.x - this.r < 0) {
-        this.vx *= -1;
-      }
-      if (this.y + this.r > canvas.height || this.y - this.r < 0) {
-        this.vy *= -1;
-      }
-      this.x += this.vx;
-      this.y += this.vy;
-    };
+    // Ball.prototype.move = function() {
+    //   if (this.x + this.r > canvas.width || this.x - this.r < 0) {
+    //     this.vx *= -1;
+    //   }
+    //   if (this.y + this.r > canvas.height || this.y - this.r < 0) {
+    //     this.vy *= -1;
+    //   }
+    //   this.x += this.vx;
+    //   this.y += this.vy;
+    // };
 
-    // var ball = new Ball(rand(100, 200), rand(100, 200), rand(10, 50));
-    // ball.draw();
+    // // var ball = new Ball(rand(100, 200), rand(100, 200), rand(10, 50));
+    // // ball.draw();
 
-    Stage = function() {
-      this.update = function() {
-        var i;
-        this.clear();
-        for (i = 0; i < balls.length; i++) {
-          balls[i].draw();
-          balls[i].move();
-        }
-        setTimeout(function() {
-          this.update(); // Stage.update()
-        }.bind(this), 30);
-      };
-      this.clear = function() {
-        ctx.fillStyle = '#ecf0f1';
-        // ctx.fillRect(0, 0, canvas.width, canvas.height);
-      }
-    };
+    // Stage = function() {
+    //   this.update = function() {
+    //     var i;
+    //     this.clear();
+    //     for (i = 0; i < balls.length; i++) {
+    //       balls[i].draw();
+    //       balls[i].move();
+    //     }
+    //     setTimeout(function() {
+    //       this.update(); // Stage.update()
+    //     }.bind(this), 30);
+    //   };
+    //   this.clear = function() {
+    //     ctx.fillStyle = '#ecf0f1';
+    //     ctx.globalAlpha = 0.5;
+    //     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    //   // background.src = "/top.jpg";
+    //   // background.onload = function(){
+    //   // ctx.drawImage(background,0,0);
+    //   }
+      
 
-    stage = new Stage();
-    stage.update();
-});
+    // };
+
+    // stage = new Stage();
+    // stage.update();
+
+  })();
 </script>

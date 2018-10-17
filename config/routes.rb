@@ -1,23 +1,25 @@
 Rails.application.routes.draw do
+  post 'posts/create' => 'posts#create'
+  post 'posts/:id/destroy' => 'posts#destroy'
+  post 'posts/:id/update' => 'posts#update'
   
-  post 'users/request_create' => 'users#request_create'
+  post 'users/create_friend' => 'users#create_friend'
   post 'users/create' => 'users#create'
   post 'login' => 'users#login'
   post 'logout' => 'users#logout'
   post 'users/:id/update' => "users#update"
   post 'users/invite_create' => 'users#invite_create'
-  
+  post 'users/:id/destroy' => 'users#destroy'
   
   get 'users/index' => 'users#index'
+  get 'users/:id/relationship' => 'users#relationship'
   get 'users/:id/edit' => 'users#edit'
   get 'users/:id/invite' => 'users#invite'
   get 'users/:id/friend' => 'users#friend'
   get 'users/:id' => 'users#show'
   
   
-  post 'posts/create' => 'posts#create'
-  post 'posts/:id/destroy' => 'posts#destroy'
-  post 'posts/:id/update' => 'posts#update'
+  
         
   get 'posts/index' => 'posts#index'
   get 'posts/new' => 'posts#new'

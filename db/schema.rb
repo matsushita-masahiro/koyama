@@ -10,20 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_05_060910) do
+ActiveRecord::Schema.define(version: 2018_10_17_041729) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
     t.text "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "friends", force: :cascade do |t|
-    t.integer "user_id_rq"
-    t.integer "user_id"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -52,6 +44,18 @@ ActiveRecord::Schema.define(version: 2018_10_05_060910) do
     t.string "category"
   end
 
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "comment"
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
+  end
+
   create_table "sentences", force: :cascade do |t|
     t.text "proverb"
     t.datetime "created_at", null: false
@@ -75,6 +79,7 @@ ActiveRecord::Schema.define(version: 2018_10_05_060910) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin", default: false
   end
 
 end

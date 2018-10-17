@@ -2,9 +2,10 @@ class UsersController < ApplicationController
     before_action :authenticate_user, {only: [:index, :show, :edit, :update, :invite, :friend]}
     before_action :forbid_login_user, {only: [:new, :create, :login]}
     before_action :ensure_correct_user, {only: [:edit, :update]}
+    before_action :admin_user,     {only: [:destroy]}
   
   def index
-      @users = User.all
+      @users = User.paginate(page: params[:page], per_page: 15)
       if params[:name].present?
           @users = @users.get_by_name params[:name]
       end
@@ -22,28 +23,34 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
   end
   
-  def request_create
+  def create_friend
       @user = User.find_by(id: params[:id])
-      logger.debug("xxxxxxxxxxxxxx")
-      @friend = Friend.new(
-            user_id_rq: params[:id],
-            user_id: @current_user.id,
-            status: "waite"
+      @relationship = Relationship.new(
+            follower_id: params[:id],
+            followed_id: @current_user.id,
+            status: "waite",
+            comment: params[:comment]
             )
-      if @friend.save
-          flash[:notice] = "●●● リクエストしました ●●●"
-          redirect_to("/users/#{@current_user.id}")
-         else
-          flash[:notice] = "●●● リクエストできませんでした ●●●"
-          render("/users/#{@user.id}/friend") 
-      end
+            logger.debug("xxxxxxxxxxxxxx#{params[:id]}")
+    #   if @relationship.save
+        #   flash[:notice] = "●●● リクエストしました ●●●"
+        #   redirect_to("/users/#{@current_user.id}")
+    #      else
+    #       flash[:notice] = "●●● リクエストできませんでした ●●●"
+    #       redirect_to("/users/index") 
+    #   end
   end 
+  
+  def relationship
+      @relationships = Relationship.where(follower_id:params[:id], followed_id:params[:id])
+  end
   
   def show
       @user = User.find_by(id: params[:id])
       @likes = Like.where(user_id: @current_user.id)
       @posts = Post.where(user_id: @current_user.id)
       @comments = Comment.where(user_id: @current_user.id)
+      @relationships = Relationship.where(status: "accept")
   end
   
   def create
@@ -84,6 +91,12 @@ class UsersController < ApplicationController
     end
   end
   
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:notice] = "User destroyed."
+    redirect_to("/users/index")
+  end
+  
   def login
       @user = User.find_by(email: params[:email], password: params[:password])
       if @user
@@ -118,6 +131,7 @@ class UsersController < ApplicationController
           logger.debug("ssssssssssssssssssssss")
       end
     
+    
       if @user.save
         #   SampleMailer.send_when_update(@current_user).deliver
          flash[:notice] = "編集しました"
@@ -142,6 +156,10 @@ class UsersController < ApplicationController
 #         # format.json { render :show, status: :created, location: @user }
 #   end
 
+    private
     
+    def admin_user
+      redirect_to(root_path) unless @current_user.admin?
+    end
 
 end

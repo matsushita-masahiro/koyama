@@ -5,7 +5,6 @@
     <div class="sample">
         <%= image_tag 'pen2.png', class: 'pen-img' %>
         <p class="sample-title">Sample</p>
-        
         <div class="clear"></div>
         <div class="index">
           <div class="post-image">
@@ -35,6 +34,7 @@
     </div>
     <!--↑-->
     <p class="title">投稿一覧</p>
+    <div class="paginate"><%= will_paginate %></div>
     <% @posts.each do |post| %>
         <!--<% detail = PostDetail.find_by(post_id: post.id) %>-->
         <% detail = PostDetail.where(post_id: post.id).order(created_at: :asc).first %>
@@ -94,6 +94,7 @@
       </div>
       <div class="clear"></div>
     <% end %>
+    <div class="paginate"><%= will_paginate %></div>
   </div>
 </div>
 

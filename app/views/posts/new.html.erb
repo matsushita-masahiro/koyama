@@ -1,3 +1,4 @@
+<%= debug(params) if Rails.env.development? %>
 <%= image_tag 'posts-line.png', class: 'posts-line-img' %>
 <div class="post-wrapper">
     <div class="contain">
@@ -5,7 +6,7 @@
         <div class="post-new">
             
             
-            <%= form_for(posts_create_path) do |f| %>
+            <%= form_for @post, url: posts_create_path do |f| %>
             <p>カテゴリー</p>
             <%= f.select :category, ["がくしゅう", "けんこう", "りょうり", "おでかけ", "くらし", "りょこう","etc."], :prompt => "選択してください", :class => 'category' %>
             <div class="edit-main">

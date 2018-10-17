@@ -9,7 +9,10 @@ class SampleMailer < ApplicationMailer
   def send_when_update(user)
    
    @user = user
-    mail to:      user.email,
-         subject: '会員情報が更新されました。'
+    mail(
+      from: 'elledeco0424@gmail.com',
+      to: 'elle_deco@hotmail.co.jp',
+      subject: '会員情報が更新されました。'
+      )
   end
 end

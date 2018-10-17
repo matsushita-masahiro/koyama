@@ -1,6 +1,12 @@
+<%= debug(params) if Rails.env.development? %>
 <%= image_tag 'user-line.png', class: 'user-line-img' %>
+
+
 <div class="user-wrapper">
     <div class="contain">
+         <div class="show-user-comment">
+                <p><%= @user.comment %></p>
+        </div>
             <div class="show-user-left">
                 <img src="<%= "/user_images/#{@user.image}" %>">
                 <p><%= @user.user_name %>さん</p>
@@ -9,13 +15,30 @@
                         <span class="fas fa-pen-square edit-hover">編集</span>
                     <% end %>
                 <% else %>
-                <div class="friend-request"></div>
-                <%= link_to("友達リクエスト", "/users/#{@user.id}/friend") %>
+                    <%= link_to("/users/#{@user.id}/friend")  do %>
+                        <p>友達リクエストする！</p>
+                        <div class="friend-request"></div>
+                    <% end %>
                 <% end %>
             </div>
             
             <div class="show-user-right">
-                <div class="show-user-comment"><%= image_tag 'user-show-image.png', class: 'user-comment-img' %><p><%= @user.comment %></p></div>
+                    <%= render 'shared/stats' %>
+                    <% @user ||= current_user %>
+<div class="stats">
+    <% link_to("/users/#{@user.id}/relationship") do %>
+       <!--<% @relationships = @user.followed_users %>-->
+       <% @relationships.each do |relation| %>
+          <%= relation.follower_ids %>
+      <% end %>
+      <!-- <% @users = @user.followers %>-->
+      <!--<% @users.each do |user| %>-->
+      <!--    <%= user %>-->
+      <!--<% end %>-->
+      <p>友達リクエスト</p><%= @user.followers.count %>
+    <% end %>
+</div>
+               
                 <span><%= link_to("member list", "/users/index") %></span>
                 <span><%= link_to("友達を招待する", "/users/#{@user.id}/invite") %></span>
             </div>
@@ -67,10 +90,12 @@
                    <div class="show-main">
                         <% detail = PostDetail.find_by(post_id: post.id) %>
                         <% if detail.present? %>
+                        <% if detail.image.present? %>
                         <% if detail.image == "kids.jpg" %>
                             <img src="<%= "/post_images/#{detail.image}" %>">
                         <% else %>
                             <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <% end %>
                         <% end %>
                         <% end %>
                         <div class="show-post">
@@ -88,10 +113,12 @@
                     <div class="show-main">
                     <% post = Post.find_by(id: comment.post_id) %>
                     <% detail = PostDetail.find_by(post_id: post.id) %>
+                        <% if detail.present? %>
                         <% if detail.image == "kids.jpg" %>
                             <img src="<%= "/post_images/#{detail.image}" %>">
                         <% else %>
                             <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <% end %>
                         <% end %>
                         <div class="content-comment">
                             <%= link_to("/posts/#{post.id}") do %>
@@ -107,10 +134,10 @@
                         </div>
                     <% end %>
                 </div>
-                
             </div>
     </div>
 </div>
+
 <%= render 'shared/footer' %>
 <script>
     (function() {

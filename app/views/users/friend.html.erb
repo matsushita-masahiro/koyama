@@ -1,11 +1,12 @@
+<%= debug(params) if Rails.env.development? %>
 <%= image_tag 'user-line.png', class: 'user-line-img' %>
 <div class="user-wrapper">
     <div class="contain">
         <p class="title">友達リクエスト</p>
         <div class="user-edit">
-            <%= form_tag("/users/request_create") do %>
+            <%= form_for @user, url: users_create_friend_path, html: {method: 'POST'} do %>
                 <span>○メッセージ :</span>
-                <textarea name="content"></textarea>
+                <textarea name="comment"></textarea>
                 <div class="submit">
                         <input type="submit" value="送信">
                 </div>

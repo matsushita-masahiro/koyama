@@ -29,14 +29,21 @@
 .user-edit, .user-invite {
     margin: 10px 0;    
 }
+
 // index
+
+.index-user {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
 .index-user-image img{
   width: 50px;
   height: 50px;
   float: left;
   object-fit: contain;
-  margin: 0 10px;
+  margin: 5px 10px;
 }
 
 .index-user-name {
@@ -136,13 +143,14 @@
  }
  
  .friend-request {
-   width: 50px;
-   height: 30px;
+   width: 30px;
+   height: 20px;
    background-image: url("/letter.png");
    background-size: contain;
    background-repeat: no-repeat;
-  float: left;
-   margin-left: 10px;
+  // float: left;
+  // margin-left: 10px;
+   margin: 0 auto;
  }
  
  .friend-request > .letter-img {
@@ -159,25 +167,36 @@
    position: relative;
  }
  
- .user-comment-img {
-   position: absolute;
-   top: -10px;
-   left: -50px;
-   width: 50%;
- }
- 
  .show-user-right span {
    display: inline-block;
    margin: 10px;
    float: right;
  }
+ 
+  .show-user-comment {
+    margin-bottom: 15px;  
+  }
+  
+  
  .show-user-comment > p {
-   position: absolute;
-   top: 10%;
-   left: 5%;
-   z-index: 10;
-   font-family: 'Wawati SC', 'Bradly Hand';
- }
+  font-family: 'Wawati SC', 'Bradly Hand';
+  position: relative;
+  padding: .5em .75em;
+  background-color: #f0f0f0;
+  border-radius: 15%;
+}
+
+ .show-user-comment > p::after {
+  position: absolute;
+  bottom: -18px;
+  left: 80px;
+  content: '';
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top: 10px solid #f0f0f0;
+}
+ 
   .show-container {
     padding: 0;
     margin: 30px auto;

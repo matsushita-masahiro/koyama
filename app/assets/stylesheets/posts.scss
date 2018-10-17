@@ -50,130 +50,113 @@
 
 // post-index
 
-.index {
-    overflow: hidden;
-}
-
 .sample {
     margin-bottom: 30px;
     position: relative;
+    .pen-img {
+        width: 107px;
+        height: 20px;
+        float: left;
+        vertical-align: bottom;
+    }
+    .sample-title {
+        font-family: Papyrus;
+        font-size: 25px;
+        float: left;
+        margin: 0 20px 0 0;
+    }
+    .sample-comment {
+        position: absolute;
+        bottom: 10px;
+        right: 75px;
+        color: #b0778c;
+        p {
+            font-size: 10px;
+        }
+    }
 }
 
-.sample-comment {
-    position: absolute;
-    bottom: 10px;
-    right: 75px;
-    color: #b0778c;
+.index {
+    overflow: hidden;
+    .post-image {
+        position: relative;
+        img {
+            background: #f5f5f5;
+            margin-top: 10px;
+            background-size: contain;
+            height: 140px;
+            width: 200px;
+            object-fit: contain;
+            float: left;
+        }
+        .image-comment {
+            position: absolute;
+            bottom: 10px;
+            right: 5px;
+            color: #b0778c;
+        }
+    }
+    .post-main {
+        width : -webkit-calc(100% - 210px) ;
+        width : calc(100% - 210px);
+        float: right;
+        margin-top: 10px;
+        height: 140px;
+        background: #f5f5f5;
+        position: relative;
+        .post-content {
+            margin: 5px;
+            padding-bottom: 0px;
+            h3 {
+                margin: 15px 5px;
+                font-size: 20px;
+            }
+            p {
+                font-size: 15px;
+                margin: 0 5px;
+            }
+        }
+        .user {
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            font-size: 10px;
+            img {
+                width: 25px;
+                height: 25px;
+                object-fit: contain;
+                vertical-align: bottom;
+            }
+        }
+        .category {
+            font-size: 13px;
+            width: 90px;
+            height: 60px;
+            background-image: url("/category.png");
+            background-size: contain;
+            background-repeat: no-repeat;
+            vertical-align: center;
+            position: absolute;
+            bottom: 30px;
+            right: 5px;
+            span{
+                display: inline-block;
+                width: 90px;
+                padding-top: 15px;
+                text-align: center;
+            }
+        }
+        .smile {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            font-size: 30px;
+            color: #a9a9a9;
+        }
+    }
 }
 
-.sample-comment p {
-    font-size: 10px;
-}
 
-
-.sample-title {
-    font-family: Papyrus;
-    font-size: 25px;
-    // padding: .25em 0 .25em .75em;
-    // border-left: 6px solid #ccc;
-    float: left;
-    margin-right: 20px;
-}
-
-.pen-img {
-    width: 107px;
-    height: 20px;
-    float: left;
-    vertical-align: bottom;
-}
-
-.post-image {
-    position: relative;
-}
-
-.image-comment {
-    position: absolute;
-    top: 97px;
-    left: 63px;
-    color: #b0778c;
-}
-
-.post-image img {
-    background: #f5f5f5;
-    margin-top: 10px;
-    background-size: contain;
-    height: 140px;
-    width: 200px;
-    object-fit: contain;
-    float: left;
-}
-
-.post-main {
-    width : -webkit-calc(100% - 210px) ;
-    width : calc(100% - 210px);
-    float: right;
-    margin-top: 10px;
-    height: 140px;
-    background: #f5f5f5;
-    position: relative;
-}
-
-.post-content {
-    margin: 5px;
-    padding-bottom: 0px;
-    // border-bottom: solid #fff 2px;
-}
-
-.post-content h3 {
-    margin: 15px 5px;
-    font-size: 20px;
-}
-.post-content p {
-    font-size: 15px;
-    margin: 0 5px;
-}
-
-.user {
-    position: absolute;
-    bottom: 5px;
-    left: 10px;
-    font-size: 10px;
-}
-
-.user img {
-    width: 25px;
-    height: 25px;
-    object-fit: contain;
-    vertical-align: bottom;
-}
-
-.category {
-    font-size: 13px;
-    width: 90px;
-    height: 60px;
-    background-image: url("/category.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    vertical-align: center;
-    position: absolute;
-    bottom: 30px;
-    right: 5px;
-}
-
-.category > span{
-    display: inline-block;
-    width: 90px;
-    padding-top: 15px;
-    text-align: center;
-}
-
-.smile {
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
-    font-size: 30px;
-    color: #a9a9a9;
-}
 
 
 

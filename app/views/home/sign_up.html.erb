@@ -17,15 +17,15 @@
         <% end %>
         <div class="form">
           <%= form_tag("/users/create", {multipart: true}) do %>
-            <p>ニックネーム</p>
+            <p>●なまえ</p>
             <input name="name" value="<%= params[:name] %>">
-            <p>メールアドレス</p>
+            <p>●メールアドレス</p>
             <input name="email" value="<%= params[:email] %>">
-            <p>パスワード</p>
+            <p>●パスワード</p>
             <input type="password" name="password" value="<%= params[:password] %>">
-            <p>画像</p>
+            <p>●画像</p>
             <input type="file" name="image">
-            <p>コメント</p>
+            <p>●コメント</p>
             <textarea name="comment" value="<%= params[:comment] %>"></textarea>
             <div class="submit">
               <input type="submit" value="新規登録">
