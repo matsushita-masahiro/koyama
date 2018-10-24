@@ -177,7 +177,7 @@ header {
 
 .top-img {
   width: 100%;
-  background-image: url("/top.jpg");
+  // background-image: url("/top.jpg");
   // background-size: cover;
   height: auto;
   // width: 100%;
@@ -462,8 +462,8 @@ Author: Jorge Chavez
 Github: http://github.com/jorgechavz
 */
 
-.modal-wrap h3,p {
-  font-size: 20px;
+.modal-wrap > h3,p {
+  font-size: 18px;
 }
 .about-img {
   float: right;

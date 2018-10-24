@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class SampleMailerTest < ActionMailer::TestCase
-  test "send_when_update" do
-    mail = SampleMailer.send_when_update
+class ContactMailerTest < ActionMailer::TestCase
+  test "sent" do
+    mail = ContactMailer.sent
     assert_equal "Send when update", mail.subject
     assert_equal ["to@example.org"], mail.to
     assert_equal ["from@example.com"], mail.from

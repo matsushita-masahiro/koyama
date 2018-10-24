@@ -10,12 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_17_041729) do
+ActiveRecord::Schema.define(version: 2018_10_21_212038) do
+
+  create_table "check_boxes", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "check_box"
+    t.integer "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
     t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.string "email"
+    t.integer "user_id"
+    t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,6 +58,16 @@ ActiveRecord::Schema.define(version: 2018_10_17_041729) do
     t.datetime "updated_at", null: false
     t.text "main_content"
     t.string "category"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "ingredient"
+    t.string "amount"
+    t.string "prepare"
+    t.string "breakdown"
+    t.string "menu_title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "relationships", force: :cascade do |t|

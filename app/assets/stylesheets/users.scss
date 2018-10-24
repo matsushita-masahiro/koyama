@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@mixin fram($color, $size) {
+  padding: $size;
+  border: 3px solid $color;
+  border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+  box-sizing: border-box;
+}
+
 .user-wrapper {
   width: 100%;
   // border-top: dashed 2px #bcbace;
@@ -31,93 +38,70 @@
 }
 
 // index
-
-.index-user {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.index-user-image img{
-  width: 50px;
-  height: 50px;
-  float: left;
-  object-fit: contain;
-  margin: 5px 10px;
-}
-
-.index-user-name {
-  float: left;
-  width: 200px;
-  line-height: 50px;
-}
-
-.index-user-comment {
-  float: left;
-  line-height: 50px;
-}
-
-.each-user {
-  border-bottom: dashed 2px #ccc;
-}
-
 .surch {
   margin: 15px 0 10px;
+  input {
+    height: 20px;
+  }
 }
-
-.surch input {
-  height: 20px;
-}
-
-.index-user {
-  margin: 10px 0;
-}
-
-.member-list {
-  margin: 30px 0 5px;
-  text-align: center;
-}
-
-.member-list:hover {
-  opacity: 0.8;
-}
-// .j-letter, .e-letter {
-//   width: 100%;
-//   height: 30px;
-// }
-
-// .letter-hover {
-//   display: inline-block;
-//   font-size: 20px;
-//   box-sizing: border-box;
-//   width: 20px;
-//   float: left;
-//   color: #808080;
-// }
-
-// .j-letter p {
-//   font-family: 'Wawati SC', 'Bradly Hand';
-// }
 
 .line-img {
   width: 100%;
   height: 30px;
 }
-.user-list {
-  display: inline-block;
-  width: 30%;
-  float: left;
-  box-sizing: border-box;
+
+.index-user {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    .each-user {
+      border-bottom: dashed 2px #ccc;
+      .index-user-image img{
+        width: 50px;
+        height: 50px;
+        float: left;
+        object-fit: contain;
+        margin: 5px 10px;
+      }
+      .index-user-name {
+        float: left;
+        width: 200px;
+        line-height: 50px;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+      .index-user-comment {
+        float: left;
+        line-height: 50px;
+      }
+    }
 }
 
-.user-list p {
-  font-size: 15px;
-  font-family: 'Hannotate SC', 'Bradly Hand';
+.member-list {
+  margin: 30px 0 5px;
+  text-align: center;
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
-.user-list {
-  margin-bottom: 20px;
-}
+
+// .user-list {
+//   display: inline-block;
+//   width: 30%;
+//   float: left;
+//   box-sizing: border-box;
+// }
+
+// .user-list p {
+//   font-size: 15px;
+//   font-family: 'Hannotate SC', 'Bradly Hand';
+// }
+
+// .user-list {
+//   margin-bottom: 20px;
+// }
 
 // show
 
@@ -126,38 +110,25 @@
    float: left;
    text-align: center;
    box-sizing: border-box;
+   p {
+     font-size: 17px;
+   }
+   img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      @include fram(#b4aeb1, 0.8em)
+   }
+   .friend-request {
+     width: 30px;
+     height: 20px;
+     background-image: url("/letter.png");
+     background-size: contain;
+     background-repeat: no-repeat;
+     margin: 0 auto;
+   }
 }
- 
- .show-user-left p {
-   font-size: 17px;
- }
- 
- .show-user-left > img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    padding: 0.8em;
-    border: 3px solid #b4aeb1;
-    border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
-    box-sizing: border-box;
- }
- 
- .friend-request {
-   width: 30px;
-   height: 20px;
-   background-image: url("/letter.png");
-   background-size: contain;
-   background-repeat: no-repeat;
-  // float: left;
-  // margin-left: 10px;
-   margin: 0 auto;
- }
- 
- .friend-request > .letter-img {
-   width: 50px;
-   height: 50px;
- }
- 
+
  .show-user-right {
    float: right;
    width: 70%;
@@ -165,59 +136,62 @@
    margin-right: 10px;
    box-sizing: border-box;
    position: relative;
- }
- 
- .show-user-right span {
-   display: inline-block;
-   margin: 10px;
-   float: right;
- }
+   
+   p {
+     font-size: 15px;
+   }
+  .show-friend {
+    p{
+      font-size: 13px;
+    }
+    span {
+      background: #ccc;
+      border-radius: 3px;
+    }
+    img {
+     width: 30px;
+     height: 30px;
+    }
+  }
+ } 
+
  
   .show-user-comment {
-    margin-bottom: 15px;  
+    margin-bottom: 15px;
+    p {
+      font-family: 'Wawati SC', 'Bradly Hand';
+      position: relative;
+      padding: .5em .75em;
+      background-color: #f0f0f0;
+      border-radius: 15%;
+      &:after {
+        position: absolute;
+        bottom: -18px;
+        left: 80px;
+        content: '';
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top: 10px solid #f0f0f0;
+      }
+    }
   }
   
-  
- .show-user-comment > p {
-  font-family: 'Wawati SC', 'Bradly Hand';
-  position: relative;
-  padding: .5em .75em;
-  background-color: #f0f0f0;
-  border-radius: 15%;
-}
-
- .show-user-comment > p::after {
-  position: absolute;
-  bottom: -18px;
-  left: 80px;
-  content: '';
-  width: 0;
-  height: 0;
-  border: 10px solid transparent;
-  border-top: 10px solid #f0f0f0;
-}
- 
   .show-container {
     padding: 0;
     margin: 30px auto;
     width: 100%;
+    ul.menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 0;
+    }
+    .show-main:not(:last-child) {
+      border-bottom: dashed 2px #b4aeb1;
+    }
   }
-
-.show-main:not(last-child) {
-  position: relative;
-}
-
-.show-main:not(:last-child) {
-  border-bottom: dashed 1px #b4aeb1;
-}
-
-  ul.menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0;
-  }
-  
+ 
   ul.menu li {
     display: inline-block;
     margin-left: 10px;
@@ -251,16 +225,15 @@
     color: #fff;
     min-height: 150px;
     display: none;
+    img {
+      width: 125px;
+      height: 87.5px;
+      object-fit: contain;
+      float: left;
+      margin: 10px;
+    }
   }
-  
-  .content img {
-    width: 125px;
-    height: 87.5px;
-    object-fit: contain;
-    float: left;
-    margin: 10px;
-  }
-  
+
   .show-like, .show-post, .content-comment{
     float: left;
     padding: 10px;
@@ -309,3 +282,6 @@
   width: 100%;
   height: 60px;
 }
+
+// relationship
+

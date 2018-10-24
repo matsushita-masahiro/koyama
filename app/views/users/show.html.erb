@@ -1,144 +1,42 @@
 <%= debug(params) if Rails.env.development? %>
 <%= image_tag 'user-line.png', class: 'user-line-img' %>
-
-
 <div class="user-wrapper">
     <div class="contain">
-         <div class="show-user-comment">
+        <div class="show-user-comment">
                 <p><%= @user.comment %></p>
         </div>
-            <div class="show-user-left">
-                <img src="<%= "/user_images/#{@user.image}" %>">
-                <p><%= @user.user_name %>さん</p>
-                <% if @current_user.id == @user.id %>
-                    <%= link_to("/users/#{@user.id}/edit") do %>
-                        <span class="fas fa-pen-square edit-hover">編集</span>
-                    <% end %>
-                <% else %>
-                    <%= link_to("/users/#{@user.id}/friend")  do %>
-                        <p>友達リクエストする！</p>
-                        <div class="friend-request"></div>
-                    <% end %>
+        <div class="show-user-left">
+            <img src="<%= "/user_images/#{@user.image}" %>">
+            <p><%= @user.user_name %>さん</p>
+            <% if @current_user.id == @user.id %>
+                <%= link_to("/users/#{@user.id}/edit") do %>
+                    <span class="fas fa-pen-square edit-hover">編集</span>
                 <% end %>
-            </div>
+            <% else %>
+                <%= link_to("/users/#{@user.id}/friend")  do %>
+                    <p>友達リクエストする！<div class="friend-request"></div></p>
+                    
+                <% end %>
+            <% end %>
+        </div>
             
-            <div class="show-user-right">
-                    <%= render 'shared/stats' %>
-                    <% @user ||= current_user %>
-<div class="stats">
-    <% link_to("/users/#{@user.id}/relationship") do %>
-       <!--<% @relationships = @user.followed_users %>-->
-       <% @relationships.each do |relation| %>
-          <%= relation.follower_ids %>
-      <% end %>
-      <!-- <% @users = @user.followers %>-->
-      <!--<% @users.each do |user| %>-->
-      <!--    <%= user %>-->
-      <!--<% end %>-->
-      <p>友達リクエスト</p><%= @user.followers.count %>
-    <% end %>
-</div>
-               
-                <span><%= link_to("member list", "/users/index") %></span>
-                <span><%= link_to("友達を招待する", "/users/#{@user.id}/invite") %></span>
-            </div>
-            <div class="clear"></div>
+        <div class="show-user-right">
+         <%= render 'shared/stats' %>   
+            <% @user ||= @current_user %>
+                <% if @current_user.id == @user.id %>
+                    <%= link_to("member list", "/users/index") %>
+                    <%= link_to("友達を招待する", "/users/#{@user.id}/invite") %>
+                    <%= link_to("友達ページへ","/users/#{@user.id}/relationship") %>
+                <% end %>
             
-            <div class="show-container">
-                <ul class="menu">
-                    <li>
-                        <a href="#" data-id="like" class="active menu_item index1">お気に入り</a>
-                    </li>
-                    <li>
-                        <a href="#" data-id="post" class="menu_item index2">投稿</a>
-                    </li>
-                    <li>
-                        <a href="#" data-id="comment" class="menu_item index3">コメント</a>
-                    </li>
-                </ul>
-                <!--<%= image_tag 'show-line.png', class: 'line-img' %>-->
-                <div class="content active" id="like">
-                    <% @likes.each do |like| %>
-                    <div class="show-main">
-                        <% post = Post.find_by(id: like.post_id) %>
-                        <% detail = PostDetail.find_by(post_id: post.id) %>
-                        <% if detail.present? %>
-                        <% if detail.image == "kids.jpg" %>
-                            <img src="<%= "/post_images/#{detail.image}" %>">
-                        <% else %>
-                            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
-                        <% end %>
-                        <% end %>
-                        <div class="show-like">
-                            <%= link_to("/posts/#{post.id}") do %>
-                                <p class="show-title"><%= post.title %></p>
-                                <%= post.main_content %>
-                            <% end %>
-                        </div>
-                        <% user = User.find_by(id: post.user_id) %>
-                          <div class="show-user">
-                            <img src="<%= "/user_images/#{user.image}" %>">
-                            <span><%= user.user_name %>さん</span>
-                          </div>
-                          
-                        <div class="clear"></div>
-                        </div>
-                    <% end %>
-                </div>
-                <div class="content" id="post">
-                   <% @posts.each do |post| %>
-                   <div class="show-main">
-                        <% detail = PostDetail.find_by(post_id: post.id) %>
-                        <% if detail.present? %>
-                        <% if detail.image.present? %>
-                        <% if detail.image == "kids.jpg" %>
-                            <img src="<%= "/post_images/#{detail.image}" %>">
-                        <% else %>
-                            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
-                        <% end %>
-                        <% end %>
-                        <% end %>
-                        <div class="show-post">
-                            <%= link_to("/posts/#{post.id}") do %>
-                                <p class="show-title"><%= post.title %></p>
-                                <%= post.main_content %>
-                            <% end %>
-                        </div>
-                        <div class="clear"></div>
-                        </div>
-                    <% end %>
-                </div>
-                <div class="content" id="comment">
-                    <% @comments.each do |comment| %>
-                    <div class="show-main">
-                    <% post = Post.find_by(id: comment.post_id) %>
-                    <% detail = PostDetail.find_by(post_id: post.id) %>
-                        <% if detail.present? %>
-                        <% if detail.image == "kids.jpg" %>
-                            <img src="<%= "/post_images/#{detail.image}" %>">
-                        <% else %>
-                            <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
-                        <% end %>
-                        <% end %>
-                        <div class="content-comment">
-                            <%= link_to("/posts/#{post.id}") do %>
-                                <p><%= comment.content %></p>
-                            <% end %>
-                        </div>
-                        <% user = User.find_by(id: post.user_id) %>
-                          <div class="show-user">
-                            <img src="<%= "/user_images/#{user.image}" %>">
-                            <span><%= user.user_name %>さん</span>
-                          </div>
-                        <div class="clear"></div>
-                        </div>
-                    <% end %>
-                </div>
-            </div>
+        </div>
+        <div class="clear"></div>
+        <%= render 'user-table' %>
     </div>
 </div>
 
 <%= render 'shared/footer' %>
+
 <script>
     (function() {
         'use strict';

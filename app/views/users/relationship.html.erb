@@ -1,0 +1,41 @@
+<%= debug(params) if Rails.env.development? %>
+<%= image_tag 'user-line.png', class: 'user-line-img' %>
+<div class="user-wrapper">
+    <div class="contain">
+        <div class="relationship">
+            <p>友達一覧<span><%= @accept.count %></span></p>
+            <% if @accept.any? %>
+                <% @accept.each do |accept| %>
+                    <div class="relationship-user">
+                        <% user = User.where('id = ? or id = ?', accept.follower_id, accept.followed_id) %>
+                        <img src="<%= "/user_images/#{user.image}" %>">
+                        <%= user.user_name %>
+                    </div>
+                <% end %>
+            <% end %>
+            <p>リクエスト承認待ち<span><%= @request.count %></span></p>
+            <% if @request.any? %>
+                <% @request.each do |waite| %>
+                    <div class="relationship-user">
+                        <% user = User.find_by(id: waite.followed_id) %>
+                        <img src="<%= "/user_images/#{user.image}" %>">
+                        <%= user.user_name %>
+                    </div>
+                <% end %>
+            <% end %>
+            <p><%= @user.user_name %>さんへ友達リクエスト<span><%= @waite.count %></span></p>
+            <% if @waite.any? %>
+                <% @waite.each do |waite| %>
+                    <div class="relationship-user">
+                        <% user = User.find_by(id: waite.follower_id) %>
+                        <img src="<%= "/user_images/#{user.image}" %>">
+                        <%= user.user_name %>
+                        <%= waite.comment %>
+                    </div>
+                <% end %>
+            <% end %>
+        </div>
+    </div>
+</div>
+
+<%= render 'shared/footer' %>

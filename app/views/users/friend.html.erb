@@ -3,12 +3,18 @@
 <div class="user-wrapper">
     <div class="contain">
         <p class="title">友達リクエスト</p>
+        <% if @user.errors.any? %>
+            <% @user.errors.full_messages.each do |message| %>
+            <%= message %>
+            <% end %>
+        <% end %> 
         <div class="user-edit">
-            <%= form_for @user, url: users_create_friend_path, html: {method: 'POST'} do %>
+            <%= form_for @user, url: users_create_friend_path, html: {method: 'POST'} do |f| %>
                 <span>○メッセージ :</span>
-                <textarea name="comment"></textarea>
+                <%= f.text_field :comment %>
+                
                 <div class="submit">
-                        <input type="submit" value="送信">
+                        <%= f.submit 'リクエストを送る' %>
                 </div>
             <% end %>
         </div>

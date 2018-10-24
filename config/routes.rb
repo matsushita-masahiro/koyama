@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
-  post 'posts/create' => 'posts#create'
-  post 'posts/:id/destroy' => 'posts#destroy'
-  post 'posts/:id/update' => 'posts#update'
+  resources :posts, only: [:create, :destroy, :update, :index, :new, :edit, :show]
+  # post 'posts/create' => 'posts#create'
+  # post 'posts/:id/destroy' => 'posts#destroy'
+  # post 'posts/:id/update' => 'posts#update'
   
   post 'users/create_friend' => 'users#create_friend'
   post 'users/create' => 'users#create'
@@ -21,10 +22,10 @@ Rails.application.routes.draw do
   
   
         
-  get 'posts/index' => 'posts#index'
-  get 'posts/new' => 'posts#new'
-  get 'posts/:id/edit' => 'posts#edit'
-  get 'posts/:id' => 'posts#show'
+  # get 'posts/index' => 'posts#index'
+  # get 'posts/new' => 'posts#new'
+  # get 'posts/:id/edit' => 'posts#edit'
+  # get 'posts/:id' => 'posts#show'
   
  
   
@@ -50,6 +51,7 @@ Rails.application.routes.draw do
   post 'life_create' => 'home#life_create'
   post 'trip_create' => 'home#trip_create'
   post 'mom_create' => 'home#mom_create'
+  post 'check_box_create' => 'home#check_box_create'
   
   post 'likes/:post_id/create' => 'likes#create'
   post 'likes/:post_id/destroy' => 'likes#destroy'

@@ -4,74 +4,44 @@
     <div class="contain">
         <p class="title">投稿作成</p>
         <div class="post-new">
+        <% if @post.errors.any? %>
+            <% @post.errors.full_messages.each do |message| %>
+            <%= message %>
+            <% end %>
+        <% end %>   
             
-            
-            <%= form_for @post, url: posts_create_path do |f| %>
+        <%= nested_form_for @post do |f| %>
             <p>カテゴリー</p>
             <%= f.select :category, ["がくしゅう", "けんこう", "りょうり", "おでかけ", "くらし", "りょこう","etc."], :prompt => "選択してください", :class => 'category' %>
             <div class="edit-main">
-            <span>○タイトル :</span>
-            <%= f.text_area :title, autofocus: 'true', class: 'edit-title', required: true %>
-            <span>投稿内容まとめ</span>
-            <%= f.text_area :main_content, autofocus: 'true', class: 'main', required: true %>
-             </div>
-             <div id="team_members_box">
-             <span>○投稿詳細 :</span>
+                <span>○タイトル :</span>
+                <%= f.text_field :title, autofocus: 'true', class: 'edit-title', required: true %>
+                <span>投稿内容まとめ</span>
+                <%= f.text_field :main_content, autofocus: 'true', class: 'main', required: true %>
+            </div>
+            <span>○投稿詳細 :</span>
             <%= f.fields_for :post_details do |m|  %>
-            <div class="js-post_detail" id="add_detail_#{m.index}">
-                <div class="post_left">
-                    <label for="file_photo" class="add-photo">
-                        <%= image_tag 'camera.png', class: 'logo' %>
-                        <!--<input name="image" type="file" class="file_photo" style="display:none;">-->
-                        <%= m.file_field :image, type:'file', autofocus: 'true', class: 'photo', required: true %>
-                    </label>
-                </div>
-            <%= m.text_field :content , class: 'form-content comment', required: true %>
-            <!--<%= m.check_box:_destroy %>-->
-            <span class="detail_delete{ data: { id: m.index, default: 'default' } }"><span class="fas fa-trash-alt edit-hover"></span></span>
-            </div>
-            </div>
-            <p id="add_item_button"><span class="fas fa-plus-square"></span></p>
-    <div class="clear"></div>
-            
-              
-      <%= f.submit '投稿', class: 'btn btn-primary' %>
-      <% end %>
-      <% end %>
-          </div>
+                        <div class="post_left">
+                            <label for="file_photo" class="add-photo">
+                                <%= image_tag 'camera.png', class: 'logo' %>
+                                <!--<input name="image" type="file" class="file_photo" style="display:none;">-->
+                                <%= m.file_field :image %>
+                            </label>
+                        </div>
+                    
+                        <%= m.text_field :content , class: 'form-content comment', required: true %>
+                    
+                    <%= m.link_to_remove 'Delete' %>
+            <% end %>
+            <%= f.link_to_add '追加', :post_details %>
+            <div class="clear"></div>
+            <%= f.submit '投稿', class: 'btn btn-primary' %>
+        <% end %>
     </div>
 </div>   
     <%= render 'shared/footer' %>
     
-<script>
-
-$(function() {
-  var detail_num = $('.js-post_detail').length;
-  $('#add_item_button').on('click', function() {
-    var input =
-        '<div class="js-post_detail" id="add_detail_' + detail_num + '">'
-        + '<input class="post_left"  type="file" name="image[post_details_attributes][' + detail_num + '][name]"  required>'
-        + '<input class="form-content comment" type="text" name="content[post_detail_attributes][' + detail_num + ']"  required>'
-        + '<span class="detail_delete" data-id="' + detail_num + '">'
-        +   '<span class="fas fa-trash-alt edit-hover"></span>'
-        + '</span>'
-        +'</div>'
-    $('#team_members_box').append(input);
-    detail_num ++;
-  });
-
-  $('#team_members_box').on('click', '.detail_delete', function() {
-    var inputId = $(this).data('id');
-    var defaultData = $(this).data('default');
-    if (defaultData == 'default') {
-      $(this).prev().prop('checked', true);
-      $('#add_detail_' + inputId).hide();
-    }else{
-      $('#add_detail_' + inputId).remove();
-    }
-  });
-});           
- </script>           
+// <scriptt>           
              <!--<%= form_tag("/posts/create", {multipart: true}) do %>-->
             <!-- <span>○カテゴリー :</span><br/>-->
             <!--    <select name="category">-->

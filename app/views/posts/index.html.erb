@@ -40,12 +40,10 @@
         <% detail = PostDetail.where(post_id: post.id).order(created_at: :asc).first %>
         <div class="index">
         <div class="post-image">
-          <% if detail.present? %>
-            <% if detail.image == "kids.jpg" %>
-              <img src="<%= "/post_images/#{detail.image}" %>">
-            <% else %>
-              <img src="<%= "/post_images/#{post.user_id}/#{detail.post_id}/#{detail.image}" %>">
-            <% end %>
+          <% if detail.image? %>
+              <%= image_tag detail.image_url(:thumb)  %>
+          <% else %>
+              <img src="<%= "/post_images/kids.jpg" %>">
           <% end %>
         </div> 
         <div class="post-main">
@@ -59,22 +57,7 @@
             <span><%= user.user_name %>さん</span>
           </div>
           <div class="category">
-            <!--<%= post.category %> -->
-              <% if post.category == "1" %>
-                  <span>がくしゅう</span>
-              <% elsif post.category == "2" %>
-                  <span>けんこう</span>
-              <% elsif post.category == "3" %>
-                  <span>りょうり</span>
-              <% elsif post.category == "4" %>
-                  <span>おでかけ</span>
-              <% elsif post.category == "5" %>
-                  <span>くらし</span>
-              <% elsif post.category == "6" %>
-                  <span>りょこう</span>
-              <% elsif post.category == "7" %>
-                  <span>etc.</span>
-              <% end %>
+            <%= post.category %> 
           </div>
           <div class="smile">
             <% if Like.find_by(post_id: post.id,user_id: @current_user.id) %>

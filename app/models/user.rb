@@ -1,4 +1,9 @@
 class User < ApplicationRecord
+    has_many :check_boxes, dependent: :destroy
+    has_many :recipes, through: :check_boxes
+    has_many :likes, dependent: :destroy
+    has_many :posts, through: :likes, dependent: :destroy
+    has_many :invites, dependent: :destroy
     has_many :posts, dependent: :destroy
     has_many :relationships, foreign_key: "follower_id", dependent: :destroy
     has_many :followed_users, through: :relationships, source: :followed
@@ -14,16 +19,16 @@ class User < ApplicationRecord
         where("user_name like ?" , "%#{name}%")
     }
     
-  def following?(other_user)
-    relationships.find_by(followed_id: other_user.id)
+  def accept?(other_user)
+    relationships.where(followed_id: other_user.id).where(status: 'accept')
   end
 
-  def follow!(other_user)
+  def request!(other_user)
     relationships.create!(followed_id: other_user.id, status: 'waite', comment: params[:comment])
   end
 
-  def unfollow!(other_user)
-    relationships.find_by(followed_id: other_user.id).destroy
+  def waite?(other_user)
+    relationships.where(followed_id: other_user.id).where(status: 'waite')
   end
 
 

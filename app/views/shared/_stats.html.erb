@@ -1,14 +1,26 @@
-<% @user ||= current_user %>
-<div class="stats">
-    <% link_to("/users/#{@user.id}/relationship") do %>
-      <!-- <% @relationships = @user.followed_users.paginate(page: params[:page]) %>-->
-      <!-- <% @relationships.each do |user| %>-->
-      <!--    <%= user %>-->
-      <!--<% end %>-->
-       <% @users = @user.followers.paginate(page: params[:page]) %>
-      <% @users.each do |user| %>
-          <%= user %>
-      <% end %>
-      <p>友達リクエスト</p><%= @user.followers.count %>
+<div class="show-friend">
+    <p>友達一覧<span><%= @accept.count %></span></p>
+    <% if @accept.any? %>
+        <% @accept.first(5).each do |accept| %>
+            <div class="relationship-user">
+                <% user = User.where('id = ? or id = ?', accept.follower_id, accept.followed_id) %>
+                
+            </div>
+        <% end %>
     <% end %>
+    <p>リクエスト承認待ち<span><%= @request.count %></span></p>
+    <% if @request.any? %>
+        <% @request.first(5).each do |waite| %>
+            <% user = User.find_by(id: waite.followed_id) %>
+            <img src="<%= "/user_images/#{user.image}" %>">
+        <% end %>
+    <% end %>
+    <p><%= @user.user_name %>さんへの友達リクエスト<span><%= @waite.count %></span></p>
+    <% if @waite.any? %>
+        <% @waite.first(5).each do |waite| %>
+            <% user = User.find_by(id: waite.follower_id) %>
+            <img src="<%= "/user_images/#{user.image}" %>">
+        <% end %>
+    <% end %>
+    
 </div>

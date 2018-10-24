@@ -4,12 +4,12 @@
         <% if @current_user.id == @post.user_id %>
         <div class="show-edit">
             <%= link_to("/posts/#{@post.id}/edit") do %>
-                    <!--<div class="">-->
-                    <span class="fas fa-pen-square edit-hover"></span>
-                    <!--    <div class="edit-content">へんしゅうする</div>-->
-                    <!--</div>-->
+                    <div class="edit-hover">
+                    <span class="fas fa-pen-square "></span>
+                        <div class="edit-content">へんしゅうする</div>
+                    </div>
             <% end %>
-            <%= link_to("/posts/#{@post.id}/destroy", {method: "post"}) do %>
+            <%= link_to post_path, {method: "delete"}, data: { confirm: "削除してもいいですか？" } do %>
                     <!--<div class="edit-hover">-->
                     <span class="fas fa-trash-alt edit-hover"></span>
                     <!--    <div class="edit-content">けしちゃう</div>-->
@@ -32,21 +32,7 @@
           
             <div class="clear"></div>
             <div class="category">
-              <% if @post.category == "1" %>
-                  <span>がくしゅう</span>
-              <% elsif @post.category == "2" %>
-                  <span>けんこう</span>
-              <% elsif @post.category == "3" %>
-                  <span>りょうり</span>
-              <% elsif @post.category == "4" %>
-                  <span>おでかけ</span>
-              <% elsif @post.category == "5" %>
-                  <span>くらし</span>
-              <% elsif @post.category == "6" %>
-                  <span>りょこう</span>
-              <% elsif @post.category == "7" %>
-                  <span>etc.</span>
-              <% end %>
+                <%= @post.category %>
           </div>
             <div class="smile">
                 <% if Like.find_by(post_id: @post.id,user_id: @current_user.id) %>
@@ -69,10 +55,10 @@
             <% if details.present? %>
             <% details.each do |detail| %>
                 <div class="show-picture">
-                    <% if detail.image == "kids.jpg" %>
-                        <img src="<%= "/post_images/#{detail.image}" %>">
+                    <% if detail.image? %>
+                        <%= image_tag detail.image_url(:thumb)  %>
                     <% else %>
-                        <img src="<%= "/post_images/#{@post.user_id}/#{detail.post_id}/#{detail.image}" %>">
+                        <img src="<%= "/post_images/kids.jpg" %>">
                     <% end %>
                 </div>
                 <div class="show-detail">
@@ -113,11 +99,11 @@
         $('.edit-hover')
             .mouseover(function() {
                 $(this).css('font-size','50px');
-                // $(this).find('.edit-content').addClass('edit-active');
+                $(this).find('.edit-content').addClass('edit-active');
             })
             .mouseout(function() {
                 $(this).css('font-size','20px');
-                // $(this).find('.edit-content').removeClass('edit-active');
+                $(this).find('.edit-content').removeClass('edit-active');
             });
             
         $('.like-create')

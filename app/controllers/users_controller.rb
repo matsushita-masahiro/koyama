@@ -19,6 +19,22 @@ class UsersController < ApplicationController
       @user = User.find_by(id: params[:id])
   end
   
+  def invite_create
+      @user = User.find_by(id: params[:id])
+      @invite = @current_user.invites.new(
+          email: params[:email],
+          message: params[:message]
+          )
+      if @invite.save
+          ContactMailer.invite(@invite).deliver
+          flash[:notice] = "●●●お友達へ招待メールを送信しました●●●"
+          redirect_to("/users/#{@current_user.id}")
+      else
+          flash[:notice] = "×××××××お友達へ招待メールを送信できませんでした×××××××"
+          redirect_to("/users/#{@current_user.id}")
+      end
+  end
+  
   def friend
       @user = User.find_by(id: params[:id])
   end
@@ -32,17 +48,21 @@ class UsersController < ApplicationController
             comment: params[:comment]
             )
             logger.debug("xxxxxxxxxxxxxx#{params[:id]}")
-    #   if @relationship.save
-        #   flash[:notice] = "●●● リクエストしました ●●●"
-        #   redirect_to("/users/#{@current_user.id}")
-    #      else
-    #       flash[:notice] = "●●● リクエストできませんでした ●●●"
-    #       redirect_to("/users/index") 
-    #   end
+      if @relationship.save
+          flash[:notice] = "●●● リクエストしました ●●●"
+          redirect_to("/users/#{@current_user.id}")
+         else
+          flash[:notice] = "●●● リクエストできませんでした ●●●"
+          redirect_to("/users/index") 
+      end
   end 
   
   def relationship
-      @relationships = Relationship.where(follower_id:params[:id], followed_id:params[:id])
+      @user = User.find_by(id: params[:id])
+      @accepts = Relationship.where(status: 'accept')
+      @accept = @accepts.where('followed_id = ? or follower_id = ?', @current_user.id, @current_user.id)
+      @request = @current_user.relationships.where(status: 'waite')
+      @waite = Relationship.where(status: 'waite').where(followed_id: @current_user.id)
   end
   
   def show
@@ -50,7 +70,10 @@ class UsersController < ApplicationController
       @likes = Like.where(user_id: @current_user.id)
       @posts = Post.where(user_id: @current_user.id)
       @comments = Comment.where(user_id: @current_user.id)
-      @relationships = Relationship.where(status: "accept")
+      @accepts = Relationship.where(status: 'accept')
+      @accept = @accepts.where('followed_id = ? or follower_id = ?', @current_user.id, @current_user.id)
+      @request = @current_user.relationships.where(status: 'waite')
+      @waite = Relationship.where(status: 'waite').where(followed_id: @current_user.id)
   end
   
   def create
@@ -61,20 +84,9 @@ class UsersController < ApplicationController
        comment: params[:comment],
        image:"face.png"
        ) 
-       
-    # respond_to do |format|
-    #   if @user.save
-    #     SampleMailer.send_when_create(@user).deliver
-    #     format.html { redirect_to @user, notice: 'User was successfully created.' }
-    #     format.json { render :show, status: :created, location: @user }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @user.errors, status: :unprocessable_entity }
-    #   end
-    # end
-   
     
     if @user.save
+        # ContactMailer.sent(@user).deliver
         @user = User.all.order(created_at: :desc).first
         if params[:image]
               @user.image = "#{@user.id}.jpg"
@@ -148,13 +160,7 @@ class UsersController < ApplicationController
       end
   end  
     
-  
-  
-#   def invite_create
-#     SampleMailer.send_when_create.deliver
-#         # format.html { redirect_to @user, notice: 'User was successfully created.' }
-#         # format.json { render :show, status: :created, location: @user }
-#   end
+ 
 
     private
     

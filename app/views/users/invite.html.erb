@@ -1,13 +1,13 @@
 <%= image_tag 'user-line.png', class: 'user-line-img' %>
 <div class="user-wrapper">
     <div class="contain">
-        <%= form_tag("/users/invite_create") do %>
+        <%= form_for @user, url: users_invite_create_path, html: {method: 'POST'} do %>
             <p class="title">招待</p>
             <div class="user-invite">
                 <span>○お友達のメールアドレス :</span>
-                    <input name="friend_email" >
+                    <input name="email" >
                 <spam>○メッセージ :</span>
-                    <textarea name="text">一緒に子育て楽しもう！<%= @user.user_name %>より</textarea>
+                    <textarea name="message">一緒に子育て楽しもう！<%= @user.user_name %>より</textarea>
                 <div class="submit">
                     <input type="submit" value="招待">
                 </div>

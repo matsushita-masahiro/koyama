@@ -1,0 +1,211 @@
+.user-wrapper {
+  width: 100%; }
+
+.contain {
+  width: 85%;
+  margin: 10px auto;
+  padding: 10px 0; }
+
+.user-line-img {
+  width: 100%;
+  height: 40px; }
+
+.show-title {
+  font-family: 'Hannotate SC', 'Bradly Hand';
+  font-size: 15px;
+  padding: .25em 0 .25em .75em;
+  border-left: 6px solid #b4aeb1;
+  margin-bottom: 10px; }
+
+.user-edit, .user-invite {
+  margin: 10px 0; }
+
+.surch {
+  margin: 15px 0 10px; }
+  .surch input {
+    height: 20px; }
+
+.line-img {
+  width: 100%;
+  height: 30px; }
+
+.index-user {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0; }
+  .index-user .each-user {
+    border-bottom: dashed 2px #ccc; }
+    .index-user .each-user .index-user-image img {
+      width: 50px;
+      height: 50px;
+      float: left;
+      object-fit: contain;
+      margin: 5px 10px; }
+    .index-user .each-user .index-user-name {
+      float: left;
+      width: 200px;
+      line-height: 50px; }
+      .index-user .each-user .index-user-name:hover {
+        opacity: 0.8; }
+    .index-user .each-user .index-user-comment {
+      float: left;
+      line-height: 50px; }
+
+.member-list {
+  margin: 30px 0 5px;
+  text-align: center; }
+  .member-list:hover {
+    opacity: 0.8; }
+
+.show-user-left {
+  width: 25%;
+  float: left;
+  text-align: center;
+  box-sizing: border-box; }
+  .show-user-left p {
+    font-size: 17px; }
+  .show-user-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 0.8em;
+    border: 3px solid #b4aeb1;
+    border-radius: 3em .7em 2em .7em/.7em 2em .7em 3em;
+    box-sizing: border-box; }
+  .show-user-left .friend-request {
+    width: 30px;
+    height: 20px;
+    background-image: url("/letter.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto; }
+
+.show-user-right {
+  float: right;
+  width: 70%;
+  height: 250px;
+  margin-right: 10px;
+  box-sizing: border-box;
+  position: relative; }
+  /*.show-user-right span {*/
+  /*  display: inline-block;*/
+  /*  margin: 10px;*/
+  /*  float: right; }*/
+  .show-user-right .show-friend img {
+    width: 30px;
+    height: 30px; }
+
+.show-user-comment {
+  margin-bottom: 15px; }
+  .show-user-comment p {
+    font-family: 'Wawati SC', 'Bradly Hand';
+    position: relative;
+    padding: .5em .75em;
+    background-color: #f0f0f0;
+    border-radius: 15%; }
+    .show-user-comment p:after {
+      position: absolute;
+      bottom: -18px;
+      left: 80px;
+      content: '';
+      width: 0;
+      height: 0;
+      border: 10px solid transparent;
+      border-top: 10px solid #f0f0f0; }
+
+.show-container {
+  padding: 0;
+  margin: 30px auto;
+  width: 100%; }
+  .show-container ul.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0; }
+  .show-container .show-main:not(:last-child) {
+    border-bottom: dashed 2px #b4aeb1; }
+
+ul.menu li {
+  display: inline-block;
+  margin-left: 10px; }
+
+ul.menu li a {
+  display: inline-block;
+  font-size: 18px;
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  padding: 7px; }
+
+ul.menu li a.active {
+  border-bottom: 5px solid #98605e;
+  color: #98605e; }
+
+ul.menu li a:not(.active):hover {
+  opacity: 0.5;
+  transition: .8s; }
+
+.content {
+  font-size: 14px;
+  padding: 7px 10px;
+  line-height: 1.4;
+  color: #fff;
+  min-height: 150px;
+  display: none; }
+  .content img {
+    width: 125px;
+    height: 87.5px;
+    object-fit: contain;
+    float: left;
+    margin: 10px; }
+
+.show-like, .show-post, .content-comment {
+  float: left;
+  padding: 10px; }
+
+.show-user {
+  position: absolute;
+  bottom: 10px;
+  right: 0; }
+
+.show-user img {
+  margin: 0;
+  padding-right: 2px;
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+  vertical-align: center; }
+
+.show-user span {
+  color: #ccc; }
+
+.content-comment p {
+  padding: .25em 0 .25em .75em;
+  border-left: 6px solid #e6c0c0;
+  font-size: 15px;
+  margin: 10px; }
+
+.content.active {
+  display: block; }
+
+.user-edit input:not(:last-child), .user-invite input:not(:last-child) {
+  width: 100%;
+  height: 20px;
+  margin-bottom: 3px; }
+
+.user-edit textarea, .user-invite textarea {
+  width: 100%;
+  height: 60px; }
+
+.relationship img{
+  width: 50px;
+  height: 50px;
+}
+.relationship-user {
+  margin-top: 5px;
+  border-bottom: dashed #ccc 2px
+  
+}
+/*# sourceMappingURL=users.css.map */

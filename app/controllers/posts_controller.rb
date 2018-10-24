@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   
   def new
     @post = Post.new
-    @detail = @post.post_details.build
+    @post.post_details.build
   end
   
   def edit
@@ -28,61 +28,80 @@ class PostsController < ApplicationController
       @post =Post.find_by(id: params[:id])
       @post.destroy
       flash[:notice] = "投稿を削除しました"
-      redirect_to("/posts/index")
+      logger.debug("ssssssssssssssssssssss") 
+      redirect_to posts_path
   end
   
   
   def create
-    logger.debug("sssssssssssssssssssssspost_params[:category]=#{post_params[:post_details_attributes]}")
-    @post = Post.new(
-    category: post_params[:category],
-    title: post_params[:title],
-    main_content: post_params[:main],
-    user_id: @current_user.id
-    )
-    i = 0
-    post_params[:post_details_attributes].each do |f|
+    @post = @current_user.posts.new(
+      post_params
+      # title: post_params[:title],
+      # user_id: @current_user.id,
+      # main_content: post_params[:main_content],
+      # category: post_params[:category]
+      )
       
-      f.each do |g|
-       logger.debug("ssssssssssssssssssssss             #{g["content"]}") 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    @detail = @post.post_details.new(
-      content: g["content"],
-          image: "kids.jpg"
-          )
-                if g["image"]
-                  @detail.save
-                      @detail = PostDetail.all.order(created_at: :desc).first
-                      # 画像保存ディレクトリ
-                      save_path = "public/post_images/#{@post.user_id}/#{@detail.post_id}"
-                      # public/user_id/post_idディレクトリ無ければ作成
-                      FileUtils.mkdir_p(save_path) unless FileTest.exist?(save_path)
-                        @detail.image = "#{@detail.id}.jpg"
-                        @detail.save
-                        image = g["image"]
-                        File.binwrite("#{save_path}/#{@detail.image}", image.read)
-                      logger.debug("ssssssssssssssssssssss")
-                else
-                  @detail.save
-                end
-                i += 1
-      end
-      if @post.save && @detail.save
-        flash[:notice] = "投稿できました"
-        redirect_to("/posts/index")
-      else
-        render("/posts/new")
-      end
+     
+    if @post.save
+      flash[:notice] = "投稿できました"
+      redirect_to posts_path
+       logger.debug("ssssssssssssssssssssss") 
+    else
+      render("/posts/new")
     end
+      
   end
+    # logger.debug("sssssssssssssssssssssspost_params[:category]=#{post_params[:post_details_attributes]}")
+    # @post = Post.new(
+    # category: post_params[:category],
+    # title: post_params[:title],
+    # main_content: post_params[:main],
+    # user_id: @current_user.id
+    # )
+    # i = 0
+    # post_params[:post_details_attributes].each do |f|
+      
+    #   f.each do |g|
+    #   logger.debug("ssssssssssssssssssssss             #{g["content"]}") 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  #   @detail = @post.post_details.new(
+  #     content: g["content"],
+  #         image: "kids.jpg"
+  #         )
+  #               if g["image"]
+  #                 @detail.save
+  #                     @detail = PostDetail.all.order(created_at: :desc).first
+  #                     # 画像保存ディレクトリ
+  #                     save_path = "public/post_images/#{@post.user_id}/#{@detail.post_id}"
+  #                     # public/user_id/post_idディレクトリ無ければ作成
+  #                     FileUtils.mkdir_p(save_path) unless FileTest.exist?(save_path)
+  #                       @detail.image = "#{@detail.id}.jpg"
+  #                       @detail.save
+  #                       image = g["image"]
+  #                       File.binwrite("#{save_path}/#{@detail.image}", image.read)
+  #                     logger.debug("ssssssssssssssssssssss")
+  #               else
+  #                 @detail.save
+  #               end
+  #               i += 1
+  #     end
+  #     if @post.save && @detail.save
+  #       flash[:notice] = "投稿できました"
+  #       redirect_to("/posts/index")
+  #     else
+  #       render("/posts/new")
+  #     end
+  #   end
+  # end
       
     # logger.debug("ssssssssssssssssssssss #{post_params[:post_details_attributes][0][:content]}")
     # if @post.save
@@ -127,8 +146,8 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(update_post_params)
-      redirect_to root_path
+    if @post.update_attributes(post_params)
+      redirect_to posts_path
     else
       render :edit
     end
@@ -150,7 +169,7 @@ class PostsController < ApplicationController
   end
   
   def post_params
-    params.require(:post).permit(:category, :title, :main_content, post_details_attributes: [:id, :content, :image])
+    params.require(:post).permit(:category, :title, :main_content, post_details_attributes: [:id, :post_id, :content, :image,:_destroy])
   end
   
     
